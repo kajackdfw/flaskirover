@@ -4,6 +4,15 @@ body {
   background: black;
 }
 
+driving-controls {
+    padding: 50px;
+    z-index:2;
+    position: relative;
+    right: 200px;
+    top: 200px;
+    background-color: transparent;
+}
+
 .navbar {
     &:extend(.navbar);
     border-radius: 0px;
@@ -11,8 +20,17 @@ body {
     background: black;
 }
 
+.view-row {
+    height: 720px;
+}
+
+.view-div {
+    height: 720px;
+}
 
 .navbar-inverse {
+
+    color: white;
     background: black;
 
     a > span {
@@ -28,26 +46,27 @@ body {
         background: black;
     }
 
-    color: white;
-
     .navbar-nav > li > a {
         color: white;
     }
 
     .dropdown-menu > li > a {
         color: white;
+        background: black;
     }
 
     .dropdown-menu {
         background: black;
+        border-color: white;
     }
 
     .navbar-colapse {
         background: black;
+        color: darkgray;
     }
 
     .navbar-nav > .open > a:focus {
-        background: gray;
+        background: black;
         color: black;
     }
 }
