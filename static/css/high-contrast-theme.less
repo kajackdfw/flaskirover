@@ -8,11 +8,12 @@ body {
     &:extend(.navbar);
     border-radius: 0px;
     color: white;
+    background: black;
 }
 
 
 .navbar-inverse {
-    background: darkgray;
+    background: black;
 
     a > span {
         color: white;
@@ -24,12 +25,30 @@ body {
 
     .navbar-brand {
         color: white;
+        background: black;
     }
 
     color: white;
 
     .navbar-nav > li > a {
         color: white;
+    }
+
+    .dropdown-menu > li > a {
+        color: white;
+    }
+
+    .dropdown-menu {
+        background: black;
+    }
+
+    .navbar-colapse {
+        background: black;
+    }
+
+    .navbar-nav > .open > a:focus {
+        background: gray;
+        color: black;
     }
 }
 
