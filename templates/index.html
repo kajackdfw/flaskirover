@@ -9,42 +9,15 @@
 
     <div class="row">
 
-        <div class="col-md-6 hidden-xs hidden-sm">
+        <div class="col-md-10 hidden-xs hidden-sm">
             <img src="static/cam/latest.jpg" class="img-responsive" alt="Responsive image">
             <div style="height: 6px;"></div>
-
-
-
-            <div class="">
-                <button type="button" class="btn btn-lg-top"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
-            </div>
-            <div class="btn-group" role="group" aria-label="...">
-                <button type="button" class="btn btn-lg-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button>
-                <button type="button" class="btn btn-lg-center"><span class="glyphicon glyphicon-camera" aria-hidden="true"></span></button>
-                <button type="button" class="btn btn-lg-right"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
-            </div>
-            <div class="">
-                <button type="button" class="btn btn-lg-bottom"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
-            </div>
-
-
         </div>
 
-        <div class="col-md-1 visible-xs-block visible-sm-block">
+        <div class="col-md-2 visible-xs-block visible-sm-block">
             <a href="view/latest.jpg" class="thumbnail"><img src="static/cam/latest.jpg" alt="..."></a>
         </div>
 
-        <div class="col-md-1">
-            {% for image in images %}
-                <a href="view/{{ image }}" class="thumbnail"><img src="static/cam/{{ image }}" alt="..."></a>
-            {% endfor %}
-        </div>
-
-
-        <div class="col-md-5">
-
-
-        </div>
     </div>
 
     {% include 'partials/navbar.html' %}
