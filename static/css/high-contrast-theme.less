@@ -24,8 +24,42 @@ driving-controls {
     height: 720px;
 }
 
-.view-div {
-    height: 720px;
+.viewport {
+    padding: 0;
+}
+
+.dashboard {
+    background: darkgray;
+    padding-top: 12px;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-bottom: 4px;
+}
+
+.instrument-row {
+    &:extend(.row);
+    margin: 0px;
+}
+
+.btn-drive {
+    &:extend(.btn-success);
+        background-color: olive;
+        border-color: olivedrab;
+        color: black;
+        margin-top: 4px;
+        width: 80px;
+    }
+
+.btn-drive-left, .btn-drive-right {
+    &:extend(.btn-drive);
+    width: 40px;
+}
+
+.btn-drive-center {
+    &:extend(.btn_drive);
+    background-color: olivedrab;
+    color: black;
+    width: 80px;
 }
 
 .navbar-inverse {
@@ -69,5 +103,6 @@ driving-controls {
         background: black;
         color: black;
     }
+
 }
 
