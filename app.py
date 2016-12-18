@@ -5,8 +5,10 @@ import os
 
 app = Flask(__name__)
 server_os = os.name
-print(" * System OS is " + os.name)
-mypath = 'static/cam'
+if os.name == 'nt':
+    mypath = 'C:/Users/kajac/Documents/Projects_Python/raspberry_flask_garden/static/cam'
+else:
+    mypath = 'static/cam'
 
 @app.route('/')
 def index():
