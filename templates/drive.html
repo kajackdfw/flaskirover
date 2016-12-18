@@ -1,28 +1,24 @@
 <html>
 <head>
-    <link rel="stylesheet" href="/static/css/high-contrast-theme.css" >
+    <link rel="stylesheet" href="/static/css/high-contrast-theme.css?q=2016121819" >
     <link rel="stylesheet" href="/static/css/font-awesome.min.css">
 </head>
 <body>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="/static/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
 
-    <div class="dashboard-container">
+<div class="dashboard-container">
 
-        <div class="row">
-            <div class="col-lg-10 hidden-xs viewport">
-
-                <image class="img-responsive" src="static/cam/default_view.jpg" />
-
-
-            </div>
-
-
-            <div class="col-lg-2 hidden-md">
-                {% include 'partials/instruments.html' %}
-            </div>
+    <div class="row">
+        <div class="col-lg-10 col-md-16 viewport">
+            <image class="img-responsive" src="static/cam/default_view.jpg" />
         </div>
 
+        <div class="col-lg-2 col-md-16">
+            {% include 'partials/instruments.html' %}
+        </div>
     </div>
+
+</div>
 
 </body></html>

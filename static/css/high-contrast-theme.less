@@ -1,7 +1,7 @@
 @import "bootstrap.css";
 
 body {
-  background: gray;
+  background: black;
 }
 
 .driving-controls {
@@ -35,12 +35,12 @@ body {
 
 .dashboard-button-row {
     &:extend(.col-lg-12);
-    padding: 12px;
-    margin-left: 8px;
+    padding: 2px;
+    margin-left: 0;
 }
 
 .dashboard {
-    background: darkgray;
+    background: black;
     padding-top: 12px;
     padding-left: 4px;
     padding-right: 4px;
@@ -50,29 +50,41 @@ body {
 .instrument-row {
     &:extend(.row);
     margin: 0;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    text-align: center;
 }
 
 .btn-drive {
-    &:extend(.btn-success);
+    &:extend(.btn-lg);
         background-color: olive;
         border-color: olivedrab;
         color: black;
         margin-top: 4px;
-        width: 40px;
+        width: 50px;
     }
 
 .btn-drive-left, .btn-drive-right {
     &:extend(.btn-drive);
-    width: 40px;
 }
 
-.btn-drive-centerx {
+.btn-drive-center {
     &:extend(.btn_success);
     background-color: black;
     border-color: olivedrab;
-    color: olive;
-    width: 40px;
+    color: white;
+    width: 50px;
     padding: 8px;
+}
+
+.fa-rotate-45 {
+    &:extend(.fa-rotate-90);
+    transform: rotate(45deg);
+}
+
+.fa-rotate-315 {
+    &:extend(.fa-rotate-90);
+    transform: rotate(315deg);
 }
 
 .navbar-inverse {
