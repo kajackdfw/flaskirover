@@ -5,6 +5,11 @@ body {
   color: yellow;
 }
 
+.tooltip {
+    background: yellow;
+    color: black;
+}
+
 .driving-controls {
     padding: 50px;
     z-index:2;
@@ -63,7 +68,12 @@ body {
         color: black;
         margin-top: 4px;
         width: 50px;
+        border: 2px solid;
     }
+
+.btn-drive:hover {
+    color: olive;
+}
 
 .xbtn-drive-left, .xbtn-drive-right {
     &:extend(.btn-drive);
@@ -73,7 +83,19 @@ body {
     &:extend(.btn-lg);
     background-color: black;
     border-color: olivedrab;
-    color: white;
+    color: olive;
+    width: 50px;
+    padding: 8px;
+    height: 41px;
+    margin-top: 2px;
+    border: 2px solid;
+}
+
+.btn-drive-empty {
+    &:extend(.btn-lg);
+    background-color: black;
+    border-color: black;
+    color: black;
     width: 50px;
     padding: 8px;
     height: 41px;
@@ -85,10 +107,9 @@ body {
     transform: rotate(45deg);
 }
 
-.fa-rotate-315 {
-    &:extend(.fa-rotate-90);
-    transform: rotate(315deg);
-}
+.fa-rotate-315:extend(.fa-rotate-90) { transform: rotate(315deg); }
+.fa-rotate-225:extend(.fa-rotate-90) { transform: rotate(225deg); }
+.fa-rotate-135:extend(.fa-rotate-90) { transform: rotate(135deg); }
 
 .navbar-inverse {
 
