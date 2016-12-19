@@ -2,6 +2,7 @@
 
 body {
   background: black;
+  color: yellow;
 }
 
 .driving-controls {
@@ -51,7 +52,7 @@ body {
     &:extend(.row);
     margin: 0;
     margin-top: 8px;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     text-align: center;
 }
 
@@ -64,17 +65,19 @@ body {
         width: 50px;
     }
 
-.btn-drive-left, .btn-drive-right {
+.xbtn-drive-left, .xbtn-drive-right {
     &:extend(.btn-drive);
 }
 
 .btn-drive-center {
-    &:extend(.btn_success);
+    &:extend(.btn-lg);
     background-color: black;
     border-color: olivedrab;
     color: white;
     width: 50px;
     padding: 8px;
+    height: 41px;
+    margin-top: 2px;
 }
 
 .fa-rotate-45 {
