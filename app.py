@@ -6,7 +6,7 @@ import os
 app = Flask(__name__)
 server_os = os.name
 if os.name == 'nt':
-    mypath = 'C:/Users/kajac/Documents/Projects_Python/raspberry_flask_garden/static/cam'
+    mypath = 'static/cam'  # 'C:/Users/kajac/Documents/Projects_Python/raspberry_flask_garden/static/cam'
 else:
     mypath = 'static/cam'
 
