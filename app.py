@@ -6,13 +6,13 @@ import os
 app = Flask(__name__)
 server_os = os.name
 if os.name == 'nt':
-    mypath = 'static/cam'  # 'C:/Users/kajac/Documents/Projects_Python/raspberry_flask_garden/static/cam'
+    mypath = 'static/webcam'  # 'C:/Users/kajac/Documents/Projects_Python/raspberry_flask_garden/static/webcam'
 else:
-    mypath = 'static/cam'
+    mypath = 'static/webcam'
 
 @app.route('/')
 def index():
-    # mypath = 'static/cam'
+    # mypath = 'static/webcam'
     imagefiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
     return render_template('index.html', images=imagefiles)
 
