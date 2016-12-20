@@ -5,10 +5,13 @@ import os
 
 app = Flask(__name__)
 server_os = os.name
-if os.name == 'nt':
-    mypath = 'static/webcam'  # 'C:/Users/kajac/Documents/Projects_Python/raspberry_flask_garden/static/webcam'
+if os.path.isdir('static/webcam'):
+    mypath = 'static/webcam'
+elif os.path.isdir('~/Documents/Projects_Python/python_flask_rover_ui/static/webcam'):
+    mypath = '~/Documents/Projects_Python/python_flask_rover_ui/static/webcam'
 else:
     mypath = 'static/webcam'
+
 
 @app.route('/')
 def index():
@@ -16,9 +19,11 @@ def index():
     imagefiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
     return render_template('index.html', images=imagefiles)
 
+
 @app.route('/view/<image>')
 def view(image):
     return render_template('view.html', image=image)
+
 
 @app.route('/drive')
 def drive():
