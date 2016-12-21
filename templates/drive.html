@@ -17,15 +17,9 @@
     {
         $("#to_home_lg").click(function(){ window.location.href = "/"; });
         $("#to_home_sm").click(function(){ window.location.href = "/"; });
-
     });
 
 
-
-    // $('#to_home').click( alert('ding') )
-
-    // window.location.href = "/"
-    // $(location).attr('href', 'http://stackoverflow.com')
 
 </script>
 
@@ -33,11 +27,12 @@
 
     <div class="row">
         <div class="col-lg-10 col-md-16 viewport">
-            <image class="img-responsive" src="static/webcam/161220093000.jpg" />
+            <image class="img-responsive" src="{{ image }}" />
         </div>
 
         <div class="col-lg-2 col-md-16">
             {% include 'partials/instruments.html' %}
+            {% print(images) %}
         </div>
     </div>
 

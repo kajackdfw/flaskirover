@@ -57,6 +57,13 @@
         </div>
 
 
+        {% for image in images %}
+            <div class="col-lg-2">
+                <a href="view/{{ image }}" class="thumbnail"><img src="{{ path }}/{{ image }}"></a>
+            </div>
+        {% endfor %}
+
+
             <div class="">
                 <button type="button" class="btn btn-lg-top"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
             </div>

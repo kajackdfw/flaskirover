@@ -1,16 +1,30 @@
 <html>
 <head>
-    <link rel="stylesheet" href="/static/css/high-contrast-theme.css?q=2016121832" >
+    <link rel="stylesheet" href="/static/css/high-contrast-theme.css?q=2016121833" >
 </head>
 <body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>
+<script type="application/javascript">
+
+    $( document ).ready(function()
+    {
+        $("#drive_now").click(function(){ window.location.href = "/drive"; });
+    });
+
+</script>
 
     {% include 'partials/navbar.html' %}
 
-    <br>
+    <div class="thumbnail_container">
 
+        <div class="col-lg-2">
+            <image class="img-responsive thumbnail" id="drive_now" src="static/images/M1_Lego_Rover.jpg" />
+        </div>
+
+
+    </div>
 
 
 </body>
