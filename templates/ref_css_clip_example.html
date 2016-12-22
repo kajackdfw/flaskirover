@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#myDIV {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: coral;
+}
+</style>
+</head>
+<body>
+
+<p>Click the "Try it" button to clip the DIV element:</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<div id="myDIV">
+  <h1>myDIV</h1>
+</div>
+
+<script>
+function myFunction() {
+    document.getElementById("myDIV").style.clip = "rect(10px,80px,80px,10px)";
+}
+</script>
+
+</body>
+</html>

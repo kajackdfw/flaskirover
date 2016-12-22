@@ -1,3 +1,18 @@
+<script type="application/javascript">
+
+    $( document ).ready(function()
+    {
+        $("#to_home_lg").click(function(){ window.location.href = "/"; });
+        $("#to_home_sm").click(function(){ window.location.href = "/"; });
+
+        // zoomable_image
+        // object.style.clip="rect(0px,50px,50px,0px)"
+
+    });
+
+</script>
+
+
 <div class="dashboard-container visible-lg">
 
     <div class="instrument-row">
@@ -28,14 +43,14 @@
 
     <div class="instrument-row">
         <div class="dashboard-button-row">
-            <button type="button" class="btn btn-drive-empty btn-lg">
-
+            <button type="button" class="btn btn-drive btn-lg">
+                <i class="fa fa-hand-o-left fa-rotate-45"></i>
             </button>
             <button type="button" class="btn btn-drive btn-lg">
                 <i class="fa fa-hand-o-up"></i>
             </button>
-            <button type="button" class="btn btn-drive-empty btn-lg">
-
+            <button type="button" class="btn btn-drive btn-lg">
+                <i class="fa fa-hand-o-right fa-rotate-315"></i>
             </button>
         </div>
         <div class="dashboard-button-row">
@@ -43,21 +58,36 @@
                 <i class="fa fa-hand-o-left"></i>
             </button>
             <button type="button" class="btn btn-drive-center btn-lg">
-                <i class="fa fa-video-camera"></i>
+                <i class="fa fa-arrows"></i>
             </button>
             <button type="button" class="btn btn-drive btn-lg">
                 <i class="fa fa-hand-o-right"></i>
             </button>
         </div>
-        <div class="dashboard-button-row">
-            <button type="button" class="btn btn-drive-empty btn-lg">
 
+        <div class="dashboard-button-row">
+            <button type="button" class="btn btn-drive btn-lg">
+                <i class="fa fa-hand-o-left fa-rotate-315"></i>
             </button>
             <button type="button" class="btn btn-drive btn-lg">
                 <i class="fa fa-hand-o-down"></i>
             </button>
-            <button type="button" class="btn btn-drive-empty btn-lg">
+            <button type="button" class="btn btn-drive btn-lg">
+                <i class="fa fa-hand-o-right fa-rotate-45"></i>
+            </button>
+        </div>
+    </div>
 
+    <div class="instrument-row">
+        <div class="dashboard-button-row">
+            <button type="button" class="btn btn-drive btn-lg">
+                <i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-drive-center btn-lg">
+                <i class="fa fa-binoculars"></i>
+            </button>
+            <button type="button" class="btn btn-drive btn-lg">
+                <i class="fa fa-plus"></i>
             </button>
         </div>
     </div>

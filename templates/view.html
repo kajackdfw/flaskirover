@@ -12,26 +12,19 @@
         $('[data-toggle="tooltip"]').tooltip()
     })
 
-
-    $( document ).ready(function()
-    {
-        $("#to_home_lg").click(function(){ window.location.href = "/"; });
-        $("#to_home_sm").click(function(){ window.location.href = "/"; });
-    });
-
-
-
 </script>
 
 <div class="dashboard-container">
 
     <div class="row">
         <div class="col-lg-10 col-md-16 viewport">
-            <image class="img-responsive" src="/{{ path }}/{{ image }}" />
+            <image class="img-responsive" id="zoomable_image" src="/{{ path }}/{{ image }}" />
         </div>
 
         <div class="col-lg-2 col-md-16">
-            {% include 'partials/examine.html' %}
+
+            {% include 'partials/pic_zoomer.html' %}
+
         </div>
     </div>
 
