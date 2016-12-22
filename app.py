@@ -40,6 +40,13 @@ def drive():
     latest_image = vision.get_latest_web_cam_image()
     return render_template('drive.html', image=latest_image)
 
+
+@app.route('/test/<image>')
+def test(image):
+    path = vision.settings['path_to_pictures']
+    return render_template('test.html', image=image, path=path)
+
+
 if __name__ == '__main__' and os.name == 'posix':
     app.run(debug=True, host='0.0.0.0')
 elif __name__ == '__main__':
