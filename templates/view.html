@@ -27,12 +27,11 @@
 
     <div class="row">
         <div class="col-lg-10 col-md-16 viewport">
-            <image class="img-responsive" src="{{ image }}" />
+            <image class="img-responsive" src="/{{ path }}/{{ image }}" />
         </div>
 
         <div class="col-lg-2 col-md-16">
             {% include 'partials/examine.html' %}
-            {% print(images) %}
         </div>
     </div>
 

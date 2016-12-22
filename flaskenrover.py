@@ -42,3 +42,15 @@ class Rover:
                 last_timestamp = int(filename_pieces[0])
         last_filename = self.settings['path_to_web_cam'] + '/' + str(last_timestamp) + '.jpg'
         return last_filename
+
+    def get_list_of_pictures(self):
+        thumb_nail_list = [f for f in listdir(self.settings['path_to_thumbnails']) if isfile(join(self.settings['path_to_thumbnails'], f))]
+        pictures = []
+        picture_insert = 0
+        for image in thumb_nail_list:
+            filename_pieces = image.split('.')
+            new_image = {
+                'view_url': 'view/' + str(filename_pieces[0] + '.' + filename_pieces[1]),
+                'thumbnail': self.settings['path_to_thumbnails'] + '/' + filename_pieces[0] + '.' + filename_pieces[1]}
+            pictures.insert(picture_insert, new_image)
+        return pictures

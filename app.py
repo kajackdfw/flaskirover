@@ -13,24 +13,26 @@ if os.path.isdir('static/webcam'):
     startup_settings['path_to_pictures'] = 'static/camera/photos'
     startup_settings['path_to_thumbnails'] = 'static/camera/thumbnails'
 else:
+    # We can function without the std directories, but all photos will be lost in tmp
     startup_settings['path_to_web_cam'] = '/tmp/static/webcam'
     startup_settings['path_to_pictures'] = '/tmp/static/camera/photos'
     startup_settings['path_to_thumbnails'] = '/tmp/static/camera/thumbnails'
 
-# Plugin the hardware driver classes here
+# Plugin the hardware classes here
 vision = Rover(startup_settings)
 motor = Rover(startup_settings)
 
+
 @app.route('/')
 def index():
-    # path_to_webcam = 'static/webcam'
-    imagefiles = [f for f in listdir(startup_settings['path_to_thumbnails']) if isfile(join(startup_settings['path_to_thumbnails'], f))]
-    return render_template('index.html', images=imagefiles, path=startup_settings['path_to_thumbnails'])
+    pictures = vision.get_list_of_pictures()
+    return render_template('index.html', pictures=pictures)
 
 
 @app.route('/view/<image>')
 def view(image):
-    return render_template('view.html', image=image)
+    path = vision.settings['path_to_pictures']
+    return render_template('view.html', image=image, path=path)
 
 
 @app.route('/drive')
