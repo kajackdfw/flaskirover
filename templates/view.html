@@ -1,19 +1,41 @@
 <html>
 <head>
-    <link rel="stylesheet" href="/static/css/high-contrast-theme.css" >
+    <link rel="stylesheet" href="/static/css/high-contrast-theme.css?q=2016121838" >
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
 </head>
 <body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script type="application/javascript">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="/static/css/bootstrap.min.js"></script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
 
-    {% include 'partials/navbar.html' %}
+
+    $( document ).ready(function()
+    {
+        $("#to_home_lg").click(function(){ window.location.href = "/"; });
+        $("#to_home_sm").click(function(){ window.location.href = "/"; });
+    });
+
+
+
+</script>
+
+<div class="dashboard-container">
 
     <div class="row">
+        <div class="col-lg-10 col-md-16 viewport">
+            <image class="img-responsive" src="{{ image }}" />
+        </div>
 
-        <div class="col-md-12">
-            <img src="/static/cam/{{image}}" class="img-responsive" alt="Responsive image">
+        <div class="col-lg-2 col-md-16">
+            {% include 'partials/examine.html' %}
+            {% print(images) %}
         </div>
     </div>
+
+</div>
 
 </body></html>
