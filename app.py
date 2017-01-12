@@ -44,7 +44,7 @@ def drive():
 @app.route('/test/<image>')
 def test(image):
     path = vision.settings['path_to_pictures']
-    return render_template('test.html', image=image, path=path)
+    return render_template('view_with_canvas_and_mouse.html', image=image, path=path)
 
 
 if __name__ == '__main__' and os.name == 'posix':

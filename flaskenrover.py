@@ -50,7 +50,7 @@ class Rover:
         for image in thumb_nail_list:
             filename_pieces = image.split('.')
             new_image = {
-                'view_url': 'test/' + str(filename_pieces[0] + '.' + filename_pieces[1]),
+                'view_url': 'view/' + str(filename_pieces[0] + '.' + filename_pieces[1]),
                 'thumbnail': self.settings['path_to_thumbnails'] + '/' + filename_pieces[0] + '.' + filename_pieces[1]}
             pictures.insert(picture_insert, new_image)
         return pictures
