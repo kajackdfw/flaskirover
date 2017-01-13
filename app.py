@@ -3,7 +3,7 @@ from os import listdir
 from os.path import isfile, join
 import os
 import sys
-sys.path.append('vision_system')
+sys.path.append('app_drivers/vision')
 from raspberry_pi_8mp import Vision
 
 app = Flask(__name__)
