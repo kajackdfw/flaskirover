@@ -1,10 +1,9 @@
 from flask import Flask, render_template
-from os import listdir
-from os.path import isfile, join
 import os
 import sys
+
 sys.path.append('app_drivers/vision')
-from raspberry_pi_8mp import Vision
+from raspberry_pi_8mp import Vision  # change raspberry_pi_8mp to match your hardware
 
 app = Flask(__name__)
 server_os = os.name
