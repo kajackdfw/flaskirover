@@ -2,7 +2,9 @@ from flask import Flask, render_template
 from os import listdir
 from os.path import isfile, join
 import os
-from flaskenrover import Rover
+import sys
+sys.path.append('vision_system')
+from raspberry_pi_8mp import Vision
 
 app = Flask(__name__)
 server_os = os.name
@@ -19,8 +21,8 @@ else:
     startup_settings['path_to_thumbnails'] = '/tmp/static/camera/thumbnails'
 
 # Plugin the hardware classes here
-vision = Rover(startup_settings)
-motor = Rover(startup_settings)
+vision = Vision(startup_settings)
+# motor = Rover(startup_settings)
 
 
 @app.route('/')
