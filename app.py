@@ -2,8 +2,11 @@ from flask import Flask, render_template
 import os
 import sys
 
-sys.path.append('app_drivers/vision')
+sys.path.append('hardware_drivers/vision')
 from raspberry_pi_8mp import Vision  # change raspberry_pi_8mp to match your hardware
+
+sys.path.append('hardware_drivers/motor')
+from adafruit_dc_and_stepper_motor_hat import Motor  # change to match your motor hat
 
 app = Flask(__name__)
 server_os = os.name
@@ -19,9 +22,9 @@ else:
     startup_settings['path_to_pictures'] = '/tmp/static/camera/photos'
     startup_settings['path_to_thumbnails'] = '/tmp/static/camera/thumbnails'
 
-# Plugin the hardware classes here
+# Plugin the hardware drivers here
 vision = Vision(startup_settings)
-# motor = Rover(startup_settings)
+motor = Motor(startup_settings)
 
 
 @app.route('/')
