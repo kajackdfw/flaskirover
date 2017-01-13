@@ -6,8 +6,10 @@
         $("#to_home_sm").click(function(){ window.location.href = "/"; });
 
         $("#restore").click(function(){
-            $.get("/get/{{ image }}/1/1/1", function(data, status){
+            $.get("/get/{{ image }}/0/0/0", function(data, status){
                 alert("Response: " + data + "\nStatus: " + status);
+                $("#zoomable_image").attr('src',"/static/tmp/cropped_image.jpg");
+                return false;
             });
 
         });
