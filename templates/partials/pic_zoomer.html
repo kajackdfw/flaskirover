@@ -5,8 +5,17 @@
         $("#to_home_lg").click(function(){ window.location.href = "/"; });
         $("#to_home_sm").click(function(){ window.location.href = "/"; });
 
+        $("#restore").click(function(){
+            $.get("/get/{{ image }}/1/1/1", function(data, status){
+                alert("Response: " + data + "\nStatus: " + status);
+            });
+
+        });
+
         // zoomable_image
         // object.style.clip="rect(0px,50px,50px,0px)"
+
+        // id="zoomable_image"
 
     });
 
@@ -42,11 +51,12 @@
                 <i class="fa fa-hand-o-right fa-rotate-315"></i>
             </button>
         </div>
+
         <div class="dashboard-button-row">
             <button type="button" class="btn btn-drive btn-lg">
                 <i class="fa fa-hand-o-left"></i>
             </button>
-            <button type="button" class="btn btn-drive-center btn-lg">
+            <button type="button" class="btn btn-drive-center btn-lg" id="restore">
                 <i class="fa fa-arrows"></i>
             </button>
             <button type="button" class="btn btn-drive btn-lg">
