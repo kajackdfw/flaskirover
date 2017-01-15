@@ -7,12 +7,18 @@
 
         $("#restore").click(function(){
             $.get("/get/{{ image }}/0/0/0", function(data, status){
-                alert("Response: " + data + "\nStatus: " + status);
-                $("#zoomable_image").attr('src',"/static/tmp/cropped_image.jpg");
+
+                //alert("Response: " + data + "\nStatus: " + status);
+                $("#zoomable_image").attr('src',data);
+                //$("#zoomable_image").attr('src',"/static/camera/photos/radish.jpg");
                 return false;
             });
 
+
+
         });
+
+
 
         // zoomable_image
         // object.style.clip="rect(0px,50px,50px,0px)"
