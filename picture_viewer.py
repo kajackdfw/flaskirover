@@ -6,13 +6,9 @@ from PIL import Image
 import datetime
 
 
-class Vision:
+class Viewer:
 
     settings = {}
-
-    # startup_settings['path_to_webcam'] = '/tmp/static/webcam'
-    # startup_settings['path_to_pictures'] = '/tmp/static/camera/photos'
-    # startup_settings['path_to_thunbnails'] = '/tmp/static/camera/thumbnails'
 
     def __init__(self, start_settings):
 
@@ -41,16 +37,6 @@ class Vision:
         else:
             self.settings['view_x'] = 600
 
-    def get_latest_web_cam_image(self):
-        image_list = [f for f in listdir(self.settings['path_to_web_cam']) if isfile(join(self.settings['path_to_web_cam'], f))]
-        last_timestamp = 0
-        for image in image_list:
-            filename_pieces = image.split('.')
-            if int(filename_pieces[0]) > last_timestamp:
-                last_timestamp = int(filename_pieces[0])
-        last_filename = self.settings['path_to_web_cam'] + '/' + str(last_timestamp) + '.jpg'
-        return last_filename
-
     def get_list_of_pictures(self):
         thumb_nail_list = [f for f in listdir(self.settings['path_to_thumbnails']) if isfile(join(self.settings['path_to_thumbnails'], f))]
         pictures = []
@@ -63,7 +49,7 @@ class Vision:
             pictures.insert(picture_insert, new_image)
         return pictures
 
-    def zoom_picture(self, pic_selected, zoom_factor, pan_x, pan_y):
+    def zoom(self, pic_selected, zoom_factor):
         zoom_options = {}
         zoom_options['zoom'] = float(zoom_factor)
 
@@ -112,5 +98,12 @@ class Vision:
         print('save to ' + output_file)
         source_image.save('static/' + output_file)
         zoom_options['file'] = output_file
-
         return zoom_options
+
+    def info(self, pic_selected):
+        image_info = Image.open(self.settings['path_to_pictures'] + '/' + pic_selected)
+        pic_info = {
+            'zoom_center_x': round(float(image_info.size[0]) / 2.0, 0),
+            'zoom_center_y': round(float(image_info.size[1]) / 2.0, 0)}
+        del image_info
+        return pic_info

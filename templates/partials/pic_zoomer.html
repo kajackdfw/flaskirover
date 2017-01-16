@@ -1,28 +1,43 @@
 <script type="application/javascript">
 
+
+
+    var zoom_factor = 1.0;
+    var zoom_center_x = 0.5;
+    var zoom_center_y = 0.5;
+
     $( document ).ready(function()
     {
         $("#to_home_lg").click(function(){ window.location.href = "/"; });
         $("#to_home_sm").click(function(){ window.location.href = "/"; });
 
         $("#restore").click(function(){
-            $.get("/get/{{ image }}/0.75/-12.5/-12.5", function(data, status){
+            $.get("/ajax/zoom/{{ image }}/1.0", function(data, status){
                 var results = JSON.parse( data );
                 $("#zoomable_image").attr('src',results.url);
-                alert(data);
+                zoom_factor = 1.0;
                 return false;
             });
-
-
-
         });
 
+        $("#zoom_in").click(function(){
+            zoom_factor = zoom_factor * 0.75;
+            $.get("/ajax/zoom/{{ image }}/" + zoom_factor , function(data, status){
+                var results = JSON.parse( data );
+                $("#zoomable_image").attr('src',results.url);
+                return false;
+            });
+        });
 
+        $("#zoom_out").click(function(){
+            zoom_factor = zoom_factor / 0.75;
+            $.get("/ajax/zoom/{{ image }}/" + zoom_factor , function(data, status){
+                var results = JSON.parse( data );
+                $("#zoomable_image").attr('src',results.url);
+                return false;
+            });
+        });
 
-        // zoomable_image
-        // object.style.clip="rect(0px,50px,50px,0px)"
-
-        // id="zoomable_image"
 
     });
 
@@ -63,7 +78,7 @@
             <button type="button" class="btn btn-drive btn-lg">
                 <i class="fa fa-hand-o-left"></i>
             </button>
-            <button type="button" class="btn btn-drive-center btn-lg" id="restore">
+            <button type="button" class="btn btn-drive-center btn-lg">
                 <i class="fa fa-arrows"></i>
             </button>
             <button type="button" class="btn btn-drive btn-lg">
@@ -86,13 +101,13 @@
 
     <div class="instrument-row">
         <div class="dashboard-button-row">
-            <button type="button" class="btn btn-drive btn-lg">
+            <button type="button" class="btn btn-drive btn-lg" id="zoom_in">
                 <i class="fa fa-minus"></i>
             </button>
-            <button type="button" class="btn btn-drive-center btn-lg">
+            <button type="button" class="btn btn-drive-center btn-lg" id="restore">
                 <i class="fa fa-binoculars"></i>
             </button>
-            <button type="button" class="btn btn-drive btn-lg">
+            <button type="button" class="btn btn-drive btn-lg" id="zoom_out">
                 <i class="fa fa-plus"></i>
             </button>
         </div>

@@ -4,7 +4,7 @@ import sys
 from PIL import Image
 import datetime
 import json
-
+from picture_viewer import Viewer
 
 sys.path.append('hardware_drivers/vision')
 from raspberry_pi_8mp import Vision  # change raspberry_pi_8mp to match your hardware
@@ -32,51 +32,32 @@ else:
 # Plugin the hardware drivers here
 vision = Vision(startup_settings)
 motor = Motor(startup_settings)
-
+picture = Viewer(startup_settings)
 
 @app.route('/')
 def index():
-    pictures = vision.get_list_of_pictures()
+    pictures = picture.get_list_of_pictures()
     return render_template('index.html', pictures=pictures)
 
 
 @app.route('/view/<image>')
 def view(image):
-    path = vision.settings['path_to_pictures']
-    return render_template('view.html', image=image, path=path)
+    path = picture.settings['path_to_pictures']
+    pic_info = picture.info(image)
+    return render_template('view.html', image=image, path=path, pic_info=pic_info)
 
 
-@app.route('/get/<image_file>/<zoom_in>/<x>/<y>')
-def get_image(image_file,zoom_in,x,y):
-    # path = vision.settings['path_to_pictures']
-    # print('open ' + path + '/' + image_file)
-    # source_image = Image.open(path + '/' + image_file)
-    # print('format:' + str(source_image.format))
-    # print('size  : ' + str(source_image.size))
-    # print('mode  : ' + str(source_image.mode))
-    #
-    # width, height = source_image.size  # Get dimensions
-    # new_width = width * 0.75
-    # new_height = height * 0.75
-    # left = round((width - new_width) / 2 , 0)
-    # top = round((height - new_height) / 2, 0)
-    # right = round((width + new_width) / 2, 0)
-    # bottom = round((height + new_height) / 2, 0)
-    # print(' new left = ' + str(left))
-    # print(' new top = ' + str(top))
-    # print(' new right = ' + str(right))
-    # print(' new bottom = ' + str(bottom))
-    # source_image = source_image.crop((left, top, right, bottom))
-    #
-    # # What will we call this new image
-    # time_stamp = '{:%Y%m%d%H%M%S}'.format(datetime.datetime.now())
-    # file_name, extension = os.path.splitext(image_file)
-    # output_file = 'tmp/zoom_' + time_stamp + extension
-    # print('save to ' + output_file)
-    # source_image.save('static/' + output_file)
-    zoom_info = vision.zoom_picture(image_file, zoom_in, x, y)
+@app.route('/ajax/zoom/<image_file>/<zoom_factor>')
+def get_image(image_file, zoom_factor):
+    zoom_info = picture.zoom(image_file, zoom_factor)
     zoom_info['url'] = url_for('static', filename=zoom_info['file'])
-    return json.dumps(zoom_info, separators=(',',':'))
+    return json.dumps(zoom_info, separators=(',', ':'))
+
+
+@app.route('/ajax/info/<image_file>')
+def get_image_info(image_file, zoom_factor):
+    pic_info = picture.info(image_file)
+    return json.dumps(pic_info, separators=(',', ':'))
 
 
 @app.route('/drive')
@@ -87,7 +68,7 @@ def drive():
 
 @app.route('/test/<image>')
 def test(image):
-    path = vision.settings['path_to_pictures']
+    path = picture.settings['path_to_pictures']
     return render_template('view_with_canvas_and_mouse.html', image=image, path=path)
 
 
