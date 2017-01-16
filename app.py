@@ -14,6 +14,9 @@ app = Flask(__name__, static_url_path='/static')
 server_os = os.name
 startup_settings = {}
 
+startup_settings['view_x'] = 920
+startup_settings['view_y'] = round(startup_settings['view_x'] * 0.75, 0)
+
 if os.path.isdir('static/webcam'):
     startup_settings['path_to_web_cam'] = 'static/webcam'
     startup_settings['path_to_pictures'] = 'static/camera/photos'
@@ -66,7 +69,7 @@ def get_image(image_file,zoom_in,x,y):
     # What will we call this new image
     time_stamp = '{:%Y%m%d%H%M%S}'.format(datetime.datetime.now())
     file_name, extension = os.path.splitext(image_file)
-    output_file = 'tmp/' + time_stamp + extension
+    output_file = 'tmp/zoom_' + time_stamp + extension
     print('save to ' + output_file)
     source_image.save('static/' + output_file)
     return url_for('static', filename=output_file)

@@ -2,6 +2,8 @@ import math
 from os import listdir
 from os.path import isfile, join
 import os
+from PIL import Image
+import datetime
 
 
 class Vision:
@@ -50,3 +52,55 @@ class Vision:
                 'thumbnail': self.settings['path_to_thumbnails'] + '/' + filename_pieces[0] + '.' + filename_pieces[1]}
             pictures.insert(picture_insert, new_image)
         return pictures
+
+    def zoom_picture(self, pic_selected, zoom_factor, pan_x, pan_y):
+        zoom_options = {}
+        zoom_options['zoom'] = zoom_factor
+
+        path = self.settings['path_to_pictures']
+        print('open ' + path + '/' + pic_selected)
+        source_image = Image.open(path + '/' + pic_selected)
+        print('format:' + str(source_image.format))
+        print('size  : ' + str(source_image.size))
+        print('mode  : ' + str(source_image.mode))
+
+        width, height = source_image.size  # Get dimensions
+        new_width = width * zoom_factor
+        new_height = height * zoom_factor
+
+        if new_width >= source_image.size['x']:
+            new_width = source_image.size['x']
+            new_height = round(new_width * 0.75, 0)
+            zoom_options['zoom'] = 1.0
+            zoom_options['zoom_out'] = 0
+            zoom_options['zoom_in'] = 0.75
+        elif new_width < self.settings['view_x']:
+            new_width = self.settings['view_x']
+            new_height = self.settings['view_y']
+            zoom_options['zoom'] = new_width / source_image.size['x']
+            zoom_options['zoom_out'] = zoom_options['zoom'] + 0.25
+            zoom_options['zoom_in'] = 0
+        else:
+            zoom_options['zoom_out'] = True
+            zoom_options['zoom_in'] = True
+
+        left = round((width - new_width) / 2, 0)
+        top = round((height - new_height) / 2, 0)
+        right = round((width + new_width) / 2, 0)
+        bottom = round((height + new_height) / 2, 0)
+
+        print(' new left = ' + str(left))
+        print(' new top = ' + str(top))
+        print(' new right = ' + str(right))
+        print(' new bottom = ' + str(bottom))
+        source_image = source_image.crop((left, top, right, bottom))
+
+        # What will we call this new image
+        time_stamp = '{:%Y%m%d%H%M%S}'.format(datetime.datetime.now())
+        file_name, extension = os.path.splitext(pic_selected)
+        output_file = 'tmp/zoom_' + time_stamp + extension
+        print('save to ' + output_file)
+        source_image.save('static/' + output_file)
+        zoom_options['file'] = output_file
+
+        return zoom_options

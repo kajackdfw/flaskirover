@@ -6,11 +6,8 @@
         $("#to_home_sm").click(function(){ window.location.href = "/"; });
 
         $("#restore").click(function(){
-            $.get("/get/{{ image }}/0/0/0", function(data, status){
-
-                //alert("Response: " + data + "\nStatus: " + status);
+            $.get("/get/{{ image }}/0.75/-12.5/-12.5", function(data, status){
                 $("#zoomable_image").attr('src',data);
-                //$("#zoomable_image").attr('src',"/static/camera/photos/radish.jpg");
                 return false;
             });
 
