@@ -9,36 +9,48 @@
         $("#to_home_lg").click(function(){ window.location.href = "/"; });
         $("#to_home_sm").click(function(){ window.location.href = "/"; });
 
-        $("#restore").click(function(){
-            $.get("/ajax/zoom/{{ image }}/1.0", function(data, status){
-                var results = JSON.parse( data );
-                $("#zoomable_image").attr('src',results.url);
-                zoom_factor = 1.0;
-                return false;
-            });
-        });
+        $("#zoom_in_lg").click(function(){ zoom_in() });
+        $("#zoom_in_md").click(function(){ zoom_in() });
+        $("#zoom_in_sm").click(function(){ zoom_in() });
 
-        $("#zoom_in").click(function(){
-            zoom_factor = zoom_factor * 0.75;
-            $.get("/ajax/zoom/{{ image }}/" + zoom_factor , function(data, status){
-                var results = JSON.parse( data );
-                $("#zoomable_image").attr('src',results.url);
-                return false;
-            });
-        });
+        $("#zoom_out_lg").click(function(){ zoom_out() });
+        $("#zoom_out_md").click(function(){ zoom_out() });
+        $("#zoom_out_sm").click(function(){ zoom_out() });
 
-        $("#zoom_out").click(function(){
-            zoom_factor = zoom_factor / 0.75;
-            if( zoom_factor > 1.0 ){ zoom_factor = 1.0; }
-            $.get("/ajax/zoom/{{ image }}/" + zoom_factor , function(data, status){
-                var results = JSON.parse( data );
-                $("#zoomable_image").attr('src',results.url);
-                return false;
-            });
-        });
-
+        $("#zoom_restore_lg").click(function(){ zoom_restore() });
+        $("#zoom_restore_md").click(function(){ zoom_restore() });
+        $("#zoom_restore_sm").click(function(){ zoom_restore() });
 
     });
+
+    function zoom_in() {
+        zoom_factor = zoom_factor * 0.75;
+        $.get("/ajax/zoom/{{ image }}/" + zoom_factor , function(data, status){
+            var results = JSON.parse( data );
+            $("#zoomable_image").attr('src',results.url);
+            return false;
+        });
+    }
+
+    function zoom_out() {
+        zoom_factor = zoom_factor / 0.75;
+        if( zoom_factor > 1.0 ){ zoom_factor = 1.0; }
+        $.get("/ajax/zoom/{{ image }}/" + zoom_factor , function(data, status){
+            var results = JSON.parse( data );
+            $("#zoomable_image").attr('src',results.url);
+            return false;
+        });
+    }
+
+    function zoom_restore() {
+        $.get("/ajax/zoom/{{ image }}/1.0", function(data, status){
+            var results = JSON.parse( data );
+            $("#zoomable_image").attr('src',results.url);
+            zoom_factor = 1.0;
+            return false;
+        });
+
+    }
 
 </script>
 
@@ -100,13 +112,13 @@
 
     <div class="instrument-row">
         <div class="dashboard-button-row">
-            <button type="button" class="btn btn-drive btn-lg" id="zoom_in">
+            <button type="button" class="btn btn-drive btn-lg" id="zoom_in_lg">
                 <i class="fa fa-minus"></i>
             </button>
-            <button type="button" class="btn btn-drive-center btn-lg" id="restore">
+            <button type="button" class="btn btn-drive-center btn-lg" id="zoom_restore_lg">
                 <i class="fa fa-binoculars"></i>
             </button>
-            <button type="button" class="btn btn-drive btn-lg" id="zoom_out">
+            <button type="button" class="btn btn-drive btn-lg" id="zoom_out_lg">
                 <i class="fa fa-plus"></i>
             </button>
         </div>
@@ -152,13 +164,13 @@
 
     <div class="col-md-3 drive-md-col col-sm-4">
         <div class="dashboard-button-row">
-            <button type="button" class="btn btn-drive btn-lg">
+            <button type="button" class="btn btn-drive btn-lg" id="zoom_in_sm">
                 <i class="fa fa-minus"></i>
             </button>
-            <button type="button" class="btn btn-drive-center btn-lg">
+            <button type="button" class="btn btn-drive-center btn-lg" id="zoom_restore_sm">
                 <i class="fa fa-binoculars"></i>
             </button>
-            <button type="button" class="btn btn-drive btn-lg">
+            <button type="button" class="btn btn-drive btn-lg" id="zoom_out_sm">
                 <i class="fa fa-plus"></i>
             </button>
         </div>

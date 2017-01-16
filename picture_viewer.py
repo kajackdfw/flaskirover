@@ -37,6 +37,8 @@ class Viewer:
         else:
             self.settings['view_x'] = 600
 
+        self.clean_tmp()
+
     def get_list_of_pictures(self):
         thumb_nail_list = [f for f in listdir(self.settings['path_to_thumbnails']) if isfile(join(self.settings['path_to_thumbnails'], f))]
         pictures = []
@@ -69,16 +71,17 @@ class Viewer:
         width, height = source_image.size  # Get dimensions
         new_width = round(int(width) * zoom_options['zoom'], 0)
         new_height = round(int(height) * zoom_options['zoom'], 0)
+        zoom_options['y_aspect'] = float(int(source_image.size[1]) / int(source_image.size[0]))
 
         if new_width >= int(source_image.size[0]):
             new_width = int(source_image.size[0])
-            new_height = round(new_width * 0.75, 0)
+            new_height = round(new_width * zoom_options['y_aspect'], 0)
             zoom_options['zoom'] = 1.0
             zoom_options['zoom_out'] = 0
             zoom_options['zoom_in'] = 0.75
         elif new_width < int(self.settings['view_x']):
             new_width = int(self.settings['view_x'])
-            new_height = int(self.settings['view_y'])
+            new_height = int(self.settings['view_x'] * zoom_options['y_aspect'])
             zoom_options['zoom'] = new_width / int(source_image.size[0])
             zoom_options['zoom_out'] = zoom_options['zoom'] + 0.25
             zoom_options['zoom_in'] = 0
@@ -114,6 +117,14 @@ class Viewer:
         del image_info
         return pic_info
 
-    def clean_tmp(self, file_prefix):
+    def xclean_tmp(self, file_prefix):
         # os.remove('static/tmp/' + file_prefix + '20170116142751.jpg')
+        return True
+
+    def clean_tmp(self):
+        delete_list = [f for f in listdir('static/tmp') if isfile(join('static/tmp', f))]
+        for image in delete_list:
+            filename_pieces = image.split('.')
+            print('  removing ' + 'static/tmp/' + filename_pieces[0] + '.' + filename_pieces[1])
+            os.remove('static/tmp/' + filename_pieces[0] + '.' + filename_pieces[1])
         return True
