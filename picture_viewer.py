@@ -50,8 +50,14 @@ class Viewer:
         return pictures
 
     def zoom(self, pic_selected, zoom_factor):
+
+        # self.clean_tmp('zoom_')
+
         zoom_options = {}
-        zoom_options['zoom'] = float(zoom_factor)
+        if float(zoom_factor) > 1:
+            zoom_options['zoom'] = 1.0
+        else:
+            zoom_options['zoom'] = float(zoom_factor)
 
         path = self.settings['path_to_pictures']
         print('open ' + path + '/' + pic_selected)
@@ -107,3 +113,7 @@ class Viewer:
             'zoom_center_y': round(float(image_info.size[1]) / 2.0, 0)}
         del image_info
         return pic_info
+
+    def clean_tmp(self, file_prefix):
+        # os.remove('static/tmp/' + file_prefix + '20170116142751.jpg')
+        return True

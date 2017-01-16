@@ -1,7 +1,5 @@
 <script type="application/javascript">
 
-
-
     var zoom_factor = 1.0;
     var zoom_center_x = 0.5;
     var zoom_center_y = 0.5;
@@ -31,6 +29,7 @@
 
         $("#zoom_out").click(function(){
             zoom_factor = zoom_factor / 0.75;
+            if( zoom_factor > 1.0 ){ zoom_factor = 1.0; }
             $.get("/ajax/zoom/{{ image }}/" + zoom_factor , function(data, status){
                 var results = JSON.parse( data );
                 $("#zoomable_image").attr('src',results.url);
