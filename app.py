@@ -3,6 +3,8 @@ import os
 import sys
 from PIL import Image
 import datetime
+import json
+
 
 sys.path.append('hardware_drivers/vision')
 from raspberry_pi_8mp import Vision  # change raspberry_pi_8mp to match your hardware
@@ -46,33 +48,35 @@ def view(image):
 
 @app.route('/get/<image_file>/<zoom_in>/<x>/<y>')
 def get_image(image_file,zoom_in,x,y):
-    path = vision.settings['path_to_pictures']
-    print('open ' + path + '/' + image_file)
-    source_image = Image.open(path + '/' + image_file)
-    print('format:' + str(source_image.format))
-    print('size  : ' + str(source_image.size))
-    print('mode  : ' + str(source_image.mode))
-
-    width, height = source_image.size  # Get dimensions
-    new_width = width * 0.75
-    new_height = height * 0.75
-    left = round((width - new_width) / 2 , 0)
-    top = round((height - new_height) / 2, 0)
-    right = round((width + new_width) / 2, 0)
-    bottom = round((height + new_height) / 2, 0)
-    print(' new left = ' + str(left))
-    print(' new top = ' + str(top))
-    print(' new right = ' + str(right))
-    print(' new bottom = ' + str(bottom))
-    source_image = source_image.crop((left, top, right, bottom))
-
-    # What will we call this new image
-    time_stamp = '{:%Y%m%d%H%M%S}'.format(datetime.datetime.now())
-    file_name, extension = os.path.splitext(image_file)
-    output_file = 'tmp/zoom_' + time_stamp + extension
-    print('save to ' + output_file)
-    source_image.save('static/' + output_file)
-    return url_for('static', filename=output_file)
+    # path = vision.settings['path_to_pictures']
+    # print('open ' + path + '/' + image_file)
+    # source_image = Image.open(path + '/' + image_file)
+    # print('format:' + str(source_image.format))
+    # print('size  : ' + str(source_image.size))
+    # print('mode  : ' + str(source_image.mode))
+    #
+    # width, height = source_image.size  # Get dimensions
+    # new_width = width * 0.75
+    # new_height = height * 0.75
+    # left = round((width - new_width) / 2 , 0)
+    # top = round((height - new_height) / 2, 0)
+    # right = round((width + new_width) / 2, 0)
+    # bottom = round((height + new_height) / 2, 0)
+    # print(' new left = ' + str(left))
+    # print(' new top = ' + str(top))
+    # print(' new right = ' + str(right))
+    # print(' new bottom = ' + str(bottom))
+    # source_image = source_image.crop((left, top, right, bottom))
+    #
+    # # What will we call this new image
+    # time_stamp = '{:%Y%m%d%H%M%S}'.format(datetime.datetime.now())
+    # file_name, extension = os.path.splitext(image_file)
+    # output_file = 'tmp/zoom_' + time_stamp + extension
+    # print('save to ' + output_file)
+    # source_image.save('static/' + output_file)
+    zoom_info = vision.zoom_picture(image_file, zoom_in, x, y)
+    zoom_info['url'] = url_for('static', filename=zoom_info['file'])
+    return json.dumps(zoom_info, separators=(',',':'))
 
 
 @app.route('/drive')

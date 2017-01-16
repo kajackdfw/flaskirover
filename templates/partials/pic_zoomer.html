@@ -7,7 +7,9 @@
 
         $("#restore").click(function(){
             $.get("/get/{{ image }}/0.75/-12.5/-12.5", function(data, status){
-                $("#zoomable_image").attr('src',data);
+                var results = JSON.parse( data );
+                $("#zoomable_image").attr('src',results.url);
+                alert(data);
                 return false;
             });
 

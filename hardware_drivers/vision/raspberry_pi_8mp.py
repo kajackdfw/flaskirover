@@ -31,6 +31,16 @@ class Vision:
         else:
             self.settings['path_to_thumbnails'] = 'static/camera/thumbnails'
 
+        if 'view_x' in start_settings:
+            self.settings['view_x'] = int(start_settings['view_x'])
+        else:
+            self.settings['view_x'] = 800
+
+        if 'view_y' in start_settings:
+            self.settings['view_y'] = int(start_settings['view_y'])
+        else:
+            self.settings['view_x'] = 600
+
     def get_latest_web_cam_image(self):
         image_list = [f for f in listdir(self.settings['path_to_web_cam']) if isfile(join(self.settings['path_to_web_cam'], f))]
         last_timestamp = 0
@@ -55,7 +65,7 @@ class Vision:
 
     def zoom_picture(self, pic_selected, zoom_factor, pan_x, pan_y):
         zoom_options = {}
-        zoom_options['zoom'] = zoom_factor
+        zoom_options['zoom'] = float(zoom_factor)
 
         path = self.settings['path_to_pictures']
         print('open ' + path + '/' + pic_selected)
@@ -65,19 +75,19 @@ class Vision:
         print('mode  : ' + str(source_image.mode))
 
         width, height = source_image.size  # Get dimensions
-        new_width = width * zoom_factor
-        new_height = height * zoom_factor
+        new_width = round(int(width) * zoom_options['zoom'], 0)
+        new_height = round(int(height) * zoom_options['zoom'], 0)
 
-        if new_width >= source_image.size['x']:
-            new_width = source_image.size['x']
+        if new_width >= int(source_image.size[0]):
+            new_width = int(source_image.size[0])
             new_height = round(new_width * 0.75, 0)
             zoom_options['zoom'] = 1.0
             zoom_options['zoom_out'] = 0
             zoom_options['zoom_in'] = 0.75
-        elif new_width < self.settings['view_x']:
-            new_width = self.settings['view_x']
-            new_height = self.settings['view_y']
-            zoom_options['zoom'] = new_width / source_image.size['x']
+        elif new_width < int(self.settings['view_x']):
+            new_width = int(self.settings['view_x'])
+            new_height = int(self.settings['view_y'])
+            zoom_options['zoom'] = new_width / int(source_image.size['x'])
             zoom_options['zoom_out'] = zoom_options['zoom'] + 0.25
             zoom_options['zoom_in'] = 0
         else:
