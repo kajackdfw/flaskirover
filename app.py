@@ -48,10 +48,17 @@ def view(image):
 
 
 @app.route('/ajax/zoom/<image_file>/<zoom_factor>')
-def get_image(image_file, zoom_factor):
+def zoom_image(image_file, zoom_factor):
     zoom_info = picture.zoom(image_file, zoom_factor)
     zoom_info['url'] = url_for('static', filename=zoom_info['file'])
     return json.dumps(zoom_info, separators=(',', ':'))
+
+
+@app.route('/ajax/pan/<image_file>/<x>/<y>')
+def pan_image(image_file, zoom_factor):
+    pan_info = picture.pan(image_file, x, y)
+    pan_info['url'] = url_for('static', filename=pan_info['file'])
+    return json.dumps(pan_info, separators=(',', ':'))
 
 
 @app.route('/ajax/info/<image_file>')
