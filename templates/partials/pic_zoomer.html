@@ -22,6 +22,26 @@
         $("#zoom_restore_md").click(function(){ zoom_restore() });
         $("#zoom_restore_sm").click(function(){ zoom_restore() });
 
+        $("#pan_n_lg").click(function(){ pan('N') });
+        $("#pan_ne_lg").click(function(){ pan('NE') });
+        $("#pan_e_lg").click(function(){ pan('E') });
+        $("#pan_se_lg").click(function(){ pan('SE') });
+        $("#pan_s_lg").click(function(){ pan('S') });
+        $("#pan_sw_lg").click(function(){ pan('SW') });
+        $("#pan_w_lg").click(function(){ pan('W') });
+        $("#pan_nw_lg").click(function(){ pan('NW') });
+        $("#pan_center_lg").click(function(){ pan('C') });
+
+        $("#pan_n_sm").click(function(){ pan('N') });
+        $("#pan_ne_sm").click(function(){ pan('NE') });
+        $("#pan_e_sm").click(function(){ pan('E') });
+        $("#pan_se_sm").click(function(){ pan('SE') });
+        $("#pan_s_sm").click(function(){ pan('S') });
+        $("#pan_sw_sm").click(function(){ pan('SW') });
+        $("#pan_w_sm").click(function(){ pan('W') });
+        $("#pan_nw_sm").click(function(){ pan('NW') });
+        $("#pan_center_sm").click(function(){ pan('C') });
+
     });
 
     function zoom_in() {
@@ -53,6 +73,16 @@
 
     }
 
+    function pan(compass_direction) {
+        $.get("/ajax/pan/{{ image }}/compass_direction", function(data, status){
+            var results = JSON.parse( data );
+            $("#zoomable_image").attr('src',results.url);
+            return false;
+        });
+
+    }
+
+
 </script>
 
 
@@ -75,37 +105,37 @@
 
     <div class="instrument-row">
         <div class="dashboard-button-row">
-            <button type="button" class="btn btn-drive btn-lg">
+            <button type="button" class="btn btn-drive btn-lg" id="pan_nw_lg">
                 <i class="fa fa-hand-o-left fa-rotate-45"></i>
             </button>
-            <button type="button" class="btn btn-drive btn-lg">
+            <button type="button" class="btn btn-drive btn-lg" id="pan_n_lg">
                 <i class="fa fa-hand-o-up"></i>
             </button>
-            <button type="button" class="btn btn-drive btn-lg">
+            <button type="button" class="btn btn-drive btn-lg" id="pan_ne_lg">
                 <i class="fa fa-hand-o-right fa-rotate-315"></i>
             </button>
         </div>
 
         <div class="dashboard-button-row">
-            <button type="button" class="btn btn-drive btn-lg">
+            <button type="button" class="btn btn-drive btn-lg" id="pan_w_lg">
                 <i class="fa fa-hand-o-left"></i>
             </button>
-            <button type="button" class="btn btn-drive-center btn-lg">
+            <button type="button" class="btn btn-drive-center btn-lg" id="pan_center_lg">
                 <i class="fa fa-arrows"></i>
             </button>
-            <button type="button" class="btn btn-drive btn-lg">
+            <button type="button" class="btn btn-drive btn-lg" id="pan_e_lg">
                 <i class="fa fa-hand-o-right"></i>
             </button>
         </div>
 
         <div class="dashboard-button-row">
-            <button type="button" class="btn btn-drive btn-lg">
+            <button type="button" class="btn btn-drive btn-lg" id="pan_sw_lg">
                 <i class="fa fa-hand-o-left fa-rotate-315"></i>
             </button>
-            <button type="button" class="btn btn-drive btn-lg">
+            <button type="button" class="btn btn-drive btn-lg" id="pan_s_lg">
                 <i class="fa fa-hand-o-down"></i>
             </button>
-            <button type="button" class="btn btn-drive btn-lg">
+            <button type="button" class="btn btn-drive btn-lg" id="pan_se_lg">
                 <i class="fa fa-hand-o-right fa-rotate-45"></i>
             </button>
         </div>
@@ -114,13 +144,13 @@
     <div class="instrument-row">
         <div class="dashboard-button-row">
             <button type="button" class="btn btn-drive btn-lg" id="zoom_in_lg">
-                <i class="fa fa-minus"></i>
+                <i class="fa fa-zoom-in"></i>
             </button>
             <button type="button" class="btn btn-drive-center btn-lg" id="zoom_restore_lg">
                 <i class="fa fa-binoculars"></i>
             </button>
             <button type="button" class="btn btn-drive btn-lg" id="zoom_out_lg">
-                <i class="fa fa-plus"></i>
+                <i class="fa fa-zoom-out"></i>
             </button>
         </div>
     </div>
@@ -166,13 +196,13 @@
     <div class="col-md-3 drive-md-col col-sm-4">
         <div class="dashboard-button-row">
             <button type="button" class="btn btn-drive btn-lg" id="zoom_in_sm">
-                <i class="fa fa-minus"></i>
+                <i class="fa fa-zoom-in"></i>
             </button>
             <button type="button" class="btn btn-drive-center btn-lg" id="zoom_restore_sm">
                 <i class="fa fa-binoculars"></i>
             </button>
             <button type="button" class="btn btn-drive btn-lg" id="zoom_out_sm">
-                <i class="fa fa-plus"></i>
+                <i class="fa fa-zoom-out"></i>
             </button>
         </div>
     </div>
