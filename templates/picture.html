@@ -1,7 +1,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="/static/css/high-contrast-theme.css?q=2016121838" >
-    <link rel="stylesheet" href="/static/css/font-awesome.min.css?x=1">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
 </head>
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -14,6 +14,8 @@
 
 </script>
 
+{% include 'partials/navbar.html' %}
+
 <div class="dashboard-container">
 
     <div class="row">
@@ -22,10 +24,9 @@
         </div>
 
         <div class="col-lg-2 col-md-16">
-
-            {% include 'partials/pic_zoomer.html' %}
-
+            {% include 'partials/zoom_and_pan.html' %}
         </div>
+
     </div>
 
 </div>

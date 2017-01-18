@@ -19,9 +19,11 @@
 
     <div class="thumbnail_container">
 
-        <div class="col-lg-2">
-            <image class="img-responsive thumbnail" id="drive_now" src="static/images/M1_Lego_Rover.jpg" />
-        </div>
+        {% for pic in pictures %}
+            <div class="col-lg-2">
+                <a href="{{ pic['view_url'] }}" class="thumbnail"><img src="{{ pic['thumbnail'] }}"></a>
+            </div>
+        {% endfor %}
 
     </div>
 

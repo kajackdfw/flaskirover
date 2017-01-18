@@ -34,20 +34,44 @@ vision = Vision(startup_settings)
 motor = Motor(startup_settings)
 picture = Viewer(startup_settings)
 
+
 @app.route('/')
-def index():
+def page_index():
+    return render_template('index.html', page_title='Home')
+
+
+@app.route('/drive')
+def page_drive():
+    latest_image = vision.get_latest_web_cam_image()
+    return render_template('drive.html', image=latest_image)
+
+
+@app.route('/pictures')
+def page_pictures():
     pictures = picture.get_list_of_pictures()
-    return render_template('index.html', pictures=pictures)
+    return render_template('pictures.html', page_title='Pictures', pictures=pictures)
+
+
+@app.route('/status')
+def page_status():
+    about_info = {'status': 'incomplete', 'access': 'private wifi'}
+    latest_image = vision.get_latest_web_cam_image()
+    return render_template('status.html', page_title='Status', image=latest_image, about_info=about_info)
 
 
 @app.route('/view/<image>')
-def view(image):
+def page_view(image):
     picture.settings['zoom'] = 1.0
     picture.settings['pan_x'] = 0
     picture.settings['pan_y'] = 0
     path = picture.settings['path_to_pictures']
     pic_info = picture.info(image)
-    return render_template('view.html', image=image, path=path, pic_info=pic_info)
+    return render_template('picture.html', page_title='Picture : ' + image, image=image, path=path, pic_info=pic_info)
+
+
+@app.route('/about')
+def page_about():
+    return render_template('about.html', page_title=' / About FrankenRover')
 
 
 @app.route('/ajax/zoom/<image_file>/<zoom_factor>')
@@ -62,24 +86,6 @@ def pan_image(image_file, pan_direction):
     pan_info = picture.pan(image_file, pan_direction)
     pan_info['url'] = url_for('static', filename=pan_info['file'])
     return json.dumps(pan_info, separators=(',', ':'))
-
-
-@app.route('/ajax/info/<image_file>')
-def get_image_info(image_file, zoom_factor):
-    pic_info = picture.info(image_file)
-    return json.dumps(pic_info, separators=(',', ':'))
-
-
-@app.route('/drive')
-def drive():
-    latest_image = vision.get_latest_web_cam_image()
-    return render_template('drive.html', image=latest_image)
-
-
-@app.route('/test/<image>')
-def test(image):
-    path = picture.settings['path_to_pictures']
-    return render_template('view_with_canvas_and_mouse.html', image=image, path=path)
 
 
 if __name__ == '__main__' and os.name == 'posix':
