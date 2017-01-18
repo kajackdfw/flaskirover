@@ -54,8 +54,10 @@ class Viewer:
 
     def zoom(self, pic_selected, zoom_factor):
         zoom_options = {}
-        if float(zoom_factor) > 1:
+        if float(zoom_factor) >= 1:
             zoom_options['zoom'] = 1.0
+            self.settings['pan_x'] = 0
+            self.settings['pan_y'] = 0
         else:
             zoom_options['zoom'] = float(zoom_factor)
 
@@ -89,10 +91,10 @@ class Viewer:
 
         self.settings['zoom'] = zoom_options['zoom']
 
-        left = round((width - new_width) / 2, 0)
-        top = round((height - new_height) / 2, 0)
-        right = round((width + new_width) / 2, 0)
-        bottom = round((height + new_height) / 2, 0)
+        left = round((width - new_width) / 2, 0) + self.settings['pan_x']
+        top = round((height - new_height) / 2, 0) + self.settings['pan_y']
+        right = round((width + new_width) / 2, 0) + self.settings['pan_x']
+        bottom = round((height + new_height) / 2, 0) + self.settings['pan_y']
 
         print('  new left = ' + str(left))
         print('  new top = ' + str(top))
@@ -109,11 +111,77 @@ class Viewer:
         zoom_options['file'] = output_file
         return zoom_options
 
-    def pan(self, image_file, x, y):
-        if self.settings['zoom'] == 1.0:
+    def pan(self, current_image, pan_direction):
+        pan_results = {}
 
+        if self.settings['zoom'] >= 1.0:
 
-        zoom_options = {}
+            # reset the pan settings
+            self.settings['zoom'] = 1.0
+            self.settings['pan_x'] = 0
+            self.settings['pan_y'] = 0
+
+            pan_results['zoom'] = 1.0
+            pan_results['file'] = self.settings['path_to_pictures'] + current_image
+            pan_results['zoom_out'] = False
+            pan_results['zoom_in'] = True
+            return pan_results
+        else:
+            pan_results['zoom'] = self.settings['zoom']
+
+        # ok to pan
+        path = self.settings['path_to_pictures']
+        source_image = Image.open(path + '/' + current_image)
+        width, height = source_image.size  # Get dimensions
+        pan_results['y_aspect'] = float(int(source_image.size[1]) / int(source_image.size[0]))
+        new_width = round(int(source_image.size[0]) * pan_results['zoom'], 0)
+        new_height = round(int(source_image.size[1]) * pan_results['zoom'], 0)
+
+        # calculate pan offset
+        if pan_direction == 'N':
+            self.settings['pan_y'] = self.settings['pan_y'] - round(new_height * 0.2, 0)
+        elif pan_direction == 'S':
+            self.settings['pan_y'] = self.settings['pan_y'] + round(new_height * 0.2, 0)
+        elif pan_direction == 'E':
+            self.settings['pan_x'] = self.settings['pan_x'] + round(new_width * 0.2, 0)
+        elif pan_direction == 'W':
+            self.settings['pan_x'] = self.settings['pan_x'] - round(new_width * 0.2, 0)
+        elif pan_direction == 'NE':
+            self.settings['pan_x'] = self.settings['pan_x'] + round(new_width * 0.2, 0)
+            self.settings['pan_y'] = self.settings['pan_y'] - round(new_height * 0.2, 0)
+        elif pan_direction == 'NW':
+            self.settings['pan_x'] = self.settings['pan_x'] - round(new_width * 0.2, 0)
+            self.settings['pan_y'] = self.settings['pan_y'] - round(new_height * 0.2, 0)
+        elif pan_direction == 'SE':
+            self.settings['pan_x'] = self.settings['pan_x'] + round(new_width * 0.2, 0)
+            self.settings['pan_y'] = self.settings['pan_y'] + round(new_height * 0.2, 0)
+        elif pan_direction == 'SW':
+            self.settings['pan_x'] = self.settings['pan_x'] - round(new_width * 0.2, 0)
+            self.settings['pan_y'] = self.settings['pan_y'] + round(new_height * 0.2, 0)
+        elif pan_direction == 'C':
+            self.settings['pan_x'] = 0
+            self.settings['pan_y'] = 0
+
+        # calculate the new image area
+        left = round((width - new_width) / 2, 0) + self.settings['pan_x']
+        top = round((height - new_height) / 2, 0) + self.settings['pan_y']
+        right = round((width + new_width) / 2, 0) + self.settings['pan_x']
+        bottom = round((height + new_height) / 2, 0) + self.settings['pan_y']
+
+        print('  new left = ' + str(left))
+        print('  new top = ' + str(top))
+        print('  new right = ' + str(right))
+        print('  new bottom = ' + str(bottom))
+        source_image = source_image.crop((left, top, right, bottom))
+
+        # What will we call this new image
+        time_stamp = '{:%Y%m%d%H%M%S}'.format(datetime.datetime.now())
+        file_name, extension = os.path.splitext(current_image)
+        output_file = 'tmp/zoom_' + time_stamp + extension
+        print('  save to ' + output_file)
+        source_image.save('static/' + output_file)
+        pan_results['file'] = output_file
+        return pan_results
 
     def info(self, pic_selected):
         image_info = Image.open(self.settings['path_to_pictures'] + '/' + pic_selected)

@@ -42,6 +42,9 @@ def index():
 
 @app.route('/view/<image>')
 def view(image):
+    picture.settings['zoom'] = 1.0
+    picture.settings['pan_x'] = 0
+    picture.settings['pan_y'] = 0
     path = picture.settings['path_to_pictures']
     pic_info = picture.info(image)
     return render_template('view.html', image=image, path=path, pic_info=pic_info)
@@ -54,9 +57,9 @@ def zoom_image(image_file, zoom_factor):
     return json.dumps(zoom_info, separators=(',', ':'))
 
 
-@app.route('/ajax/pan/<image_file>/<x>/<y>')
-def pan_image(image_file, zoom_factor):
-    pan_info = picture.pan(image_file, x, y)
+@app.route('/ajax/pan/<image_file>/<pan_direction>')
+def pan_image(image_file, pan_direction):
+    pan_info = picture.pan(image_file, pan_direction)
     pan_info['url'] = url_for('static', filename=pan_info['file'])
     return json.dumps(pan_info, separators=(',', ':'))
 

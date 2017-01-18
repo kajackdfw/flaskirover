@@ -1,9 +1,6 @@
 <script type="application/javascript">
 
     var zoom_factor = 1.0;
-    var zoom_center_x = 0.5;
-    var zoom_center_y = 0.5;
-
 
     $( document ).ready(function()
     {
@@ -75,7 +72,7 @@
     }
 
     function pan(compass_direction) {
-        $.get("/ajax/pan/{{ image }}/compass_direction", function(data, status){
+        $.get("/ajax/pan/{{ image }}/" + compass_direction , function(data, status){
             var results = JSON.parse( data );
             $("#zoomable_image").attr('src',results.url);
             return false;
@@ -145,13 +142,13 @@
     <div class="instrument-row">
         <div class="dashboard-button-row">
             <button type="button" class="btn btn-drive btn-lg" id="zoom_in_lg">
-                <i class="fa fa-zoom-in"></i>
+                <i class="fa fa-plus-circle"></i>
             </button>
             <button type="button" class="btn btn-drive-center btn-lg" id="zoom_restore_lg">
                 <i class="fa fa-binoculars"></i>
             </button>
             <button type="button" class="btn btn-drive btn-lg" id="zoom_out_lg">
-                <i class="fa fa-zoom-out"></i>
+                <i class="fa fa-minus-circle"></i>
             </button>
         </div>
     </div>
