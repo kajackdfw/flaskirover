@@ -4,7 +4,7 @@ import sys
 from PIL import Image
 import datetime
 import json
-from picture_viewer import Viewer
+from picture_class import Picture
 
 sys.path.append('hardware_drivers/vision')
 from raspberry_pi_8mp import Vision  # change raspberry_pi_8mp to match your hardware
@@ -32,7 +32,7 @@ else:
 # Plugin the hardware drivers here
 vision = Vision(startup_settings)
 motor = Motor(startup_settings)
-picture = Viewer(startup_settings)
+picture = Picture(startup_settings)
 
 
 @app.route('/')
