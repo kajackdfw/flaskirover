@@ -71,7 +71,7 @@ def page_view(image):
 
 @app.route('/about')
 def page_about():
-    return render_template('about.html', page_title=' / About FrankenRover')
+    return render_template('about.html', page_title=' / About RaspRover')
 
 
 @app.route('/ajax/zoom/<image_file>/<zoom_factor>')
