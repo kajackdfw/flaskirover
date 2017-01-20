@@ -56,17 +56,16 @@ class Picture:
         zoom_options = {}
         if float(zoom_factor) >= 1:
             zoom_options['zoom'] = 1.0
+            self.settings['zoom'] = zoom_options['zoom']
             self.settings['pan_x'] = 0
             self.settings['pan_y'] = 0
         else:
             zoom_options['zoom'] = float(zoom_factor)
+            self.settings['zoom'] = zoom_options['zoom']
 
         path = self.settings['path_to_pictures']
-        print('open ' + path + '/' + pic_selected)
         source_image = Image.open(path + '/' + pic_selected)
-        print('format:' + str(source_image.format))
-        print('size  : ' + str(source_image.size))
-        print('mode  : ' + str(source_image.mode))
+        print('image size  : ' + str(source_image.size))
 
         width, height = source_image.size  # Get dimensions
         new_width = round(int(width) * zoom_options['zoom'], 0)
@@ -91,22 +90,17 @@ class Picture:
 
         self.settings['zoom'] = zoom_options['zoom']
 
+        # select view region
         left = round((width - new_width) / 2, 0) + self.settings['pan_x']
         top = round((height - new_height) / 2, 0) + self.settings['pan_y']
         right = round((width + new_width) / 2, 0) + self.settings['pan_x']
         bottom = round((height + new_height) / 2, 0) + self.settings['pan_y']
-
-        print('  new left = ' + str(left))
-        print('  new top = ' + str(top))
-        print('  new right = ' + str(right))
-        print('  new bottom = ' + str(bottom))
         source_image = source_image.crop((left, top, right, bottom))
 
         # What will we call this new image
         time_stamp = '{:%Y%m%d%H%M%S}'.format(datetime.datetime.now())
         file_name, extension = os.path.splitext(pic_selected)
         output_file = 'tmp/zoom_' + time_stamp + extension
-        print('  save to ' + output_file)
         source_image.save('static/' + output_file)
         zoom_options['file'] = output_file
         return zoom_options
@@ -162,23 +156,45 @@ class Picture:
             self.settings['pan_x'] = 0
             self.settings['pan_y'] = 0
 
-        # calculate the new image area
+        # select the view region
         left = round((width - new_width) / 2, 0) + self.settings['pan_x']
         top = round((height - new_height) / 2, 0) + self.settings['pan_y']
         right = round((width + new_width) / 2, 0) + self.settings['pan_x']
         bottom = round((height + new_height) / 2, 0) + self.settings['pan_y']
+        print('  z self.settings[pan_x] = ' + str(self.settings['pan_x']))
+        print('  z self.settings[pan_y] = ' + str(self.settings['pan_y']))
+        print('  z self.settings[zoom] = ' + str(self.settings['zoom']))
 
-        print('  new left = ' + str(left))
-        print('  new top = ' + str(top))
-        print('  new right = ' + str(right))
-        print('  new bottom = ' + str(bottom))
+        # check for panning out of image area and adjust
+        mid_x = round(int(source_image.size[0]) / 2)
+        mid_y = round(int(source_image.size[1]) / 2)
+        if left < 0:
+            left = 0
+            right = new_width
+            self.settings['pan_x'] = mid_x - (int(source_image.size[0]) - round(new_width / 2, 0))
+        elif right > int(source_image.size[0]):
+            right = int(source_image.size[0])
+            left = int(source_image.size[0]) - new_width
+            self.settings['pan_x'] = mid_x - (int(source_image.size[0]) - round(new_width / 2, 0))
+
+        if top < 0:
+            top = 0
+            bottom = new_height
+            self.settings['pan_y'] = mid_y - (int(source_image.size[1]) - round(new_height / 2, 0))
+        elif bottom > int(source_image.size[1]):
+            bottom = int(source_image.size[1])
+            top = int(source_image.size[1]) - new_height
+            self.settings['pan_y'] = mid_y - round(new_height / 2, 0)
+
+        print('  p self.settings[pan_x] = ' + str(self.settings['pan_x']))
+        print('  p self.settings[pan_y] = ' + str(self.settings['pan_y']))
+        print('  p self.settings[zoom] = ' + str(self.settings['zoom']))
         source_image = source_image.crop((left, top, right, bottom))
 
         # What will we call this new image
         time_stamp = '{:%Y%m%d%H%M%S}'.format(datetime.datetime.now())
         file_name, extension = os.path.splitext(current_image)
         output_file = 'tmp/zoom_' + time_stamp + extension
-        print('  save to ' + output_file)
         source_image.save('static/' + output_file)
         pan_results['file'] = output_file
         return pan_results
@@ -190,10 +206,6 @@ class Picture:
             'zoom_center_y': round(float(image_info.size[1]) / 2.0, 0)}
         del image_info
         return pic_info
-
-    def xclean_tmp(self, file_prefix):
-        # os.remove('static/tmp/' + file_prefix + '20170116142751.jpg')
-        return True
 
     def clean_tmp(self):
         delete_list = [f for f in listdir('static/tmp') if isfile(join('static/tmp', f))]
