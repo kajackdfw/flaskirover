@@ -91,10 +91,10 @@ class Picture:
         self.settings['zoom'] = zoom_options['zoom']
 
         # select view region
-        left = round((width - new_width) / 2, 0) + self.settings['pan_x']
-        top = round((height - new_height) / 2, 0) + self.settings['pan_y']
-        right = round((width + new_width) / 2, 0) + self.settings['pan_x']
-        bottom = round((height + new_height) / 2, 0) + self.settings['pan_y']
+        left = int(round((width - new_width) / 2, 0) + self.settings['pan_x'])
+        top = int(round((height - new_height) / 2, 0) + self.settings['pan_y'])
+        right = int(round((width + new_width) / 2, 0) + self.settings['pan_x'])
+        bottom = int(round((height + new_height) / 2, 0) + self.settings['pan_y'])
         source_image = source_image.crop((left, top, right, bottom))
 
         # What will we call this new image
@@ -189,7 +189,7 @@ class Picture:
         print('  p self.settings[pan_x] = ' + str(self.settings['pan_x']))
         print('  p self.settings[pan_y] = ' + str(self.settings['pan_y']))
         print('  p self.settings[zoom] = ' + str(self.settings['zoom']))
-        source_image = source_image.crop((left, top, right, bottom))
+        source_image = source_image.crop((int(left), int(top), int(right), int(bottom)))
 
         # What will we call this new image
         time_stamp = '{:%Y%m%d%H%M%S}'.format(datetime.datetime.now())
