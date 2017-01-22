@@ -133,25 +133,25 @@ class Picture:
 
         # calculate pan offset
         if pan_direction == 'N':
-            self.settings['pan_y'] = self.settings['pan_y'] - round(new_height * 0.2, 0)
+            self.settings['pan_y'] = round(self.settings['pan_y'] - round(new_height * 0.2, 0), 0)
         elif pan_direction == 'S':
-            self.settings['pan_y'] = self.settings['pan_y'] + round(new_height * 0.2, 0)
+            self.settings['pan_y'] = round(self.settings['pan_y'] + round(new_height * 0.2, 0), 0)
         elif pan_direction == 'E':
-            self.settings['pan_x'] = self.settings['pan_x'] + round(new_width * 0.2, 0)
+            self.settings['pan_x'] = round(self.settings['pan_x'] + round(new_width * 0.2, 0), 0)
         elif pan_direction == 'W':
-            self.settings['pan_x'] = self.settings['pan_x'] - round(new_width * 0.2, 0)
+            self.settings['pan_x'] = round(self.settings['pan_x'] - round(new_width * 0.2, 0), 0)
         elif pan_direction == 'NE':
-            self.settings['pan_x'] = self.settings['pan_x'] + round(new_width * 0.2, 0)
-            self.settings['pan_y'] = self.settings['pan_y'] - round(new_height * 0.2, 0)
+            self.settings['pan_x'] = round(self.settings['pan_x'] + round(new_width * 0.2, 0), 0)
+            self.settings['pan_y'] = round(self.settings['pan_y'] - round(new_height * 0.2, 0), 0)
         elif pan_direction == 'NW':
-            self.settings['pan_x'] = self.settings['pan_x'] - round(new_width * 0.2, 0)
-            self.settings['pan_y'] = self.settings['pan_y'] - round(new_height * 0.2, 0)
+            self.settings['pan_x'] = round(self.settings['pan_x'] - round(new_width * 0.2, 0), 0)
+            self.settings['pan_y'] = round(self.settings['pan_y'] - round(new_height * 0.2, 0), 0)
         elif pan_direction == 'SE':
-            self.settings['pan_x'] = self.settings['pan_x'] + round(new_width * 0.2, 0)
-            self.settings['pan_y'] = self.settings['pan_y'] + round(new_height * 0.2, 0)
+            self.settings['pan_x'] = round(self.settings['pan_x'] + round(new_width * 0.2, 0), 0)
+            self.settings['pan_y'] = round(self.settings['pan_y'] + round(new_height * 0.2, 0), 0)
         elif pan_direction == 'SW':
-            self.settings['pan_x'] = self.settings['pan_x'] - round(new_width * 0.2, 0)
-            self.settings['pan_y'] = self.settings['pan_y'] + round(new_height * 0.2, 0)
+            self.settings['pan_x'] = round(self.settings['pan_x'] - round(new_width * 0.2, 0), 0)
+            self.settings['pan_y'] = round(self.settings['pan_y'] + round(new_height * 0.2, 0), 0)
         elif pan_direction == 'C':
             self.settings['pan_x'] = 0
             self.settings['pan_y'] = 0
