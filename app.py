@@ -89,7 +89,7 @@ def pan_image(image_file, pan_direction):
 
 
 if __name__ == '__main__' and os.name == 'posix':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(host='0.0.0.0')
 elif __name__ == '__main__':
     app.run(debug=True, host='localhost')
 
