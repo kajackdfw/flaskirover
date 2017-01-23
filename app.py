@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for
 import os
 import sys
+from subprocess import *
 from PIL import Image
 import datetime
 import json
@@ -88,8 +89,20 @@ def pan_image(image_file, pan_direction):
     return json.dumps(pan_info, separators=(',', ':'))
 
 
+# cmd = "ip addr show eth0 | grep inet | awk '{print $2}' | cut -d/ -f1"
+def run_cmd(cmd):
+    p = Popen(cmd, shell=True, stdout=PIPE)
+    print(p.communicate()[0])
+    return True
+
+
 if __name__ == '__main__' and os.name == 'posix':
-    app.run(host='0.0.0.0')
+    print('OS Name : ' + os.name)
+    print('OS Name : ' + str(os.environ['OS']))
+    app.run(host='0.0.0.0', port=8080)
 elif __name__ == '__main__':
-    app.run(debug=True, host='localhost')
+    print('OS Name : ' + str(os.environ['OS']))
+    cmd = "dir static\\camera\\thumbnails\\*.jpg"
+    run_cmd(cmd)
+    app.run(debug=True, host='localhost', port=8080)
 
