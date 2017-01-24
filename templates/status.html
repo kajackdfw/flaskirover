@@ -28,7 +28,11 @@
         </div>
 
         <div class="col-lg-4 col-md-4 col-sm-16">
-
+            <ul>
+            {% for key, value in status_dic.items() %}
+                <li> {{ key|capitalize }} = {{ value|capitalize }}</li>
+            {% endfor %}
+            </ul>
         </div>
 
         <div class="col-lg-4 col-md-4 col-sm-16">

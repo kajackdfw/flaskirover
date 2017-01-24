@@ -15,10 +15,16 @@ from adafruit_dc_and_stepper_motor_hat import Motor  # change to match your moto
 
 app = Flask(__name__, static_url_path='/static')
 server_os = os.name
-startup_settings = {}
 
+startup_settings = {}
 startup_settings['view_x'] = 920
 startup_settings['view_y'] = round(startup_settings['view_x'] * 0.75, 0)
+
+status_dic = {
+    'code': 'incomplete',
+    'access': 'private wifi',
+    'os': str(os.environ['OS'])
+}
 
 if os.path.isdir('static/webcam'):
     startup_settings['path_to_web_cam'] = 'static/webcam'
@@ -55,9 +61,8 @@ def page_pictures():
 
 @app.route('/status')
 def page_status():
-    about_info = {'status': 'incomplete', 'access': 'private wifi'}
     latest_image = vision.get_latest_web_cam_image()
-    return render_template('status.html', page_title='Status', image=latest_image, about_info=about_info)
+    return render_template('status.html', page_title='Status', image=latest_image, status_dic=status_dic)
 
 
 @app.route('/view/<image>')
@@ -97,12 +102,7 @@ def run_cmd(cmd):
 
 
 if __name__ == '__main__' and os.name == 'posix':
-    print('OS Name : ' + os.name)
-    print('OS Name : ' + str(os.environ['OS']))
     app.run(host='0.0.0.0', port=8080)
 elif __name__ == '__main__':
-    print('OS Name : ' + str(os.environ['OS']))
-    cmd = "dir static\\camera\\thumbnails\\*.jpg"
-    run_cmd(cmd)
     app.run(debug=True, host='localhost', port=8080)
 
