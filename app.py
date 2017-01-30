@@ -49,6 +49,7 @@ def page_index():
 
 @app.route('/drive')
 def page_drive():
+    vision.take_web_cam_image()
     latest_image = vision.get_latest_web_cam_image()
     return render_template('drive.html', image=latest_image)
 
