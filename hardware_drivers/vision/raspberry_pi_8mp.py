@@ -44,13 +44,14 @@ class Vision:
 
     def take_web_cam_image(self):
         new_image_path_and_name = self.settings['path_to_web_cam'] + "/170130132900.jpg"
-        new_cam_image = open('my_image.jpg', 'wb')
+        new_cam_image = open(new_image_path_and_name, 'wb')
         camera = PiCamera()
-        camera.resolution = (self.settings['view_x'], self.settings['view_y'])
-        camera.start_preview()
+        camera.resolution = (int(self.settings['view_x']), int(self.settings['view_y']))
+        # camera.start_preview()
         # Camera warm-up time
         sleep(2)
         camera.capture(new_cam_image)
+        new_cam_image.close()
 
     def get_latest_web_cam_image(self):
         image_list = [f for f in listdir(self.settings['path_to_web_cam']) if isfile(join(self.settings['path_to_web_cam'], f))]
