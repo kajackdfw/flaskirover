@@ -22,8 +22,8 @@ startup_settings['view_y'] = round(startup_settings['view_x'] * 0.75, 0)
 
 status_dic = {
     'code': 'incomplete',
-    'access': 'private wifi',
-    'os': str(os.environ['OS'])
+    'access': 'private wifi'
+    # 'os': str(os.environ['OS'])
 }
 
 if os.path.isdir('static/webcam'):
