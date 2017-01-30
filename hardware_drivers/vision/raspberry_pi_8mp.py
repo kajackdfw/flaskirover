@@ -4,7 +4,8 @@ from os.path import isfile, join
 import os
 from PIL import Image
 import datetime
-
+from time import sleep
+from picamera import PiCamera
 
 class Vision:
 
@@ -40,6 +41,16 @@ class Vision:
             self.settings['view_y'] = int(start_settings['view_y'])
         else:
             self.settings['view_x'] = 600
+
+    def take_web_cam_image(self):
+        new_image_path_and_name = self.settings['path_to_web_cam'] + "/170130132900.jpg"
+        new_cam_image = open('my_image.jpg', 'wb')
+        camera = PiCamera()
+        camera.resolution = (self.settings['view_x'], self.settings['view_y'])
+        camera.start_preview()
+        # Camera warm-up time
+        sleep(2)
+        camera.capture(new_cam_image)
 
     def get_latest_web_cam_image(self):
         image_list = [f for f in listdir(self.settings['path_to_web_cam']) if isfile(join(self.settings['path_to_web_cam'], f))]
