@@ -9,7 +9,7 @@ from time import sleep
 try:
     from picamera import PiCamera
 except ImportError:
-    print("  This is not a Raspberry Pi camera.")
+    print("  No Picamera Import for Windows")
 
 
 class Vision:
@@ -47,19 +47,25 @@ class Vision:
         else:
             self.settings['view_x'] = 600
 
-    def take_web_cam_image(self):
         try:
-            new_image_path_and_name = self.settings['path_to_web_cam'] + "/170130132900.jpg"
-            camera = PiCamera()
-            new_cam_image = open(new_image_path_and_name, 'wb')
-            camera.resolution = (int(self.settings['view_x']), int(self.settings['view_y']))
-            # camera.start_preview()
-            # Camera warm-up time
+            self.camera = PiCamera()
+            self.camera.resolution = (int(self.settings['view_x']), int(self.settings['view_y']))
             sleep(2)
-            camera.capture(new_cam_image)
-            new_cam_image.close()
+        except NameError:
+            print("  No Picamera for Windows")
+            self.settings['no_camera'] = True
         except SystemError:
             print("  Camera is probably not attached?")
+            self.settings['no_camera'] = True
+
+    def take_web_cam_image(self):
+        if 'no_camera' not in self.settings:
+            time_stamp = '{:%Y%m%d%H%M%S}'.format(datetime.datetime.now())
+            new_image_path_and_name = self.settings['path_to_web_cam'] + "/" + time_stamp + ".jpg"
+            new_cam_image = open(new_image_path_and_name, 'wb')
+            # camera.start_preview()
+            self.camera.capture(new_cam_image)
+            new_cam_image.close()
 
     def get_latest_web_cam_image(self):
         image_list = [f for f in listdir(self.settings['path_to_web_cam']) if isfile(join(self.settings['path_to_web_cam'], f))]
