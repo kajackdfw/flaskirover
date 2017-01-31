@@ -1,6 +1,6 @@
 <html>
 <head>
-    <link rel="stylesheet" href="/static/css/high-contrast-theme.css?q=20170125" >
+    <link rel="stylesheet" href="/static/css/high-contrast-theme.css?q=20170131e" >
     <link rel="stylesheet" href="/static/css/font-awesome.min.css">
 </head>
 <body>
@@ -15,9 +15,16 @@
     {
         $("#to_home_lg").click(function(){ window.location.href = "/"; });
         $("#to_home_sm").click(function(){ window.location.href = "/"; });
+        $("#refresh_sm").click(function(){ view_refresh() });
     });
 
-
+    function view_refresh() {
+        $.get("/ajax/view_refresh", function(data, status){
+            var results = JSON.parse( data );
+            $("#view").attr('src',results.url);
+            return false;
+        });
+    }
 
 </script>
 
@@ -25,7 +32,7 @@
 
     <div class="row">
         <div class="col-lg-10 col-md-16 viewport">
-            <image class="img-responsive" src="{{ image }}" />
+            <image class="img-responsive" src="{{ image }}" id="view"/>
         </div>
 
         <div class="col-lg-2 col-md-16">

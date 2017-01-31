@@ -95,6 +95,16 @@ def pan_image(image_file, pan_direction):
     return json.dumps(pan_info, separators=(',', ':'))
 
 
+@app.route('/ajax/view_refresh')
+def view_refresh():
+    vision.take_web_cam_image()
+    latest_image = vision.get_latest_web_cam_image()
+    refresh_info = {}
+    refresh_info['url'] = latest_image
+    print('latest = ' + latest_image)
+    return json.dumps(refresh_info, separators=(',', ':'))
+
+
 # cmd = "ip addr show eth0 | grep inet | awk '{print $2}' | cut -d/ -f1"
 def run_cmd(cmd):
     p = Popen(cmd, shell=True, stdout=PIPE)
