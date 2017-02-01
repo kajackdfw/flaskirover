@@ -217,13 +217,12 @@ class Picture:
 
     def make_thumbnail(self, full_size_image):
         filename_pieces = full_size_image.split('/')
-        print(str(filename_pieces))
         source_image = Image.open(full_size_image)
         width, height = source_image.size  # Get dimensions
-        ratio = float(width / height)
+        ratio = float(int(width) / int(height))
         print('width = ' + str(width) + ', height = ' + height + ', ratio = ' + str(ratio))
         new_width = int(round(int(200) * ratio, 0))
         thumbnail = source_image.resize(new_width, 200, Image.BICUBIC)
-        new_file_name = self.settings['path_to_thumbnails'] + '/' + filename_pieces[1] + '/' + filename_pieces[2]
+        new_file_name = self.settings['path_to_thumbnails'] + '/' + filename_pieces[3]
         thumbnail.save(new_file_name)
         return True
