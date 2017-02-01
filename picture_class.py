@@ -214,3 +214,7 @@ class Picture:
             print('  removing ' + 'static/tmp/' + filename_pieces[0] + '.' + filename_pieces[1])
             os.remove('static/tmp/' + filename_pieces[0] + '.' + filename_pieces[1])
         return True
+
+    def make_thumbnail(self, full_size_image):
+        filename_pieces = full_size_image.split('/')
+        print(str(filename_pieces))

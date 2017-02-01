@@ -67,6 +67,19 @@ class Vision:
             self.camera.capture(new_cam_image)
             new_cam_image.close()
 
+    def take_picture(self):
+        if 'no_camera' not in self.settings:
+            time_stamp = '{:%Y%m%d%H%M%S}'.format(datetime.datetime.now())
+            new_image_path_and_name = self.settings['path_to_pictures'] + "/" + time_stamp + ".jpg"
+            # 2592x1944
+            self.camera.resolution = (2592, 1944)
+            new_cam_image = open(new_image_path_and_name, 'wb')
+            self.camera.capture(new_cam_image)
+            new_cam_image.close()
+            # restore web cam res
+            self.camera.resolution = (int(self.settings['view_x']), int(self.settings['view_y']))
+            return new_image_path_and_name
+
     def get_latest_web_cam_image(self):
         image_list = [f for f in listdir(self.settings['path_to_web_cam']) if isfile(join(self.settings['path_to_web_cam'], f))]
         last_timestamp = 0

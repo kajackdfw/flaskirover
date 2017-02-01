@@ -105,6 +105,13 @@ def view_refresh():
     return json.dumps(refresh_info, separators=(',', ':'))
 
 
+@app.route('/ajax/take_picture')
+def take_picture():
+    new_picture = vision.take_picture()
+    picture.make_thumbnail(new_picture)
+    return True
+
+
 # cmd = "ip addr show eth0 | grep inet | awk '{print $2}' | cut -d/ -f1"
 def run_cmd(cmd):
     p = Popen(cmd, shell=True, stdout=PIPE)
