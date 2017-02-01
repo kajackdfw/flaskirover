@@ -1,6 +1,6 @@
 <html>
 <head>
-    <link rel="stylesheet" href="/static/css/high-contrast-theme.css?q=2016121833" >
+    <link rel="stylesheet" href="/static/css/high-contrast-theme.css?q=20170201e" >
     <link rel="stylesheet" href="/static/css/font-awesome.min.css">
 </head>
 <body>
@@ -11,20 +11,47 @@
 
     $( document ).ready(function()
     {
-        $("#drive_now").click(function(){ window.location.href = "/drive"; });
+        $("#drive_sm").click(function(){ window.location.href = "/drive"; });
+        $("#status_sm").click(function(){ window.location.href = "/status"; });
+        $("#pictures_sm").click(function(){ window.location.href = "/pictures"; });
     });
 
 </script>
 
-    {% include 'partials/navbar.html' %}
+<div class="index-container visible-md visible-sm">
 
-    <div class="thumbnail_container">
-
-        <div class="col-lg-2">
-            <image class="img-responsive thumbnail" id="drive_now" src="static/images/M1_Lego_Rover.jpg" />
+    <div class="dashboard-button-row">
+        <div class="col-md-1 col-sm-1 nav_column" >
+            {% include 'partials/button_bar_left.html' %}
         </div>
+        <div class="col-md-9 col-sm-9 view_column">
 
+            <image class="img-responsive" src="{{ image }}" />
+
+        </div>
+        <div class="col-md-1 col-sm-1 nav_column" >
+            {% include 'partials/button_bar_right.html' %}
+        </div>
     </div>
+
+    <div class="dashboard-button-row">
+        <div class="col-md-1 col-sm-1" >
+
+        </div>
+        <div class="col-md-10 col-sm-10">
+            <ul>
+                {% for key, value in status_dic.items() %}
+                    <li> {{ key|capitalize }} = {{ value|capitalize }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-md-1 col-sm-1" >
+
+        </div>
+    </div>
+</div>
+
+</div>
 
 
 </body>

@@ -44,7 +44,8 @@ picture = Picture(startup_settings)
 
 @app.route('/')
 def page_index():
-    return render_template('index.html', page_title='Home')
+    latest_image = vision.get_latest_web_cam_image()
+    return render_template('index.html', page_title='Home', image=latest_image, status_dic=status_dic)
 
 
 @app.route('/drive')
