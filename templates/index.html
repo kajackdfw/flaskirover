@@ -1,6 +1,6 @@
 <html>
 <head>
-    <link rel="stylesheet" href="/static/css/high-contrast-theme.css?q=20170201f" >
+    <link rel="stylesheet" href="/static/css/high-contrast-theme.css?q=20170201g" >
     <link rel="stylesheet" href="/static/css/font-awesome.min.css">
 </head>
 <body>
@@ -35,18 +35,8 @@
     </div>
 
     <div class="dashboard-button-row">
-        <div class="col-md-1 col-sm-1" >
-
-        </div>
-        <div class="col-md-10 col-sm-10">
-            <ul>
-                {% for key, value in status_dic.items() %}
-                    <li> {{ key|capitalize }} = {{ value|capitalize }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="col-md-1 col-sm-1" >
-
+        <div class="col-md-12 col-sm-12 button_bar_bottom"  >
+            {% include 'partials/button_bar_bottom.html' %}
         </div>
     </div>
 </div>
