@@ -1,6 +1,6 @@
 <html>
 <head>
-    <link rel="stylesheet" href="/static/css/high-contrast-theme.css?q=20170131e" >
+    <link rel="stylesheet" href="/static/css/high-contrast-theme.css?q=20170202b" >
     <link rel="stylesheet" href="/static/css/font-awesome.min.css">
 </head>
 <body>
@@ -38,16 +38,15 @@
 
 </script>
 
-<div class="dashboard-container">
+<div class="drive-container">
 
     <div class="row">
-        <div class="col-lg-10 col-md-16 viewport">
+        <div class="col-lg-9 col-md-16 drive-viewport">
             <image class="img-responsive" src="{{ image }}" id="view"/>
         </div>
 
-        <div class="col-lg-2 col-md-16">
+        <div class="col-lg-3 col-md-16">
             {% include 'partials/instruments.html' %}
-            {% print(images) %}
         </div>
     </div>
 

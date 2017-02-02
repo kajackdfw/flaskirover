@@ -35,13 +35,25 @@ body {
     height: 600px;
 }
 
-.viewport {
-    padding: 0;
+.drive-viewport, .viewport {
+    padding: 4px;
+    text-align: center;
+    align-content: center;
+    min-width: 600px;
 }
 
-.dashboard-container {
+.drive-viewport > img {
+    margin: 4px;
+    border: 4px;
+    align-content: center;
+    padding: 4px;
+}
+
+.index-container {
     &:extend(.container-fluid);
-    padding: 8px;
+    padding: 4px;
+    text-align: center;
+    align-content: center;
 }
 
 .dashboard-button-row {
@@ -68,15 +80,16 @@ body {
 
 .btn-drive {
     &:extend(.btn-lg);
-        background-color: olive;
-        border-color: olivedrab;
-        color: black;
-        margin-top: 4px;
-        width: 50px;
-        border: 2px solid;
-    }
+    background-color: olive;
+    border-color: olivedrab;
+    color: black;
+    margin-top: 4px;
+    width: 50px;
+    border: 2px solid;
+}
 
 .btn-xlg {
+    &:extend(.btn-lg);
     height: 90px;
     width: 90px;
     color: black;
@@ -84,6 +97,19 @@ body {
     background-color: olive;
     border: 3px solid;
     border-radius: 10px;
+}
+
+.btn-instrument {
+    &:extend(.btn-xlg);
+    background-color: black;
+    border-color: darkgray;
+    color: gray;
+    margin-top: 4px;
+}
+
+.btn-col {
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
 .btn-drive:hover {
@@ -131,6 +157,10 @@ body {
     height: 41px;
     margin-top: 2px;
 }
+
+.btn-instrument > .fa-battery-full { color: green; }
+.btn-instrument > .fa-thermometer-2 { color: white; }
+
 
 .fa-rotate-45 {
     &:extend(.fa-rotate-90);
