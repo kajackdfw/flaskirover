@@ -1,5 +1,7 @@
 @import "bootstrap.css";
 
+@disabled: #4f4f4f;
+
 body {
   background: black;
   color: yellow;
@@ -100,11 +102,19 @@ body {
     border-radius: 10px;
 }
 
-.btn-instrument {
+.btn-instrument-xlg {
     &:extend(.btn-xlg);
     background-color: black;
     border-color: darkgray;
     color: gray;
+    margin-top: 4px;
+}
+
+.btn-instrument-xlg-disabled {
+    &:extend(.btn-xlg);
+    background-color: black;
+    border-color: darkgray;
+    color: darkgray;
     margin-top: 4px;
 }
 
@@ -170,11 +180,31 @@ body {
     margin-top: 2px;
 }
 
-.btn-instrument > .fa-wifi { color: dodgerblue; }
-.btn-instrument > .fa-battery-full { color: lawngreen; }
-.btn-instrument > .fa-thermometer-2 { color: lawngreen; }
-.btn-instrument > .fa-long-arrow-up { color: red; }
 
+
+.btn-instrument > .fa-wifi { color: dodgerblue; }
+.btn-instrument-xlg > .fa-wifi { color: dodgerblue; }
+
+.btn-instrument > .fa-battery-full { color: lawngreen; }
+.btn-instrument-xlg > .fa-battery-full { color: lawngreen; }
+
+.btn-instrument > .fa-battery-full { color: lawngreen; }
+.btn-instrument-xlg > .fa-battery-full { color: lawngreen; }
+
+.btn-instrument > .fa-thermometer-2 { color: lawngreen; }
+.btn-instrument-xlg > .fa-thermometer-2 { color: lawngreen; }
+
+.btn-instrument     > .fa-long-arrow-up { color: red; }
+.btn-instrument-xlg > .fa-long-arrow-up { color: red; }
+
+.btn-instrument     > .fa-handshake-o { color: white; }
+.btn-instrument-xlg > .fa-handshake-o { color: white; }
+
+.btn-instrument     > .fa-balance-scale { color: white; }
+.btn-instrument-xlg > .fa-balance-scale { color: white; }
+
+.btn-instrument-disabled > i { color: @disabled; }
+.btn-instrument-xlg-disabled > i { color: @disabled; }
 
 .fa-rotate-45 {
     &:extend(.fa-rotate-90);

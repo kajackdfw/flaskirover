@@ -16,6 +16,7 @@ from adafruit_dc_and_stepper_motor_hat import Motor  # change to match your moto
 app = Flask(__name__, static_url_path='/static')
 server_os = os.name
 
+# This will be put in a config file some day
 startup_settings = {}
 startup_settings['view_x'] = 920
 startup_settings['view_y'] = round(startup_settings['view_x'] * 0.75, 0)
