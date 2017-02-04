@@ -13,9 +13,7 @@
 
     $( document ).ready(function()
     {
-        $("#to_home_lg").click(function(){ window.location.href = "/"; });
-        $("#to_home_sm").click(function(){ window.location.href = "/"; });
-        $("#take_picture_sm").click(function(){ take_picture(); });
+        {% include 'partials/common_button_methods.js' %}
 
         // screen refresh
         $('#stop_refresh_sm').click(function() { clearInterval(interval); });

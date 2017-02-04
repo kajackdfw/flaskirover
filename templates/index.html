@@ -11,9 +11,7 @@
 
     $( document ).ready(function()
     {
-        $("#drive_sm").click(function(){ window.location.href = "/drive"; });
-        $("#status_sm").click(function(){ window.location.href = "/status"; });
-        $("#pictures_sm").click(function(){ window.location.href = "/pictures"; });
+        {% include 'partials/common_button_methods.js' %}
     });
 
 </script>
