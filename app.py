@@ -21,6 +21,17 @@ startup_settings = {}
 startup_settings['view_x'] = 920
 startup_settings['view_y'] = round(startup_settings['view_x'] * 0.75, 0)
 
+uis = {}
+uis['compass'] = '-disabled'
+uis['direction'] = 'fa-spin'
+uis['tilt'] = '-disabled'
+uis['battery'] = '-disabled'
+uis['charge'] = '2'
+uis['thermometer'] = '-disabled'
+uis['temperature'] = '2'
+uis['sensors'] = '-disabled'
+uis['wifi'] = ''
+
 status_dic = {
     'code': 'incomplete',
     'access': 'private wifi'
@@ -46,14 +57,14 @@ picture = Picture(startup_settings)
 @app.route('/')
 def page_index():
     latest_image = vision.get_latest_web_cam_image()
-    return render_template('index.html', page_title='Home', image=latest_image, status_dic=status_dic)
+    return render_template('index.html', page_title='Home', image=latest_image, uis=uis)
 
 
 @app.route('/drive')
 def page_drive():
     vision.take_web_cam_image()
     latest_image = vision.get_latest_web_cam_image()
-    return render_template('drive.html', image=latest_image)
+    return render_template('drive.html', image=latest_image, uis=uis)
 
 
 @app.route('/pictures')

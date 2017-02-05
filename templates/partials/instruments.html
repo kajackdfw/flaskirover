@@ -24,13 +24,13 @@
         </div>
         <div class="dashboard-button-row">
             <button type="button" class="btn btn-drive btn-lg" id="lg_forward_left" title="Forward And Left">
-                <i class="fa fa-backward fa-rotate-315"></i>
+                <i class="fa fa-backward fa-rotate-45"></i>
             </button>
             <button type="button" class="btn btn-drive btn-lg" id="lg_forward" title="Forward">
                 <i class="fa fa-backward fa-rotate-90"></i>
             </button>
             <button type="button" class="btn btn-drive btn-lg" id="lg_forward_right" title="Forward And Right">
-                <i class="fa fa-backward fa-rotate-225"></i>
+                <i class="fa fa-backward fa-rotate-135"></i>
             </button>
         </div>
         <div class="dashboard-button-row">
@@ -95,25 +95,25 @@
 
     <div class="instrument-row">
         <div class="dashboard-button-row">
-            <button type="button" class="btn btn-instrument-lg btn-lg" title="Wifi Signal">
+            <button type="button" class="btn btn-instrument-lg{{ uis['wifi'] }} btn-lg" title="Wifi Signal">
                 <i class="fa fa-wifi"></i>
             </button>
-            <button type="button" class="btn btn-instrument-lg btn-lg" title="Battery Strength">
-                <i class="fa fa-battery-full"></i>
+            <button type="button" class="btn btn-instrument-lg{{ uis['battery'] }} btn-lg" title="Battery Strength">
+                <i class="fa fa-battery-{{ uis['charge'] }}"></i>
             </button>
-            <button type="button" class="btn btn-instrument-lg btn-lg" title="Sensors Online">
+            <button type="button" class="btn btn-instrument-lg{{ uis['sensors'] }} btn-lg" title="Sensors Online">
                 <i class="fa fa-handshake-o"></i>
             </button>
         </div>
         <div class="dashboard-button-row">
-            <button type="button" class="btn btn-instrument-lg btn-lg" title="Rover Temperature">
-                <i class="fa fa-thermometer-2"></i>
+            <button type="button" class="btn btn-instrument-lg{{ uis['thermometer'] }} btn-lg" title="Rover Temperature">
+                <i class="fa fa-thermometer-{{ uis['temperature'] }}"></i>
             </button>
-            <button type="button" class="btn btn-instrument-lg btn-lg" title="Rover Tilt">
+            <button type="button" class="btn btn-instrument-lg{{ uis['tilt'] }} btn-lg" title="Rover Tilt">
                 <i class="fa fa-balance-scale"></i>
             </button>
-            <button type="button" class="btn btn-instrument-lg btn-lg" title="North">
-                <i class="fa fa-long-arrow-up"></i>
+            <button type="button" class="btn btn-instrument-lg{{ uis['compass'] }} btn-lg" title="North">
+                <i class="fa fa-long-arrow-up {{ uis['direction'] }}"></i>
             </button>
         </div>
     </div>
@@ -129,7 +129,7 @@
             <button type="button" id="sm_home_page" class="btn btn-drive btn-xlg" title="Home Page">
                 <i class="fa fa-home fa-3x"></i>
             </button>
-            <button type="button" id="sm_drive_page" class="btn btn-drive btn-xlg" title="Pictures In Archive">
+            <button type="button" id="sm_pictures_page" class="btn btn-drive btn-xlg" title="Pictures In Archive">
                 <i class="fa fa-picture-o fa-3x"></i>
             </button>
             <button type="button" id="sm_map_page" class="btn btn-drive btn-xlg" title="Google Map">
@@ -138,26 +138,26 @@
         </div>
 
         <div class="dashboard-button-row">
-            <button type="button" class="btn btn-instrument-xlg" title="Wifi Signal">
+            <button type="button" class="btn btn-instrument-xlg{{ uis['wifi'] }}" title="Wifi Signal">
                 <i class="fa fa-wifi fa-3x"></i>
             </button>
-            <button type="button" class="btn btn-instrument-xlg" title="Battery Strength">
-                <i class="fa fa-battery-full fa-3x"></i>
+            <button type="button" class="btn btn-instrument-xlg{{ uis['battery'] }}" title="Battery Strength">
+                <i class="fa fa-battery-{{ uis['charge'] }} fa-3x"></i>
             </button>
-            <button type="button" class="btn btn-instrument-xlg" title="Sensors Connected">
+            <button type="button" class="btn btn-instrument-xlg{{ uis['sensors'] }}" title="Sensors Connected">
                 <i class="fa fa-handshake-o fa-3x"></i>
             </button>
         </div>
 
         <div class="dashboard-button-row">
-            <button type="button" class="btn btn-instrument-xlg" title="Rover Temperature">
-                <i class="fa fa-thermometer-2 fa-3x"></i>
+            <button type="button" class="btn btn-instrument-xlg{{ uis['thermometer'] }}" title="Rover Temperature">
+                <i class="fa fa-thermometer-{{ uis['temperature'] }} fa-3x"></i>
             </button>
-            <button type="button" class="btn btn-instrument-xlg" title="Rover Tilt">
+            <button type="button" class="btn btn-instrument-xlg{{ uis['tilt'] }}" title="Rover Tilt">
                 <i class="fa fa-balance-scale fa-3x"></i>
             </button>
-            <button type="button" class="btn btn-instrument-xlg" title="North">
-                <i class="fa fa-long-arrow-up fa-3x"></i>
+            <button type="button" class="btn btn-instrument-xlg{{ uis['compass'] }}" title="North">
+                <i class="fa fa-long-arrow-up fa-3x {{ uis['direction'] }}"></i>
             </button>
         </div>
 

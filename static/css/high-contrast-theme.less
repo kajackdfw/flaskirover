@@ -113,8 +113,8 @@ body {
 .btn-instrument-xlg-disabled {
     &:extend(.btn-xlg);
     background-color: black;
-    border-color: darkgray;
-    color: darkgray;
+    border-color: @disabled;
+    color: @disabled;
     margin-top: 4px;
 }
 
@@ -123,6 +123,17 @@ body {
     background-color: black;
     border-color: darkgray;
     color: gray;
+    margin-top: 4px;
+    border: 2px solid;
+    padding: 10px;
+    width: 60px;
+}
+
+.btn-instrument-lg-disabled {
+    &:extend(.btn-lg);
+    background-color: black;
+    border-color: @disabled;
+    color: @disabled;
     margin-top: 4px;
     border: 2px solid;
     padding: 10px;
@@ -182,7 +193,7 @@ body {
 
 
 
-.btn-instrument > .fa-wifi { color: dodgerblue; }
+.btn-instrument-lg > .fa-wifi { color: dodgerblue; }
 .btn-instrument-xlg > .fa-wifi { color: dodgerblue; }
 
 .btn-instrument > .fa-battery-full { color: lawngreen; }
@@ -204,13 +215,11 @@ body {
 .btn-instrument-xlg > .fa-balance-scale { color: white; }
 
 .btn-instrument-disabled > i { color: @disabled; }
+.btn-instrument-lg-disabled > i { color: @disabled; }
 .btn-instrument-xlg-disabled > i { color: @disabled; }
 
-.fa-rotate-45 {
-    &:extend(.fa-rotate-90);
-    transform: rotate(45deg);
-}
-
+.fa-rotate-11:extend(.fa-rotate-90) { transform: rotate(11deg); }
+.fa-rotate-45:extend(.fa-rotate-90) { transform: rotate(45deg); }
 .fa-rotate-315:extend(.fa-rotate-90) { transform: rotate(315deg); }
 .fa-rotate-225:extend(.fa-rotate-90) { transform: rotate(225deg); }
 .fa-rotate-135:extend(.fa-rotate-90) { transform: rotate(135deg); }
