@@ -12,15 +12,6 @@ body {
     padding: 20px;
 }
 
-.driving-controls {
-    padding: 50px;
-    z-index:2;
-    position: relative;
-    right: 200px;
-    top: 200px;
-    background-color: transparent;
-}
-
 .navbar {
     &:extend(.navbar);
     border-radius: 0;
@@ -33,22 +24,36 @@ body {
     align-content: center;
 }
 
+.vert-button-menu-col {
+    width: 110px;
+    float: left;
+}
+
 .view-row {
     height: 600px;
+}
+
+.index-viewport {
+    padding: 6px;
+    float: left;
+    max-height: 550px;
+}
+
+.index-viewport > image {
+    max-height: 550px;
+    max-width: 100%;
 }
 
 .drive-viewport, .viewport {
     padding: 4px;
     text-align: center;
     align-content: center;
+    align-content: right;
     min-width: 600px;
 }
 
 .drive-viewport > img {
-    margin: 4px;
-    border: 4px;
     align-content: center;
-    padding: 4px;
 }
 
 .index-container {
@@ -190,8 +195,6 @@ body {
     height: 41px;
     margin-top: 2px;
 }
-
-
 
 .btn-instrument-lg > .fa-wifi { color: dodgerblue; }
 .btn-instrument-xlg > .fa-wifi { color: dodgerblue; }

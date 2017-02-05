@@ -1,6 +1,6 @@
 <html>
 <head>
-    <link rel="stylesheet" href="/static/css/high-contrast-theme.css?q=20170203q" >
+    <link rel="stylesheet" href="/static/css/high-contrast-theme.css?q=20170205h" >
     <link rel="stylesheet" href="/static/css/font-awesome.min.css">
 </head>
 <body>
@@ -15,6 +15,25 @@
     });
 
 </script>
+
+<div class="index-container visible-lg">
+
+    <div class="dashboard-button-row">
+        <div class="vert-button-menu-col col-lg-1" >
+
+            {% include 'partials/vert_button_menu.html' %}
+
+        </div>
+        <div class="index-viewport col-lg-11 ">
+
+            <image class="img-responsive" src="{{ image }}" />
+
+        </div>
+
+    </div>
+
+</div>
+
 
 <div class="index-container visible-md visible-sm">
 
@@ -38,11 +57,6 @@
         </div>
     </div>
 </div>
-
-<div class="index-container visible-lg">
-    {% include 'partials/navbar.html' %}
-</div>
-
 
 </body>
 </html>

@@ -1,6 +1,6 @@
 <html>
 <head>
-    <link rel="stylesheet" href="/static/css/high-contrast-theme.css?q=2016121833" >
+    <link rel="stylesheet" href="/static/css/high-contrast-theme.css?q=20170205q" >
     <link rel="stylesheet" href="/static/css/font-awesome.min.css">
 </head>
 <body>
@@ -11,18 +11,25 @@
 
     $( document ).ready(function()
     {
-        $("#drive_now").click(function(){ window.location.href = "/drive"; });
+        {% include 'partials/common_button_methods.js' %}
     });
 
 </script>
 
-    {% include 'partials/navbar.html' %}
+
 
     <div class="thumbnail_container">
 
+        <div class="col-lg-1 col-md-2 col-sm-2 col-xs-12">
+            {% include 'partials/vert_button_menu.html' %}
+        </div>
+
+
         {% for pic in pictures %}
-            <div class="col-lg-2">
-                <a href="{{ pic['view_url'] }}" class="thumbnail"><img src="{{ pic['thumbnail'] }}"></a>
+            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-11">
+                <a href="{{ pic['view_url'] }}" class="thumbnail">
+                    <img class="thumbnail-max" src="{{ pic['thumbnail'] }}">
+                </a>
             </div>
         {% endfor %}
 
