@@ -22,12 +22,6 @@
         {% endif %}
     });
 
-    function take_picture() {
-        $.get("/ajax/take_picture", function(data, status){
-            return false;
-        });
-    }
-
     function view_refresh() {
         $.get("/ajax/view_refresh", function(data, status){
             var results = JSON.parse( data );

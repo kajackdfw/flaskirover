@@ -13,3 +13,9 @@
                 $("#sm_take_picture").click(function(){ take_picture(); });
                 $("#lg_take_picture").click(function(){ take_picture(); });
         {% endif %}
+
+        function take_picture() {
+        $.get("/ajax/take_picture", function(data, status){
+            return false;
+        });
+    }
