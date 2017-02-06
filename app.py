@@ -18,8 +18,8 @@ server_os = os.name
 
 # This will be put in a config file some day
 startup_settings = {}
-startup_settings['view_x'] = 920
-startup_settings['view_y'] = round(startup_settings['view_x'] * 0.75, 0)
+startup_settings['view_x'] = 960
+startup_settings['view_y'] = 720
 
 uis = {}
 uis['compass'] = '-disabled'
@@ -60,13 +60,6 @@ picture = Picture(startup_settings)
 def page_index():
     latest_image = vision.get_latest_web_cam_image()
     return render_template('index.html', page_title='Home', image=latest_image, uis=uis)
-
-
-@app.route('/drive')
-def page_drive():
-    vision.take_web_cam_image()
-    latest_image = vision.get_latest_web_cam_image()
-    return render_template('drive.html', image=latest_image, uis=uis)
 
 
 @app.route('/new')

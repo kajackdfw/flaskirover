@@ -40,12 +40,12 @@ class Vision:
         if 'view_x' in start_settings:
             self.settings['view_x'] = int(start_settings['view_x'])
         else:
-            self.settings['view_x'] = 800
+            self.settings['view_x'] = 960
 
         if 'view_y' in start_settings:
             self.settings['view_y'] = int(start_settings['view_y'])
         else:
-            self.settings['view_x'] = 600
+            self.settings['view_y'] = 720
 
         self.settings['camera'] = ''
 

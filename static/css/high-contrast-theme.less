@@ -12,13 +12,6 @@ body {
     padding: 20px;
 }
 
-.navbar {
-    &:extend(.navbar);
-    border-radius: 0;
-    color: white;
-    background: black;
-}
-
 .button_bar_bottom {
     text-align: center;
     align-content: center;
@@ -44,16 +37,12 @@ body {
     max-width: 100%;
 }
 
-.drive-viewport, .viewport {
+.viewport {
     padding: 4px;
     text-align: center;
     align-content: center;
     align-content: right;
     min-width: 600px;
-}
-
-.drive-viewport > img {
-    align-content: center;
 }
 
 .index-container {
@@ -85,7 +74,7 @@ body {
     text-align: center;
 }
 
-.btn-drive {
+.btn-menu {
     &:extend(.btn-lg);
     background-color: darkolivegreen;
     border-color: olivedrab;
@@ -150,7 +139,7 @@ body {
     padding-right: 4px;
 }
 
-.btn-drive:hover {
+.btn-menu:hover {
     color: olive;
 }
 
@@ -158,11 +147,11 @@ body {
     text-align: center;
 }
 
-.xbtn-drive-left, .xbtn-drive-right {
-    &:extend(.btn-drive);
+.xbtn-menu-left, .xbtn-menu-right {
+    &:extend(.btn-menu);
 }
 
-.btn-drive-center {
+.btn-menu-center {
     &:extend(.btn-lg);
     background-color: black;
     border-color: darkgray;
@@ -174,7 +163,7 @@ body {
     border: 2px solid;
 }
 
-.btn-drive-empty {
+.btn-menu-empty {
     &:extend(.btn-lg);
     background-color: black;
     border-color: black;
@@ -185,7 +174,7 @@ body {
     margin-top: 2px;
 }
 
-.btn-drive-disabled {
+.btn-menu-disabled {
     &:extend(.btn-lg);
     background-color: #2d3f0e;
     border-color: #2d3f0e;
@@ -236,12 +225,6 @@ body {
     background-color: black;
 }
 
-canvas {
-    display:block;
-    margin:1em auto;
-    background: black;
-    border:1px solid red }
-
 .nav_column {
     min-width: 98px;
     padding: 3px;
@@ -254,47 +237,5 @@ canvas {
     padding-right: 1px;
 }
 
-.navbar-inverse {
-    margin-top: 2px;
-    color: white;
-    background: black;
 
-    a > span {
-        color: white;
-    }
-
-    a {
-        color: white;
-    }
-
-    .navbar-brand {
-        color: white;
-        background: black;
-    }
-
-    .navbar-nav > li > a {
-        color: white;
-    }
-
-    .dropdown-menu > li > a {
-        color: white;
-        background: black;
-    }
-
-    .dropdown-menu {
-        background: black;
-        border-color: white;
-    }
-
-    .navbar-colapse {
-        background: black;
-        color: darkgray;
-    }
-
-    .navbar-nav > .open > a:focus {
-        background: black;
-        color: black;
-    }
-
-}
 
