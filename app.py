@@ -72,13 +72,7 @@ def page_drive():
 @app.route('/pictures')
 def page_pictures():
     pictures = picture.get_list_of_pictures()
-    return render_template('pictures.html', page_title='Pictures', pictures=pictures)
-
-
-@app.route('/status')
-def page_status():
-    latest_image = vision.get_latest_web_cam_image()
-    return render_template('status.html', page_title='Status', image=latest_image, status_dic=status_dic)
+    return render_template('pictures.html', page_title='Pictures', pictures=pictures, uis=uis)
 
 
 @app.route('/view/<image>')
@@ -93,7 +87,7 @@ def page_view(image):
 
 @app.route('/about')
 def page_about():
-    return render_template('about.html', page_title=' / About RaspRover')
+    return render_template('about.html', page_title=' / About RaspRover', uis=uis)
 
 
 @app.route('/ajax/zoom/<image_file>/<zoom_factor>')
