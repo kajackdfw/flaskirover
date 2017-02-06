@@ -69,6 +69,13 @@ def page_drive():
     return render_template('drive.html', image=latest_image, uis=uis)
 
 
+@app.route('/ui')
+def page_ui():
+    vision.take_web_cam_image()
+    latest_image = vision.get_latest_web_cam_image()
+    return render_template('ui.html', image=latest_image, uis=uis)
+
+
 @app.route('/pictures')
 def page_pictures():
     pictures = picture.get_list_of_pictures()

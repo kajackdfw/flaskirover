@@ -1,0 +1,58 @@
+<html>
+<head>
+    <link rel="stylesheet" href="/static/css/high-contrast-theme.css?q=20170204c" >
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script type="application/javascript">
+
+    $(function () { $('[data-toggle="tooltip"]').tooltip() })
+
+
+    $( document ).ready(function()
+    {
+        {% include 'partials/common_button_methods.js' %}
+
+        // screen refresh
+        {% if uis['camera'] == '' %}
+            $('#stop_refresh_sm').click(function() { clearInterval(interval); });
+            var interval = setInterval(function () { view_refresh(); }, 3000);
+        {% endif %}
+    });
+
+    function view_refresh() {
+        $.get("/ajax/view_refresh", function(data, status){
+            var results = JSON.parse( data );
+            $("#view").attr('src',results.url);
+            return false;
+        });
+    }
+
+</script>
+
+<div class="index-container visible-md visible-sm">
+
+    <table>
+        <tr>
+            <td rowspan="2" valign="bottom">
+                {% include 'partials/button_bar_left.html' %}
+            </td>
+            <td valign="bottom">
+                <image class="img-responsive" src="{{ image }}" id="view"/>
+            </td>
+            <td rowspan="2" valign="bottom">
+                {% include 'partials/button_bar_right.html' %}
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                {% include 'partials/instrument_bar.html' %}
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+</body></html>
