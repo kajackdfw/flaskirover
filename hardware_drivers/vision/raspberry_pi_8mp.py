@@ -51,8 +51,9 @@ class Vision:
 
         try:
             self.camera = PiCamera()
+            sleep(4)
             self.camera.resolution = (int(self.settings['view_x']), int(self.settings['view_y']))
-            sleep(2)
+
         except NameError:
             print("  No Picamera for Windows")
             self.settings['camera'] = '-disabled'
