@@ -118,6 +118,7 @@ def view_refresh():
 def take_picture():
     new_picture = vision.take_picture()
     picture.make_thumbnail(new_picture)
+    picture.clean_webcam_cache(new_picture)
     return True
 
 
