@@ -130,7 +130,7 @@ def run_cmd(cmd):
 
 
 if __name__ == '__main__' and os.name == 'posix':
-    app.run(host='0.0.0.0', port=8080)
+    app.run(debug=True, host='0.0.0.0', port=8080)
 elif __name__ == '__main__':
     app.run(debug=True, host='localhost', port=8080)
 
