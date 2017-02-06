@@ -13,8 +13,20 @@
     {
         {% include 'partials/common_button_methods.js' %}
 
-
+        // screen refresh
+        {% if uis['camera'] == '' %}
+            $('#stop_refresh_sm').click(function() { clearInterval(interval); });
+            var interval = setInterval(function () { view_refresh(); }, 3000);
+        {% endif %}
     });
+
+    function view_refresh() {
+        $.get("/ajax/view_refresh", function(data, status){
+            var results = JSON.parse( data );
+            $("#view").attr('src',results.url);
+            return false;
+        });
+    }
 
 </script>
 
