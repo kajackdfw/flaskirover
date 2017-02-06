@@ -37,25 +37,25 @@
 
 <div class="index-container visible-md visible-sm">
 
-    <div class="dashboard-button-row">
-        <div class="col-md-1 col-sm-1 nav_column" >
-            {% include 'partials/button_bar_left.html' %}
-        </div>
-        <div class="col-md-9 col-sm-9 view_column">
+    <table>
+        <tr>
+            <td rowspan="2" valign="bottom" width="98px">
+                {% include 'partials/button_bar_left.html' %}
+            </td>
+            <td valign="bottom" width="100%">
+                <image class="img-responsive" src="{{ image }}" id="view"/>
+            </td>
+            <td rowspan="2" valign="bottom" width="98px">
+                {% include 'partials/vert_toggle_action_menu.html.html' %}
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                {% include 'partials/instrument_bar.html' %}
+            </td>
+        </tr>
+    </table>
 
-            <image class="img-responsive" src="{{ image }}" />
-
-        </div>
-        <div class="col-md-1 col-sm-1 nav_column" >
-            {% include 'partials/button_bar_right.html' %}
-        </div>
-    </div>
-
-    <div class="dashboard-button-row">
-        <div class="col-md-12 col-sm-12 button_bar_bottom"  >
-            {% include 'partials/instrument_bar.html' %}
-        </div>
-    </div>
 </div>
 
 </body>

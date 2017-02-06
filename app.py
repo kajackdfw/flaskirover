@@ -69,11 +69,11 @@ def page_drive():
     return render_template('drive.html', image=latest_image, uis=uis)
 
 
-@app.route('/ui')
-def page_ui():
+@app.route('/new')
+def page_new():
     vision.take_web_cam_image()
     latest_image = vision.get_latest_web_cam_image()
-    return render_template('ui.html', image=latest_image, uis=uis)
+    return render_template('new.html', image=latest_image, uis=uis)
 
 
 @app.route('/pictures')
