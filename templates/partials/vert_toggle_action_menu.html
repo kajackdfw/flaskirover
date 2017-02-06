@@ -1,51 +1,58 @@
 <script type="application/javascript">
+
     var menu_mode = 'webcam';
-    $("#switch_to_drive").click(function(){ toggle_menu(); });
-    $("#switch_to_webcam").click(function(){ toggle_menu(); });
+
+    $( document ).ready(function() {
+
+        $('#drive_menu').hide();
+        $("#switch_to_drive").click(function () { toggle_menu(); });
+        $("#switch_to_webcam").click(function () { toggle_menu(); });
+    });
 
     function toggle_menu() {
+
         if( menu_mode == 'webcam' ) {
             menu_mode = 'drive';
-            $('#webcam_menu').removeClass('visible');
-            $('#drive_menu').addClass('visible');
+            $('#webcam_menu').hide();
+            $('#drive_menu').show();
         }
         else if( menu_mode == 'drive' ) {
             menu_mode = 'webcam';
-            $('#drive_menu').removeClass('visible');
-            $('#webcam_menu').addClass('visible');
+            $('#drive_menu').hide();
+            $('#webcam_menu').show();
         }
     }
 </script>
 
-<div id="drive_menu" class="hidden">
+<div id="drive_menu">
     <button type="button" class="btn btn-drive btn-xlg" id="sm_turn_cam_up" title="Move Forward">
         <i class="fa fa-backward fa-rotate-90 fa-3x"></i>
     </button>
     <button type="button" class="btn btn-drive btn-xlg" id="sm_turn_cam_left" title="Rotate Left">
-        <i class="fa fa-backward fa-rotate-90 fa-3x"></i>
+        <i class="fa fa-rotate-left fa-3x"></i>
     </button>
-    <button type="button" id="refresh_sm" class="btn btn-drive btn-xlg" id="sm_center_cam" title="Stop!">
+    <button type="button" class="btn btn-drive btn-xlg" id="sm_center_cam" title="Stop!">
         <i class="fa fa-hand-stop-o fa-3x"></i>
     </button>
     <button type="button" class="btn btn-drive btn-xlg" id="sm_turn_cam_right" title="Rotate Right">
-        <i class="fa fa-backward fa-rotate-270 fa-3x"></i>
+        <i class="fa fa-rotate-right fa-3x"></i>
     </button>
     <button type="button" class="btn btn-drive btn-xlg" id="sm_turn_cam_down" title="Backup">
         <i class="fa fa-backward fa-rotate-270 fa-3x"></i>
     </button>
-    <button type="button" id="toggle_menu" class="btn btn-drive btn-xlg" id="switch_to_webcam" title="Toggle Menu">
+    <button type="button" class="btn btn-drive btn-xlg" id="switch_to_webcam" title="Toggle Menu">
         <i class="fa fa-truck fa-3x"></i>
     </button>
 </div>
 
-<div id="webcam_menu" class="visible">
+<div id="webcam_menu">
     <button type="button" class="btn btn-drive btn-xlg" id="sm_turn_cam_up" title="Look Up">
         <i class="fa fa-binoculars fa-rotate-180 fa-3x"></i>
     </button>
     <button type="button" class="btn btn-drive btn-xlg" id="sm_turn_cam_left" title="Look Left">
         <i class="fa fa-binoculars fa-rotate-90 fa-3x"></i>
     </button>
-    <button type="button" id="refresh_sm" class="btn btn-drive btn-xlg" id="sm_center_cam" title="Center The Camera">
+    <button type="button" class="btn btn-drive btn-xlg" id="sm_center_cam" title="Center The Camera">
         <i class="fa fa-crosshairs fa-3x"></i>
     </button>
     <button type="button" class="btn btn-drive btn-xlg" id="sm_turn_cam_right" title="Look Right">
@@ -54,7 +61,7 @@
     <button type="button" class="btn btn-drive btn-xlg" id="sm_turn_cam_down" title="Look Down">
         <i class="fa fa-binoculars fa-3x"></i>
     </button>
-    <button type="button" id="toggle_menu" class="btn btn-drive btn-xlg" id="switch_to_drive" title="Toggle Menu">
+    <button type="button" class="btn btn-drive btn-xlg" id="switch_to_drive" title="Toggle Menu">
         <i class="fa fa-video-camera fa-3x"></i>
     </button>
 </div>
