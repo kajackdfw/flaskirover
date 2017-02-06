@@ -135,6 +135,7 @@ def run_cmd(cmd):
 def quit():
     func = request.environ.get('werkzeug.server.shutdown')
     func()
+    run_cmd('git pull')
     return "Quitting..."
 
 
