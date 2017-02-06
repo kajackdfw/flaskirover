@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request
 import os
 import sys
 from subprocess import *
@@ -131,8 +131,15 @@ def run_cmd(cmd):
     return True
 
 
+@app.route('/quit')
+def quit():
+    func = request.environ.get('werkzeug.server.shutdown')
+    func()
+    return "Quitting..."
+
+
 if __name__ == '__main__' and os.name == 'posix':
-    app.run(debug=True, host='0.0.0.0', port=8080)
+    app.run(host='0.0.0.0', port=8080)
 elif __name__ == '__main__':
     app.run(debug=True, host='localhost', port=8080)
 
