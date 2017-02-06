@@ -106,7 +106,10 @@ def pan_image(image_file, pan_direction):
 
 @app.route('/ajax/view_refresh')
 def view_refresh():
-    vision.take_web_cam_image()
+    if vision.settings['camera'] == '':
+        vision.take_web_cam_image()
+        latest_image = vision.get_latest_web_cam_image()
+        picture.clean_webcam_cache(latest_image)
     latest_image = vision.get_latest_web_cam_image()
     refresh_info = {}
     refresh_info['url'] = latest_image
@@ -118,7 +121,6 @@ def view_refresh():
 def take_picture():
     new_picture = vision.take_picture()
     picture.make_thumbnail(new_picture)
-    picture.clean_webcam_cache(new_picture)
     return True
 
 
