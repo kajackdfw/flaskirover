@@ -16,8 +16,10 @@
         {% include 'partials/common_button_methods.js' %}
 
         // screen refresh
-        $('#stop_refresh_sm').click(function() { clearInterval(interval); });
-        var interval = setInterval(function () { view_refresh(); }, 3000);
+        {% if uis['camera'] == '' %}
+            $('#stop_refresh_sm').click(function() { clearInterval(interval); });
+            var interval = setInterval(function () { view_refresh(); }, 3000);
+        {% endif %}
     });
 
     function take_picture() {

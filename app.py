@@ -50,6 +50,8 @@ else:
 
 # Plugin the hardware drivers here
 vision = Vision(startup_settings)
+uis['camera'] = vision.settings['camera']
+
 motor = Motor(startup_settings)
 picture = Picture(startup_settings)
 

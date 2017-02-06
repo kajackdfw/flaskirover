@@ -47,16 +47,18 @@ class Vision:
         else:
             self.settings['view_x'] = 600
 
+        self.settings['camera'] = ''
+
         try:
             self.camera = PiCamera()
             self.camera.resolution = (int(self.settings['view_x']), int(self.settings['view_y']))
             sleep(2)
         except NameError:
             print("  No Picamera for Windows")
-            self.settings['no_camera'] = True
+            self.settings['camera'] = '-disabled'
         except SystemError:
             print("  Camera is probably not attached?")
-            self.settings['no_camera'] = True
+            self.settings['camera'] = '-disabled'
 
     def take_web_cam_image(self):
         if 'no_camera' not in self.settings:
@@ -68,7 +70,7 @@ class Vision:
             new_cam_image.close()
 
     def take_picture(self):
-        if 'no_camera' not in self.settings:
+        if self.settings['camera'] == '':
             time_stamp = '{:%Y%m%d%H%M%S}'.format(datetime.datetime.now())
             new_image_path_and_name = self.settings['path_to_pictures'] + "/" + time_stamp + ".jpg"
             # 2592x1944
