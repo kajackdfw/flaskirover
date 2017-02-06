@@ -211,7 +211,6 @@ class Picture:
         delete_list = [f for f in listdir('static/tmp') if isfile(join('static/tmp', f))]
         for image in delete_list:
             filename_pieces = image.split('.')
-            print('  removing ' + 'static/tmp/' + filename_pieces[0] + '.' + filename_pieces[1])
             os.remove('static/tmp/' + filename_pieces[0] + '.' + filename_pieces[1])
         return True
 
@@ -219,10 +218,11 @@ class Picture:
         delete_list = [f for f in listdir(self.settings['path_to_web_cam']) if isfile(join(self.settings['path_to_web_cam'], f))]
         for image in delete_list:
             filename_pieces = image.split('.')
-            print('  removing ' + 'static/tmp/' + filename_pieces[0] + '.' + filename_pieces[1])
             old_image = self.settings['path_to_web_cam'] + '/' + filename_pieces[0] + '.' + filename_pieces[1]
             if not last_image == old_image:
+                print('  removing ' + old_image)
                 os.remove(old_image)
+
         return True
 
     def make_thumbnail(self, full_size_image):
