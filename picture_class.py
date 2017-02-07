@@ -47,10 +47,15 @@ class Picture:
         for image in thumb_nail_list:
             filename_pieces = image.split('.')
             new_image = {
+                'timestamp': int(filename_pieces[0]),
                 'view_url': 'view/' + str(filename_pieces[0] + '.' + filename_pieces[1]),
                 'thumbnail': self.settings['path_to_thumbnails'] + '/' + filename_pieces[0] + '.' + filename_pieces[1]}
             pictures.insert(picture_insert, new_image)
+        pictures = sorted(pictures, key=self.by_timestamp)
         return pictures
+
+    def by_timestamp(self, one_item):
+        return int(one_item['timestamp'])
 
     def zoom(self, pic_selected, zoom_factor):
         zoom_options = {}
@@ -236,3 +241,4 @@ class Picture:
         new_file_name = self.settings['path_to_thumbnails'] + '/' + filename_pieces[3]
         thumbnail.save(new_file_name)
         return True
+

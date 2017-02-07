@@ -5,7 +5,7 @@
     $( document ).ready(function() {
 
         $('#drive_menu').hide();
-        $('#settings_menu').hide();
+        $('#awb_menu').hide();
 
         $("#toggle_menu_1").click(function () { toggle_menu(); });
         $("#toggle_menu_2").click(function () { toggle_menu(); });
@@ -23,18 +23,18 @@
         if( menu_mode == 'webcam' ) {
             menu_mode = 'drive';
             $('#webcam_menu').hide();
-            $('#settings_menu').hide();
+            $('#awb_menu').hide();
             $('#drive_menu').show();
         }
         else if( menu_mode == 'drive' ) {
-            menu_mode = 'settings';
+            menu_mode = 'awb';
             $('#drive_menu').hide();
-            $('#settings_menu').show();
+            $('#awb_menu').show();
             $('#webcam_menu').hide();
         }
-        else if( menu_mode == 'settings' ) {
+        else if( menu_mode == 'awb' ) {
             menu_mode = 'webcam';
-            $('#webcam_menu').hide();
+            $('#awb_menu').hide();
             $('#drive_menu').hide();
             $('#webcam_menu').show();
         }
@@ -87,15 +87,12 @@
 </div>
 
 
-<div id="settings_menu">
+<div id="awb_menu">
     <button type="button" class="btn btn-menu btn-xlg" id="awb_sunlight" title="Sun Light">
         <i class="fa fa-sun-o fa-3x"></i>
     </button>
     <button type="button" class="btn btn-menu btn-xlg" id="awb_cloudy" title="Cloudy">
         <i class="fa fa-cloud fa-3x"></i>
-    </button>
-    <button type="button" class="btn btn-menu btn-xlg" id="awb_auto" title="Auto">
-        <i class="fa fa-magic fa-3x"></i>
     </button>
     <button type="button" class="btn btn-menu btn-xlg" id="awb_tungsten" title="Tungsten Light">
         <i class="fa fa-lightbulb-o fa-3x"></i>
@@ -103,7 +100,10 @@
     <button type="button" class="btn btn-menu btn-xlg" id="awb_fluorescent" title="Fluorescent">
         <i class="fa fa-bars fa-3x"></i>
     </button>
+    <button type="button" class="btn btn-menu btn-xlg" id="awb_auto" title="Auto">
+        <i class="fa fa-magic fa-3x"></i>
+    </button>
     <button type="button" class="btn btn-instrument-xlg" id="toggle_menu_3" title="Toggle Menu">
-        <i class="fa fa-cog fa-3x"></i>
+        <i class="fa fa-eye fa-3x"></i>
     </button>
 </div>
