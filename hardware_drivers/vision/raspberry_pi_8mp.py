@@ -113,5 +113,5 @@ class Vision:
         return pictures
 
     def set_awb(self, mode):
-        self.camera.awb_mode(mode)
+        self.camera.awb_mode = mode
         return True
