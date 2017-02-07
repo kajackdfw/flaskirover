@@ -124,6 +124,11 @@ def take_picture():
     return True
 
 
+@app.route('/ajax/camera/awb_mode/<mode>')
+def set_white_balance(mode):
+    return vision.set_awb(mode)
+
+
 # cmd = "ip addr show eth0 | grep inet | awk '{print $2}' | cut -d/ -f1"
 def run_cmd(cmd):
     p = Popen(cmd, shell=True, stdout=PIPE)

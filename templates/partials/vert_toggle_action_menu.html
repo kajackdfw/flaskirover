@@ -10,6 +10,12 @@
         $("#toggle_menu_1").click(function () { toggle_menu(); });
         $("#toggle_menu_2").click(function () { toggle_menu(); });
         $("#toggle_menu_3").click(function () { toggle_menu(); });
+
+        $("#awb_sunlight").click(function () { set_awb_mode('sunlight'); });
+        $("#awb_cloudy").click(function () { set_awb_mode('cloudy'); });
+        $("#awb_fluorescent").click(function () { set_awb_mode('fluorescent'); });
+        $("#awb_tungsten").click(function () { set_awb_mode('tungsten'); });
+        $("#awb_auto").click(function () { set_awb_mode('auto'); });
     });
 
     function toggle_menu() {
@@ -33,6 +39,9 @@
             $('#webcam_menu').show();
         }
     }
+
+    function set_awb_mode( mode ) { $.get("/ajax/camera/awb_mode/" + mode , function(data, status){ return false; }); }
+
 </script>
 
 <div id="drive_menu">
@@ -79,20 +88,20 @@
 
 
 <div id="settings_menu">
-    <button type="button" class="btn btn-menu btn-xlg" id="" title="Look Up">
+    <button type="button" class="btn btn-menu btn-xlg" id="awb_sunlight" title="Sun Light">
         <i class="fa fa-sun-o fa-3x"></i>
     </button>
-    <button type="button" class="btn btn-menu btn-xlg" id="" title="Look Left">
+    <button type="button" class="btn btn-menu btn-xlg" id="awb_cloudy" title="Cloudy">
+        <i class="fa fa-cloud fa-3x"></i>
+    </button>
+    <button type="button" class="btn btn-menu btn-xlg" id="awb_auto" title="Auto">
+        <i class="fa fa-magic fa-3x"></i>
+    </button>
+    <button type="button" class="btn btn-menu btn-xlg" id="awb_tungsten" title="Tungsten Light">
         <i class="fa fa-lightbulb-o fa-3x"></i>
     </button>
-    <button type="button" class="btn btn-menu btn-xlg" id="" title="Center The Camera">
-        <i class="fa fa-moon-o fa-3x"></i>
-    </button>
-    <button type="button" class="btn btn-menu btn-xlg" id="" title="Look Right">
-        <i class="fa fa-question fa-3x"></i>
-    </button>
-    <button type="button" class="btn btn-menu btn-xlg" id="" title="Look Down">
-        <i class="fa fa-git fa-3x"></i>
+    <button type="button" class="btn btn-menu btn-xlg" id="awb_fluorescent" title="Fluorescent">
+        <i class="fa fa-bars fa-3x"></i>
     </button>
     <button type="button" class="btn btn-instrument-xlg" id="toggle_menu_3" title="Toggle Menu">
         <i class="fa fa-cog fa-3x"></i>

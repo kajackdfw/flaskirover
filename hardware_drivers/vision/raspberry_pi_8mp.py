@@ -112,4 +112,6 @@ class Vision:
             pictures.insert(picture_insert, new_image)
         return pictures
 
-
+    def set_awb(self, mode):
+        self.camera.awb_mode(mode)
+        return True
