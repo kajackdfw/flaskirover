@@ -5,8 +5,11 @@
     $( document ).ready(function() {
 
         $('#drive_menu').hide();
-        $("#switch_to_drive").click(function () { toggle_menu(); });
-        $("#switch_to_webcam").click(function () { toggle_menu(); });
+        $('#settings_menu').hide();
+
+        $("#toggle_menu_1").click(function () { toggle_menu(); });
+        $("#toggle_menu_2").click(function () { toggle_menu(); });
+        $("#toggle_menu_3").click(function () { toggle_menu(); });
     });
 
     function toggle_menu() {
@@ -14,10 +17,18 @@
         if( menu_mode == 'webcam' ) {
             menu_mode = 'drive';
             $('#webcam_menu').hide();
+            $('#settings_menu').hide();
             $('#drive_menu').show();
         }
         else if( menu_mode == 'drive' ) {
+            menu_mode = 'settings';
+            $('#drive_menu').hide();
+            $('#settings_menu').show();
+            $('#webcam_menu').hide();
+        }
+        else if( menu_mode == 'settings' ) {
             menu_mode = 'webcam';
+            $('#webcam_menu').hide();
             $('#drive_menu').hide();
             $('#webcam_menu').show();
         }
@@ -40,7 +51,7 @@
     <button type="button" class="btn btn-menu btn-xlg" id="sm_turn_cam_down" title="Backup">
         <i class="fa fa-backward fa-rotate-270 fa-3x"></i>
     </button>
-    <button type="button" class="btn btn-instrument-xlg{{ uis['drive'] }}" id="switch_to_webcam" title="Toggle Menu">
+    <button type="button" class="btn btn-instrument-xlg{{ uis['drive'] }}" id="toggle_menu_1" title="Toggle Menu">
         <i class="fa fa-truck fa-3x"></i>
     </button>
 </div>
@@ -61,8 +72,29 @@
     <button type="button" class="btn btn-menu btn-xlg" id="sm_turn_cam_down" title="Look Down">
         <i class="fa fa-binoculars fa-3x"></i>
     </button>
-    <button type="button" class="btn btn-instrument-xlg{{ uis['camera'] }}" id="switch_to_drive" title="Toggle Menu">
+    <button type="button" class="btn btn-instrument-xlg{{ uis['camera'] }}" id="toggle_menu_2" title="Toggle Menu">
         <i class="fa fa-video-camera fa-3x"></i>
     </button>
 </div>
 
+
+<div id="settings_menu">
+    <button type="button" class="btn btn-menu btn-xlg" id="" title="Look Up">
+        <i class="fa fa-sun-o fa-3x"></i>
+    </button>
+    <button type="button" class="btn btn-menu btn-xlg" id="" title="Look Left">
+        <i class="fa fa-lightbulb-o fa-3x"></i>
+    </button>
+    <button type="button" class="btn btn-menu btn-xlg" id="" title="Center The Camera">
+        <i class="fa fa-moon-o fa-3x"></i>
+    </button>
+    <button type="button" class="btn btn-menu btn-xlg" id="" title="Look Right">
+        <i class="fa fa-question fa-3x"></i>
+    </button>
+    <button type="button" class="btn btn-menu btn-xlg" id="" title="Look Down">
+        <i class="fa fa-git fa-3x"></i>
+    </button>
+    <button type="button" class="btn btn-instrument-xlg" id="toggle_menu_3" title="Toggle Menu">
+        <i class="fa fa-cog fa-3x"></i>
+    </button>
+</div>

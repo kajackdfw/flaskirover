@@ -82,6 +82,8 @@ class Vision:
             # 2592x1944
             self.camera.resolution = (2592, 1944)
             new_cam_image = open(new_image_path_and_name, 'wb')
+            self.camera.start_preview()
+            sleep(2)
             self.camera.capture(new_cam_image)
             new_cam_image.close()
             # restore web cam res
