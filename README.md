@@ -2,6 +2,10 @@
 
 **A Python based Rover OS for the Raspberry PI**
 
+**STATUS**
+
+* Working as a stationary web cam. No Servos yet.
+
 **TODOS:**
 
 1. Connect up motor hat
