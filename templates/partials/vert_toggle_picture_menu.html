@@ -1,11 +1,11 @@
 <script type="application/javascript">
 
-    var menu_mode = 'webcam';
+    var menu_mode = 'zoom';
 
     $( document ).ready(function() {
 
-        $('#drive_menu').hide();
-        $('#awb_menu').hide();
+        $('#pan_menu').hide();
+        $('#file_menu').hide();
 
         $("#toggle_menu_1").click(function () { toggle_menu(); });
         $("#toggle_menu_2").click(function () { toggle_menu(); });
@@ -20,23 +20,23 @@
 
     function toggle_menu() {
 
-        if( menu_mode == 'webcam' ) {
-            menu_mode = 'drive';
-            $('#webcam_menu').hide();
-            $('#awb_menu').hide();
-            $('#drive_menu').show();
+        if( menu_mode == 'file' ) {
+            menu_mode = 'zoom';
+            $('#file_menu').hide();
+            $('#pan_menu').hide();
+            $('#zoom_menu').show();
         }
-        else if( menu_mode == 'drive' ) {
-            menu_mode = 'awb';
-            $('#drive_menu').hide();
-            $('#awb_menu').show();
-            $('#webcam_menu').hide();
+        else if( menu_mode == 'zoom' ) {
+            menu_mode = 'pan';
+            $('#zoom_menu').hide();
+            $('#pan_menu').show();
+            $('#file_menu').hide();
         }
-        else if( menu_mode == 'awb' ) {
-            menu_mode = 'webcam';
-            $('#awb_menu').hide();
-            $('#drive_menu').hide();
-            $('#webcam_menu').show();
+        else if( menu_mode == 'pan' ) {
+            menu_mode = 'file';
+            $('#pan_menu').hide();
+            $('#zoom_menu').hide();
+            $('#file_menu').show();
         }
     }
 
@@ -44,7 +44,7 @@
 
 </script>
 
-<div id="drive_menu">
+<div id="pan_menu">
     <button type="button" class="btn-menu menu-top" id="sm_turn_cam_up" title="Move Forward">
         <i class="fa fa-backward fa-rotate-90 fa-3x"></i>
     </button>
@@ -60,12 +60,12 @@
     <button type="button" class="btn-menu" id="sm_turn_cam_down" title="Backup">
         <i class="fa fa-backward fa-rotate-270 fa-3x"></i>
     </button>
-    <button type="button" class="btn-menu-selected menu-bottom" id="toggle_menu_1" title="Drive The Rover">
-        <i class="fa fa-truck fa-3x"></i>
+    <button type="button" class="btn btn-instrument menu-bottom" id="toggle_menu_1" title="Pan">
+        <i class="fa fa-arrows fa-3x"></i>
     </button>
 </div>
 
-<div id="webcam_menu">
+<div id="zoom_menu">
     <button type="button" class="btn-menu menu-top" id="sm_turn_cam_up" title="Look Up">
         <i class="fa fa-binoculars fa-rotate-180 fa-3x"></i>
     </button>
@@ -81,13 +81,13 @@
     <button type="button" class="btn-menu" id="sm_turn_cam_down" title="Look Down">
         <i class="fa fa-binoculars fa-3x"></i>
     </button>
-    <button type="button" class="btn-menu-selected menu-bottom" id="toggle_menu_2" title="Aim Camera">
-        <i class="fa fa-video-camera fa-3x"></i>
+    <button type="button" class="btn btn-instrument menu-bottom" id="toggle_menu_2" title="Zoom In/Out Of Image">
+        <i class="fa fa-search-plus fa-3x"></i>
     </button>
 </div>
 
 
-<div id="awb_menu">
+<div id="file_menu">
     <button type="button" class="btn-menu menu-top" id="awb_sunlight" title="Sun Light">
         <i class="fa fa-sun-o fa-3x"></i>
     </button>
@@ -103,7 +103,7 @@
     <button type="button" class="btn-menu" id="awb_auto" title="Auto">
         <i class="fa fa-magic fa-3x"></i>
     </button>
-    <button type="button" class="btn-menu-selected menu-bottom" id="toggle_menu_3" title="Color Balance">
-        <i class="fa fa-eye fa-3x"></i>
+    <button type="button" class="btn btn-instrument menu-bottom" id="toggle_menu_3" title="File Menu">
+        <i class="fa fa-file fa-3x"></i>
     </button>
 </div>

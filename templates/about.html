@@ -1,6 +1,6 @@
 <html>
 <head>
-    <link rel="stylesheet" href="/static/css/high-contrast-theme.css?q=20170205f" >
+    <link rel="stylesheet" href="/static/css/high-contrast-theme.css?q=20170208q" >
     <link rel="stylesheet" href="/static/css/font-awesome.min.css">
 </head>
 <body>
@@ -16,25 +16,39 @@
 
 </script>
 
-<div class="index-container">
+    <table>
+        <tr>
+            <td rowspan="2" valign="bottom" width="98px">
+                {% include 'partials/nav_sm_grid_menu.html' %}
 
-    <div class="dashboard-button-row">
-        <div class="vert-button-menu-col" >
+                <button type="button" class="btn-instrument" id="lg_git_update" title="Update This Rover">
+                    <i class="fa fa-cloud-download fa-3x"></i>
+                </button>
 
-            {% include 'partials/vert_button_menu.html' %}
+            </td>
+            <td valign="center" align="center" width="100%">
 
-        </div>
-        <div class="index-viewport">
+                <h2>Raspi Rover OS</h2>
+                <ul>
+                    <li>
+                        Picamera
+                    </li>
+                    <li>
+                        Adafruit Motor Hat
+                    </li>
+                </ul>
 
-            <ul>
-                <li>WTF</li>
-            </ul>
-
-        </div>
-
-    </div>
-
-</div>
+            </td>
+            <td rowspan="2" valign="bottom" width="98px">
+                {% include 'partials/vert_toggle_action_menu.html' %}
+            </td>
+        </tr>
+        <tr>
+            <td align="center" valign="bottom" height="98px">
+                {% include 'partials/instrument_bar.html' %}
+            </td>
+        </tr>
+    </table>
 
 </body>
 </html>

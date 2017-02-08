@@ -71,8 +71,8 @@
 
     }
 
-    function pan(compass_direction) {
-        $.get("/ajax/pan/{{ image }}/" + compass_direction , function(data, status){
+    function pan(direction) {
+        $.get("/ajax/pan/{{ image }}/" + direction , function(data, status){
             var results = JSON.parse( data );
             $("#zoomable_image").attr('src',results.url);
             return false;
@@ -84,7 +84,7 @@
 </script>
 
 
-<div class="dashboard-container visible-lg">
+<div class="visible-lg">
 
     <div class="instrument-row">
         <div class="dashboard-button-row">
@@ -205,12 +205,7 @@
         </div>
     </div>
 
-
-    <div class="col-md-3 drive-md-col col-sm-4">
-    </div>
-
-
-    <div class="col-md-3 drive-md-col col-sm-4">
+    <div class="col-md-3 col-sm-4">
         <div class="dashboard-button-row">
             <button type="button" class="btn btn-menu-center btn-lg">
                 <i class="fa fa-download"></i>

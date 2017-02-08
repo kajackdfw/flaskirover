@@ -1,6 +1,6 @@
 <html>
 <head>
-    <link rel="stylesheet" href="/static/css/high-contrast-theme.css?q=2016121838" >
+    <link rel="stylesheet" href="/static/css/high-contrast-theme.css?q=20170208q" >
     <link rel="stylesheet" href="/static/css/font-awesome.min.css">
 </head>
 <body>
@@ -8,24 +8,49 @@
 <script src="/static/js/bootstrap.min.js"></script>
 <script type="application/javascript">
 
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
+    $( document ).ready(function()
+    {
+        {% include 'partials/common_button_methods.js' %}
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+    });
 
 </script>
 
-<div class="dashboard-container">
 
-    <div class="row">
-        <div class="col-lg-10 col-md-16 viewport">
-            <image class="img-responsive" id="zoomable_image" src="/{{ path }}/{{ image }}" />
+<div class="index-container visible-lg">
+    <div class="dashboard-button-row">
+        <div class="vert-button-menu-col col-lg-1" >
+
+            {% include 'partials/nav_lg_grid_menu.html' %}
+
         </div>
+        <div class="index-viewport col-lg-11 ">
 
-        <div class="col-lg-2 col-md-16">
-            {% include 'partials/zoom_and_pan.html' %}
+            <image class="img-responsive" src="/{{ path }}/{{ image }}" />
+
         </div>
-
     </div>
+</div>
+
+
+<div class="index-container visible-md visible-sm">
+
+    <table>
+        <tr>
+            <td rowspan="2" valign="bottom" width="98px">
+                {% include 'partials/nav_sm_grid_menu.html' %}
+            </td>
+            <td valign="bottom" width="100%">
+                <image class="img-responsive" src="/{{ path }}/{{ image }}" />
+            </td>
+            <td rowspan="2" valign="bottom" width="98px">
+                {% include 'partials/vert_toggle_picture_menu.html' %}
+            </td>
+        </tr>
+    </table>
 
 </div>
 

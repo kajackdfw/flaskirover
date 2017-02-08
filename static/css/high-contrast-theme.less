@@ -74,67 +74,63 @@ body {
     text-align: center;
 }
 
-.btn-menu {
-    &:extend(.btn-lg);
-    background-color: darkolivegreen;
-    border-color: olivedrab;
-    color: black;
-    margin-top: 2px;
-    margin-bottom: 0;
-    width: 50px;
-    border: 3px solid;
-    width: 60px;
-}
-
 .btn-xlg {
     &:extend(.btn-lg);
     height: 90px;
     width: 90px;
     color: black;
-    border-color: olivedrab;
+    border: 3px solid olivedrab;
     background-color: darkolivegreen;
-    border: 3px solid;
-    border-radius: 10px;
 }
 
-.btn-instrument-xlg {
+.btn-menu {
+    &:extend(.btn-lg);
+    background-color: darkolivegreen;
+    color: black;
+    margin: 3px 2px 1px 2px;
+    border: 3px solid olivedrab;
+    height: 90px;
+    width: 90px;
+}
+
+.btn-menu-selected {
+    &:extend(.btn-lg);
+    background-color: darkolivegreen;
+    color: greenyellow;
+    margin: 3px 2px 1px 2px;
+    border: 3px solid olivedrab;
+    height: 90px;
+    width: 90px;
+}
+
+.menu-top {
+    -moz-border-radius-topleft: 10px;
+    border-top-left-radius: 10px;
+    -moz-border-radius-topright: 10px;
+    border-top-right-radius: 10px;
+}
+
+.menu-bottom {
+    -moz-border-radius-bottomleft: 10px;
+    border-bottom-left-radius: 10px;
+    -moz-border-radius-bottomright: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.btn-instrument {
     &:extend(.btn-xlg);
     background-color: black;
     border-color: darkgray;
     color: gray;
-    margin-top: 3px;
-    margin-bottom: 2px;
+    margin: 3px 2px 1px 2px;
 }
 
-.btn-instrument-xlg-disabled {
+.btn-instrument-disabled {
     &:extend(.btn-xlg);
     background-color: black;
     border-color: @disabled;
     color: @disabled;
-    margin-top: 3px;
-    margin-bottom: 2px;
-}
-
-.btn-instrument-lg {
-    &:extend(.btn-lg);
-    background-color: black;
-    border-color: darkgray;
-    color: gray;
-    margin-top: 4px;
-    border: 2px solid;
-    padding: 10px;
-    width: 60px;
-}
-
-.btn-instrument-lg-disabled {
-    &:extend(.btn-lg);
-    background-color: black;
-    border-color: @disabled;
-    color: @disabled;
-    margin-top: 4px;
-    border: 2px solid;
-    padding: 10px;
-    width: 60px;
+    margin: 3px 2px 1px 2px;
 }
 
 .btn-col {
@@ -146,74 +142,17 @@ body {
     color: olive;
 }
 
-.drive-md-col:extend(.col-md-3) {
-    text-align: center;
-}
-
-.xbtn-menu-left, .xbtn-menu-right {
-    &:extend(.btn-menu);
-}
-
-.btn-menu-center {
-    &:extend(.btn-lg);
-    background-color: black;
-    border-color: darkgray;
-    color: darkgray;
-    width: 60px;
-    padding: 8px;
-    height: 41px;
-    margin-top: 2px;
-    border: 2px solid;
-}
-
-.btn-menu-empty {
-    &:extend(.btn-lg);
-    background-color: black;
-    border-color: black;
-    color: black;
-    width: 50px;
-    padding: 8px;
-    height: 41px;
-    margin-top: 2px;
-}
-
-.btn-menu-disabled {
-    &:extend(.btn-lg);
-    background-color: #2d3f0e;
-    border-color: #2d3f0e;
-    color: black;
-    width: 50px;
-    padding: 8px;
-    height: 41px;
-    margin-top: 2px;
-}
-
-.btn-instrument-lg > .fa-wifi { color: dodgerblue; }
-.btn-instrument-xlg > .fa-wifi { color: dodgerblue; }
-
+.btn-instrument > .fa-wifi { color: dodgerblue; }
 .btn-instrument > .fa-battery-full { color: lawngreen; }
-.btn-instrument-xlg > .fa-battery-full { color: lawngreen; }
-
 .btn-instrument > .fa-battery-full { color: lawngreen; }
-.btn-instrument-xlg > .fa-battery-full { color: lawngreen; }
-
 .btn-instrument > .fa-thermometer-2 { color: lawngreen; }
-.btn-instrument-xlg > .fa-thermometer-2 { color: lawngreen; }
-
 .btn-instrument     > .fa-long-arrow-up { color: red; }
-.btn-instrument-xlg > .fa-long-arrow-up { color: red; }
-
 .btn-instrument     > .fa-handshake-o { color: white; }
-.btn-instrument-xlg > .fa-handshake-o { color: white; }
-
 .btn-instrument     > .fa-balance-scale { color: white; }
-.btn-instrument-xlg > .fa-balance-scale { color: white; }
-
-.btn-instrument-xlg > .fa-camera-retro { color: olivedrab; }
+.btn-instrument > .fa-camera-retro { color: olivedrab; }
 
 .btn-instrument-disabled > i { color: @disabled; }
-.btn-instrument-lg-disabled > i { color: @disabled; }
-.btn-instrument-xlg-disabled > i { color: @disabled; }
+.btn-instrument-disabled > i { color: @disabled; }
 
 .btn-menu > .fa-sun-o { color: yellow; }
 .btn-menu > .fa-cloud { color: lightgrey; }
@@ -228,7 +167,6 @@ body {
 .fa-rotate-135:extend(.fa-rotate-90) { transform: rotate(135deg); }
 
 #zoomable_image {
-    position: absolute;
     width: 960px;
     height: 720px;
     background-color: black;

@@ -1,6 +1,6 @@
 <html>
 <head>
-    <link rel="stylesheet" href="/static/css/high-contrast-theme.css?q=20170207b" >
+    <link rel="stylesheet" href="/static/css/high-contrast-theme.css?q=20170208q" >
     <link rel="stylesheet" href="/static/css/font-awesome.min.css">
 </head>
 <body>
@@ -13,7 +13,6 @@
     {
         {% include 'partials/common_button_methods.js' %}
 
-        // screen refresh
         {% if uis['camera'] == '' %}
             $('#stop_refresh_sm').click(function() { clearInterval(interval); });
             var interval = setInterval(function () { view_refresh(); }, 3000);
@@ -34,7 +33,7 @@
     <div class="dashboard-button-row">
         <div class="vert-button-menu-col col-lg-1" >
 
-            {% include 'partials/vert_button_menu.html' %}
+            {% include 'partials/nav_lg_grid_menu.html' %}
 
         </div>
         <div class="index-viewport col-lg-11 ">
@@ -51,7 +50,12 @@
     <table>
         <tr>
             <td rowspan="2" valign="bottom" width="98px">
-                {% include 'partials/button_bar_left.html' %}
+                {% include 'partials/nav_sm_grid_menu.html' %}
+
+                <button type="button" class="btn btn-instrument{{ uis['camera'] }}" id="lg_take_picture" title="Take A Hires Picture">
+                    <i class="fa fa-camera-retro fa-3x"></i>
+                </button>
+
             </td>
             <td valign="bottom" width="100%">
                 <image class="img-responsive" src="{{ image }}" id="view"/>

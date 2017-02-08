@@ -31,6 +31,7 @@ uis['thermometer'] = '-disabled'
 uis['temperature'] = '2'
 uis['sensors'] = '-disabled'
 uis['wifi'] = ''
+uis['current'] = 'index'
 
 status_dic = {
     'code': 'incomplete',
@@ -61,6 +62,7 @@ picture = Picture(startup_settings)
 @app.route('/')
 def page_index():
     latest_image = vision.get_latest_web_cam_image()
+    uis['current'] = 'index'
     return render_template('index.html', page_title='Home', image=latest_image, uis=uis)
 
 
@@ -68,12 +70,14 @@ def page_index():
 def page_new():
     vision.take_web_cam_image()
     latest_image = vision.get_latest_web_cam_image()
+    uis['current'] = 'new'
     return render_template('new.html', image=latest_image, uis=uis)
 
 
 @app.route('/pictures')
 def page_pictures():
     pictures = picture.get_list_of_pictures()
+    uis['current'] = 'pictures'
     return render_template('pictures.html', page_title='Pictures', pictures=pictures, uis=uis)
 
 
@@ -84,11 +88,13 @@ def page_view(image):
     picture.settings['pan_y'] = 0
     path = picture.settings['path_to_pictures']
     pic_info = picture.info(image)
-    return render_template('picture.html', page_title='Picture : ' + image, image=image, path=path, pic_info=pic_info)
+    uis['current'] = 'pictures'
+    return render_template('picture.html', page_title='Picture : ' + image, image=image, path=path, pic_info=pic_info, uis=uis)
 
 
 @app.route('/about')
 def page_about():
+    uis['current'] = 'about'
     return render_template('about.html', page_title=' / About RaspRover', uis=uis)
 
 
