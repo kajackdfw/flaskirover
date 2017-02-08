@@ -14,6 +14,7 @@ class Motor:
             self.settings['drive_mode'] = 'tank'
 
         if self.settings['drive_mode'] == 'tank':
-            self.can_rotate_in_place = True
+            self.settings['can_rotate'] = True
         else:
             self.can_rotate_in_place = False
+        self.settings['drive'] = '-disabled'

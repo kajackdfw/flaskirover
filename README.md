@@ -10,4 +10,3 @@
 4. Link to Arduino by USB
 5. Get sensor data from Arduino
 6. Send motor instructions to Arduino or AdaFruit Motor Hat
-7. Sort Pictures by filename

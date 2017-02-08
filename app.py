@@ -53,6 +53,8 @@ vision = Vision(startup_settings)
 uis['camera'] = vision.settings['camera']
 
 motor = Motor(startup_settings)
+uis['drive'] = motor.settings['drive']
+
 picture = Picture(startup_settings)
 
 
