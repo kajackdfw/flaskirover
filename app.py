@@ -18,8 +18,8 @@ server_os = os.name
 
 # This will be put in a config file some day
 startup_settings = {}
-startup_settings['view_x'] = 960
-startup_settings['view_y'] = 720
+startup_settings['view_x'] = 800
+startup_settings['view_y'] = 600
 
 uis = {}
 uis['compass'] = '-disabled'
