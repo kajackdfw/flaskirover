@@ -6,7 +6,7 @@ from PIL import Image
 import datetime
 import json
 from picture_class import Picture
-from time import sleep
+
 
 sys.path.append('hardware_drivers/vision')
 from raspberry_pi_8mp import Vision  # change raspberry_pi_8mp to match your hardware
