@@ -25,6 +25,7 @@ class Motor:
         self.settings['drive'] = '-disabled'
         self.test(3)
         self.test(4)
+        exit()
 
     # recommended for auto-disabling motors on shutdown!
     def turnOffMotors(self):
@@ -67,4 +68,3 @@ class Motor:
             print "Release"
             myMotor.run(Adafruit_MotorHAT.RELEASE)
             sleep(1.0)
-            exit()
