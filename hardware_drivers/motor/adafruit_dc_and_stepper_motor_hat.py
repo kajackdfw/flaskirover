@@ -23,7 +23,6 @@ class Motor:
         else:
             self.can_rotate_in_place = False
         self.settings['drive'] = '-disabled'
-        self.test(3)
         self.test(4)
         exit()
 
