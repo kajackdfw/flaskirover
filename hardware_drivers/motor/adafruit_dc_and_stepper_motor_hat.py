@@ -2,7 +2,12 @@ import math
 from os import listdir
 from os.path import isfile, join
 import os
-from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor
+
+try:
+    from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor
+except ImportError:
+    print(' - Library Adafruit_MotorHAT not installed.')
+
 import time
 import atexit
 from time import sleep
@@ -10,7 +15,12 @@ from time import sleep
 class Motor:
 
     settings = {}
-    mh = Adafruit_MotorHAT(addr=0x60)
+    try:
+        mh = Adafruit_MotorHAT(addr=0x60)
+        settings['drive'] = ''
+    except NameError:
+        print(" - No Adafruit_MotorHAT library available.")
+        settings['drive'] = '-disabled'
 
     def __init__(self, start_settings):
         if 'drive_mode' in start_settings:
@@ -22,9 +32,59 @@ class Motor:
             self.settings['can_rotate'] = True
         else:
             self.can_rotate_in_place = False
-        self.settings['drive'] = '-disabled'
-        self.test(4)
-        exit()
+
+        if self.settings['drive'] == "":
+            self.test(3)
+            self.test(4)
+            self.turnOffMotors()
+
+    def forward_crawl(self, seconds):
+        right_motor = self.mh.getMotor(3)
+        left_motor = self.mh.getMotor(4)
+        right_motor.setSpeed(25)
+        left_motor.setSpeed(25)
+        right_motor.run(Adafruit_MotorHAT.BACKWARD)
+        left_motor.run(Adafruit_MotorHAT.BACKWARD)
+        sleep(int(seconds))
+        left_motor.setSpeed(0)
+        right_motor.setSpeed(0)
+        return True
+
+    def backward_crawl(self, seconds):
+        right_motor = self.mh.getMotor(3)
+        left_motor = self.mh.getMotor(4)
+        right_motor.setSpeed(25)
+        left_motor.setSpeed(25)
+        right_motor.run(Adafruit_MotorHAT.FORWARD)
+        left_motor.run(Adafruit_MotorHAT.FORWARD)
+        sleep(int(seconds))
+        left_motor.setSpeed(0)
+        right_motor.setSpeed(0)
+        return True
+
+    def rotate_ccw(self, seconds):
+        right_motor = self.mh.getMotor(3)
+        left_motor = self.mh.getMotor(4)
+        right_motor.setSpeed(25)
+        left_motor.setSpeed(25)
+        right_motor.run(Adafruit_MotorHAT.BACKWARD)
+        left_motor.run(Adafruit_MotorHAT.FORWARD)
+        sleep(int(seconds))
+        left_motor.setSpeed(0)
+        right_motor.setSpeed(0)
+        return True
+
+    def rotate_cw(self, seconds):
+        right_motor = self.mh.getMotor(3)
+        left_motor = self.mh.getMotor(4)
+        right_motor.setSpeed(25)
+        left_motor.setSpeed(25)
+        right_motor.run(Adafruit_MotorHAT.FORWARD)
+        left_motor.run(Adafruit_MotorHAT.BACKWARD)
+        sleep(int(seconds))
+        left_motor.setSpeed(0)
+        right_motor.setSpeed(0)
+        return True
 
     # recommended for auto-disabling motors on shutdown!
     def turnOffMotors(self):
@@ -38,32 +98,33 @@ class Motor:
         myMotor = self.mh.getMotor(motor_number)
         myMotor.setSpeed(75)
         while (True):
-            print "Forward! "
+            print("Forward! ")
             myMotor.run(Adafruit_MotorHAT.FORWARD)
 
-            print "\tSpeed up..."
+            print("\tSpeed up...")
             for i in range(255):
                 myMotor.setSpeed(i)
                 sleep(0.01)
 
-            print "\tSlow down..."
+            print("\tSlow down...")
             for i in reversed(range(255)):
                 myMotor.setSpeed(i)
                 sleep(0.01)
 
-            print "Backward! "
+            print("Backward! ")
             myMotor.run(Adafruit_MotorHAT.BACKWARD)
 
-            print "\tSpeed up..."
+            print("\tSpeed up...")
             for i in range(255):
                 myMotor.setSpeed(i)
                 sleep(0.01)
 
-            print "\tSlow down..."
+            print("\tSlow down...")
             for i in reversed(range(255)):
                 myMotor.setSpeed(i)
                 sleep(0.01)
 
-            print "Release"
+            print("Release")
             myMotor.run(Adafruit_MotorHAT.RELEASE)
             sleep(1.0)
+            return True

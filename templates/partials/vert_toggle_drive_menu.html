@@ -7,6 +7,11 @@
         $('#drive_menu').hide();
         $('#awb_menu').hide();
 
+        $("#sm_rover_forward").click(function () { rover_forward(4); });
+        $("#sm_rover_backward").click(function () { rover_backward(4); });
+        $("#sm_rover_ccw").click(function () { rover_ccw(2); });
+        $("#sm_rover_cw").click(function () { rover_cw(2); });
+
         $("#toggle_menu_1").click(function () { toggle_menu(); });
         $("#toggle_menu_2").click(function () { toggle_menu(); });
         $("#toggle_menu_3").click(function () { toggle_menu(); });
@@ -41,23 +46,27 @@
     }
 
     function set_awb_mode( mode ) { $.get("/ajax/camera/awb_mode/" + mode , function(data, status){ return false; }); }
+    function rover_forward( seconds ) { $.get("/ajax/motor/forward/crawl/" + seconds , function(data, status){ return false; }); }
+    function rover_backward( seconds ) { $.get("/ajax/motor/backward/crawl/" + seconds , function(data, status){ return false; }); }
+    function rover_ccw( seconds ) { $.get("/ajax/motor/rotate/ccw/" + seconds , function(data, status){ return false; }); }
+    function rover_cw( seconds ) { $.get("/ajax/motor/rotate/cw/" + seconds , function(data, status){ return false; }); }
 
 </script>
 
 <div id="drive_menu">
-    <button type="button" class="btn-menu menu-top" id="sm_turn_cam_up" title="Move Forward">
+    <button type="button" class="btn-menu menu-top" id="sm_rover_forward" title="Move Forward">
         <i class="fa fa-backward fa-rotate-90 fa-3x"></i>
     </button>
-    <button type="button" class="btn-menu" id="sm_turn_cam_left" title="Rotate Left">
+    <button type="button" class="btn-menu" id="sm_rover_ccw" title="Rotate Left">
         <i class="fa fa-rotate-left fa-3x"></i>
     </button>
-    <button type="button" class="btn-menu" id="sm_center_cam" title="Stop!">
+    <button type="button" class="btn-menu" id="sm_rover_stop" title="Stop!">
         <i class="fa fa-hand-stop-o fa-3x"></i>
     </button>
-    <button type="button" class="btn-menu" id="sm_turn_cam_right" title="Rotate Right">
+    <button type="button" class="btn-menu" id="sm_rover_cw" title="Rotate Right">
         <i class="fa fa-rotate-right fa-3x"></i>
     </button>
-    <button type="button" class="btn-menu" id="sm_turn_cam_down" title="Backup">
+    <button type="button" class="btn-menu" id="sm_rover_backup" title="Backup">
         <i class="fa fa-backward fa-rotate-270 fa-3x"></i>
     </button>
     <button type="button" class="btn-menu-selected menu-bottom" id="toggle_menu_1" title="Drive The Rover">

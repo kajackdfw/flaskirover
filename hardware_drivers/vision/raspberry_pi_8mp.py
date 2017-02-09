@@ -9,7 +9,7 @@ from time import sleep
 try:
     from picamera import PiCamera
 except ImportError:
-    print("  No Picamera Import for Windows")
+    print(" - No Picamera Library installed.")
 
 
 class Vision:
@@ -55,10 +55,10 @@ class Vision:
             self.camera.resolution = (int(self.settings['view_x']), int(self.settings['view_y']))
 
         except NameError:
-            print("  No Picamera for Windows")
+            print(" - No Picamera for Windows")
             self.settings['camera'] = '-disabled'
         except SystemError:
-            print("  Camera is probably not attached?")
+            print(" - Camera is probably not attached?")
             self.settings['camera'] = '-disabled'
 
     def take_web_cam_image(self):
