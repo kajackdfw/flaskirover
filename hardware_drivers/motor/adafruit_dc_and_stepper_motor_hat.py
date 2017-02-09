@@ -24,10 +24,44 @@ class Motor:
         self.settings['drive'] = '-disabled'
 
     # recommended for auto-disabling motors on shutdown!
-    def turnOffMotors():
+    def turnOffMotors(self):
         self.mh.getMotor(1).run(Adafruit_MotorHAT.RELEASE)
         self.mh.getMotor(2).run(Adafruit_MotorHAT.RELEASE)
         self.mh.getMotor(3).run(Adafruit_MotorHAT.RELEASE)
         self.mh.getMotor(4).run(Adafruit_MotorHAT.RELEASE)
 
+    def test(self):
+        self.mh.atexit.register(turnOffMotors)
+        myMotor = self.mh.getMotor(3)
+        myMotor.setSpeed(150)
+        while (True):
+            print "Forward! "
+            myMotor.run(Adafruit_MotorHAT.FORWARD)
 
+            print "\tSpeed up..."
+            for i in range(255):
+                myMotor.setSpeed(i)
+                sleep(0.01)
+
+            print "\tSlow down..."
+            for i in reversed(range(255)):
+                myMotor.setSpeed(i)
+                sleep(0.01)
+
+            print "Backward! "
+            myMotor.run(Adafruit_MotorHAT.BACKWARD)
+
+            print "\tSpeed up..."
+            for i in range(255):
+                myMotor.setSpeed(i)
+                sleep(0.01)
+
+            print "\tSlow down..."
+            for i in reversed(range(255)):
+                myMotor.setSpeed(i)
+                sleep(0.01)
+
+            print "Release"
+            myMotor.run(Adafruit_MotorHAT.RELEASE)
+            sleep(1.0)
+            exit()

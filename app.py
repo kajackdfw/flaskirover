@@ -55,41 +55,6 @@ vision = Vision(startup_settings)
 uis['camera'] = vision.settings['camera']
 
 motor = Motor(startup_settings)
-# motor.atexit.register(turnOffMotors)
-myMotor = motor.mh.getMotor(3)
-myMotor.setSpeed(150)
-while (True):
-    print "Forward! "
-    myMotor.run(Adafruit_MotorHAT.FORWARD)
-
-    print "\tSpeed up..."
-    for i in range(255):
-        myMotor.setSpeed(i)
-        sleep(0.01)
-
-    print "\tSlow down..."
-    for i in reversed(range(255)):
-        myMotor.setSpeed(i)
-        sleep(0.01)
-
-    print "Backward! "
-    myMotor.run(Adafruit_MotorHAT.BACKWARD)
-
-    print "\tSpeed up..."
-    for i in range(255):
-        myMotor.setSpeed(i)
-        sleep(0.01)
-
-    print "\tSlow down..."
-    for i in reversed(range(255)):
-        myMotor.setSpeed(i)
-        sleep(0.01)
-
-    print "Release"
-    myMotor.run(Adafruit_MotorHAT.RELEASE)
-    sleep(1.0)
-
-
 uis['drive'] = motor.settings['drive']
 
 picture = Picture(startup_settings)
