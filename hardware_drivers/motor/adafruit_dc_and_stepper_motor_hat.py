@@ -32,7 +32,7 @@ class Motor:
         self.mh.getMotor(4).run(Adafruit_MotorHAT.RELEASE)
 
     def test(self):
-        self.atexit.register(turnOffMotors)
+        #self.atexit.register(turnOffMotors)
         myMotor = self.mh.getMotor(3)
         myMotor.setSpeed(150)
         while (True):
