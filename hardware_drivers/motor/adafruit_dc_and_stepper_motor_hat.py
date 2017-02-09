@@ -23,7 +23,8 @@ class Motor:
         else:
             self.can_rotate_in_place = False
         self.settings['drive'] = '-disabled'
-        self.test()
+        self.test(3)
+        self.test(4)
 
     # recommended for auto-disabling motors on shutdown!
     def turnOffMotors(self):
@@ -32,10 +33,10 @@ class Motor:
         self.mh.getMotor(3).run(Adafruit_MotorHAT.RELEASE)
         self.mh.getMotor(4).run(Adafruit_MotorHAT.RELEASE)
 
-    def test(self):
+    def test(self, motor_number):
         #self.atexit.register(turnOffMotors)
-        myMotor = self.mh.getMotor(3)
-        myMotor.setSpeed(150)
+        myMotor = self.mh.getMotor(motor_number)
+        myMotor.setSpeed(75)
         while (True):
             print "Forward! "
             myMotor.run(Adafruit_MotorHAT.FORWARD)
