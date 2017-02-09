@@ -55,7 +55,7 @@ vision = Vision(startup_settings)
 uis['camera'] = vision.settings['camera']
 
 motor = Motor(startup_settings)
-motor.atexit.register(turnOffMotors)
+# motor.atexit.register(turnOffMotors)
 myMotor = motor.mh.getMotor(3)
 myMotor.setSpeed(150)
 while (True):
