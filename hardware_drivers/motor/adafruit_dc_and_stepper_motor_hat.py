@@ -22,6 +22,7 @@ class Motor:
         else:
             self.can_rotate_in_place = False
         self.settings['drive'] = '-disabled'
+        self.test()
 
     # recommended for auto-disabling motors on shutdown!
     def turnOffMotors(self):
