@@ -11,11 +11,12 @@
 
     $( document ).ready(function()
     {
+
         {% include 'partials/common_button_methods.js' %}
 
         {% if uis['camera'] == '' %}
             $('#stop_refresh_sm').click(function() { clearInterval(interval); });
-            var interval = setInterval(function () { view_refresh(); }, 5000);
+            var web_cam_timer = setInterval(function () { view_refresh(); }, 5000);
         {% endif %}
     });
 

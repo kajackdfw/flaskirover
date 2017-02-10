@@ -142,22 +142,30 @@ def set_white_balance(mode):
 
 @app.route('/ajax/motor/forward/crawl/<seconds>')
 def motor_crawl(seconds):
-    return motor.forward_crawl(seconds)
+    motor.forward_crawl(seconds)
+    vision.take_web_cam_image()
+    return True
 
 
 @app.route('/ajax/motor/backward/crawl/<seconds>')
 def motor_crawl_back(seconds):
-    return motor.backward_crawl(seconds)
+    motor.backward_crawl(seconds)
+    vision.take_web_cam_image()
+    return True
 
 
 @app.route('/ajax/motor/rotate/ccw/<second_hundredths>')
 def motor_rotate_ccw(second_hundredths):
-    return motor.rotate_ccw(second_hundredths)
+    motor.rotate_ccw(second_hundredths)
+    vision.take_web_cam_image()
+    return True
 
 
 @app.route('/ajax/motor/rotate/cw/<second_hundredths>')
 def motor_rotate_cw(second_hundredths):
-    return motor.rotate_cw(second_hundredths)
+    motor.rotate_cw(second_hundredths)
+    vision.take_web_cam_image()
+    return True
 
 
 # cmd = "ip addr show eth0 | grep inet | awk '{print $2}' | cut -d/ -f1"
