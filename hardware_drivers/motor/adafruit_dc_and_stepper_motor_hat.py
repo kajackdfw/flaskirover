@@ -41,7 +41,7 @@ class Motor:
     def forward_crawl(self, seconds):
         right_motor = self.mh.getMotor(3)
         left_motor = self.mh.getMotor(4)
-        right_motor.setSpeed(125)
+        right_motor.setSpeed(122)
         left_motor.setSpeed(125)
         right_motor.run(Adafruit_MotorHAT.BACKWARD)
         left_motor.run(Adafruit_MotorHAT.FORWARD)
@@ -65,8 +65,8 @@ class Motor:
     def rotate_ccw(self, seconds):
         right_motor = self.mh.getMotor(3)
         left_motor = self.mh.getMotor(4)
-        right_motor.setSpeed(125)
-        left_motor.setSpeed(125)
+        right_motor.setSpeed(100)
+        left_motor.setSpeed(100)
         right_motor.run(Adafruit_MotorHAT.FORWARD)
         left_motor.run(Adafruit_MotorHAT.FORWARD)
         sleep(int(seconds))
@@ -77,8 +77,8 @@ class Motor:
     def rotate_cw(self, seconds):
         right_motor = self.mh.getMotor(3)
         left_motor = self.mh.getMotor(4)
-        right_motor.setSpeed(125)
-        left_motor.setSpeed(125)
+        right_motor.setSpeed(100)
+        left_motor.setSpeed(100)
         right_motor.run(Adafruit_MotorHAT.BACKWARD)
         left_motor.run(Adafruit_MotorHAT.BACKWARD)
         sleep(int(seconds))
