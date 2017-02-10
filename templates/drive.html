@@ -13,7 +13,7 @@
     {
         {% include 'partials/common_button_methods.js' %}
 
-        {% if uis['camera'] == '' %}
+        {% if uis['camera'] == 'STOP THIS' %}
             $('#stop_refresh_sm').click(function() { clearInterval(interval); });
             var interval = setInterval(function () { view_refresh(); }, 3000);
         {% endif %}

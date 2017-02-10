@@ -62,26 +62,26 @@ class Motor:
         right_motor.setSpeed(0)
         return True
 
-    def rotate_ccw(self, seconds):
+    def rotate_ccw(self, second_hundredths):
         right_motor = self.mh.getMotor(3)
         left_motor = self.mh.getMotor(4)
         right_motor.setSpeed(100)
         left_motor.setSpeed(100)
         right_motor.run(Adafruit_MotorHAT.FORWARD)
         left_motor.run(Adafruit_MotorHAT.FORWARD)
-        sleep(int(seconds))
+        sleep(float(second_hundredths) / 100)
         left_motor.setSpeed(0)
         right_motor.setSpeed(0)
         return True
 
-    def rotate_cw(self, seconds):
+    def rotate_cw(self, second_hundredths):
         right_motor = self.mh.getMotor(3)
         left_motor = self.mh.getMotor(4)
         right_motor.setSpeed(100)
         left_motor.setSpeed(100)
         right_motor.run(Adafruit_MotorHAT.BACKWARD)
         left_motor.run(Adafruit_MotorHAT.BACKWARD)
-        sleep(int(seconds))
+        sleep(float(second_hundredths) / 100)
         left_motor.setSpeed(0)
         right_motor.setSpeed(0)
         return True
