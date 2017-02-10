@@ -84,15 +84,17 @@ def page_pictures():
     return render_template('pictures.html', page_title='Pictures', pictures=pictures, uis=uis)
 
 
-@app.route('/view/<image>')
-def page_view(image):
+@app.route('/examine/<pic>')
+def page_picture(pic):
+    # reset some picture class vars for a new image
     picture.settings['zoom'] = 1.0
     picture.settings['pan_x'] = 0
     picture.settings['pan_y'] = 0
+
     path = picture.settings['path_to_pictures']
-    pic_info = picture.info(image)
+    pic_info = picture.info(pic)
     uis['current'] = 'pictures'
-    return render_template('picture.html', page_title='Picture : ' + image, image=image, path=path, pic_info=pic_info, uis=uis)
+    return render_template('picture.html', page_title='Picture : ' + pic, path=path, pic_info=pic_info, uis=uis)
 
 
 @app.route('/about')
