@@ -15,7 +15,7 @@
 
         {% if uis['camera'] == '' %}
             $('#stop_refresh_sm').click(function() { clearInterval(interval); });
-            var interval = setInterval(function () { view_refresh(); }, 1000);
+            var interval = setInterval(function () { view_refresh(); }, 2000);
         {% endif %}
     });
 
