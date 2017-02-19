@@ -47,7 +47,7 @@ class Vision:
         else:
             self.settings['view_y'] = 600
 
-        self.settings['camera'] = ''
+        self.settings['camera'] = '-active'
 
         try:
             self.camera = PiCamera()
@@ -76,7 +76,7 @@ class Vision:
             new_cam_image.close()
 
     def take_picture(self):
-        if self.settings['camera'] == '':
+        if self.settings['camera'] == '-active':
             time_stamp = '{:%Y%m%d%H%M%S}'.format(datetime.datetime.now())
             new_image_path_and_name = self.settings['path_to_pictures'] + "/" + time_stamp + ".jpg"
             # 2592x1944
@@ -113,6 +113,6 @@ class Vision:
         return pictures
 
     def set_awb(self, mode):
-        if self.settings['camera'] == '':
+        if self.settings['camera'] == '-active':
             self.camera.awb_mode = mode
         return True
