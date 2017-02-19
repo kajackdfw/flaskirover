@@ -87,15 +87,17 @@ def page_pictures():
     return render_template('pictures.html', page_title='Pictures', pictures=pictures, uis=uis)
 
 
-@app.route('/view/<image>')
-def page_view(image):
+@app.route('/examine/<pic>')
+def page_picture(pic):
+    # reset some picture class vars for a new image
     picture.settings['zoom'] = 1.0
     picture.settings['pan_x'] = 0
     picture.settings['pan_y'] = 0
+
     path = picture.settings['path_to_pictures']
-    pic_info = picture.info(image)
+    pic_info = picture.info(pic)
     uis['current'] = 'pictures'
-    return render_template('picture.html', page_title='Picture : ' + image, image=image, path=path, pic_info=pic_info, uis=uis)
+    return render_template('picture.html', page_title='Picture : ' + pic, path=path, pic_info=pic_info, uis=uis)
 
 
 @app.route('/about')
@@ -145,22 +147,30 @@ def set_white_balance(mode):
 
 @app.route('/ajax/motor/forward/crawl/<seconds>')
 def motor_crawl(seconds):
-    return motor.forward_crawl(seconds)
+    motor.forward_crawl(seconds)
+    vision.take_web_cam_image()
+    return True
 
 
 @app.route('/ajax/motor/backward/crawl/<seconds>')
 def motor_crawl_back(seconds):
-    return motor.backward_crawl(seconds)
+    motor.backward_crawl(seconds)
+    vision.take_web_cam_image()
+    return True
 
 
 @app.route('/ajax/motor/rotate/ccw/<second_hundredths>')
 def motor_rotate_ccw(second_hundredths):
-    return motor.rotate_ccw(second_hundredths)
+    motor.rotate_ccw(second_hundredths)
+    vision.take_web_cam_image()
+    return True
 
 
 @app.route('/ajax/motor/rotate/cw/<second_hundredths>')
 def motor_rotate_cw(second_hundredths):
-    return motor.rotate_cw(second_hundredths)
+    motor.rotate_cw(second_hundredths)
+    vision.take_web_cam_image()
+    return True
 
 
 # cmd = "ip addr show eth0 | grep inet | awk '{print $2}' | cut -d/ -f1"

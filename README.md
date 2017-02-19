@@ -9,12 +9,22 @@
 3. AdaFruit Motor Shield
 4. UI Optimized for LG G4
 
-**TODOS:**
+**TESING OR IN DEVELOPMENT**
 
 1. Suspend web cam during drive actions for latency issues
-2. Compose About page
-3. Link to Arduino by USB
-4. Get sensor data from Arduino
+
+**TODOS:**
+
+1. Compose About page
+1. Load A Config file for startup settings
+1. Prompt User for settings and write a startup setting file
+1. Link to Arduino by USB
+1. Get sensor data from Arduino
+1. Head lights
+1. If no Adafruit Hat, default to Arduino Motor Shield
+1. If no Arduino, replace Handshake with something else
+1. Camera Macro Support
+1. Power Levels
 
 **Raspberry Pi Install Dependencies** 
 

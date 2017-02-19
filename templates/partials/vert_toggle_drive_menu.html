@@ -46,10 +46,32 @@
     }
 
     function set_awb_mode( mode ) { $.get("/ajax/camera/awb_mode/" + mode , function(data, status){ return false; }); }
-    function rover_forward( seconds ) { $.get("/ajax/motor/forward/crawl/" + seconds , function(data, status){ return false; }); }
-    function rover_backward( seconds ) { $.get("/ajax/motor/backward/crawl/" + seconds , function(data, status){ return false; }); }
-    function rover_ccw( seconds ) { $.get("/ajax/motor/rotate/ccw/" + seconds , function(data, status){ return false; }); }
-    function rover_cw( seconds ) { $.get("/ajax/motor/rotate/cw/" + seconds , function(data, status){ return false; }); }
+
+    {% if uis['camera'] == '' %}
+    function rover_forward( seconds ) {
+        clearInterval(web_cam_timer);
+        $.get("/ajax/motor/forward/crawl/" + seconds , function(data, status){ return false; });
+        web_cam_timer = setInterval(function () { view_refresh(); }, 5000);
+    }
+
+    function rover_backward( seconds ) {
+        clearInterval(web_cam_timer);
+        $.get("/ajax/motor/backward/crawl/" + seconds , function(data, status){ return false; });
+        web_cam_timer = setInterval(function () { view_refresh(); }, 5000);
+    }
+
+    function rover_ccw( seconds ) {
+        clearInterval(web_cam_timer);
+        $.get("/ajax/motor/rotate/ccw/" + seconds , function(data, status){ return false; });
+        web_cam_timer = setInterval(function () { view_refresh(); }, 5000);
+    }
+
+    function rover_cw( seconds ) {
+        clearInterval(web_cam_timer);
+        $.get("/ajax/motor/rotate/cw/" + seconds , function(data, status){ return false; });
+        web_cam_timer = setInterval(function () { view_refresh(); }, 5000);
+    }
+    {% endif %}
 
 </script>
 
