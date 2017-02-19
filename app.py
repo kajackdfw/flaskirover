@@ -19,8 +19,9 @@ server_os = os.name
 
 # This will be put in a config file some day
 startup_settings = {}
-startup_settings['view_x'] = 800
-startup_settings['view_y'] = 600
+startup_settings['view_x'] = 1056
+startup_settings['view_y'] = 594
+startup_settings['view_optimize'] = 'LG G4'
 
 uis = {}
 # Instrument Status
@@ -65,6 +66,7 @@ picture = Picture(startup_settings)
 
 @app.route('/')
 def page_index():
+    vision.take_web_cam_image()
     latest_image = vision.get_latest_web_cam_image()
     uis['current'] = 'index'
     return render_template('drive.html', page_title='Home', image=latest_image, uis=uis)
@@ -151,14 +153,14 @@ def motor_crawl_back(seconds):
     return motor.backward_crawl(seconds)
 
 
-@app.route('/ajax/motor/rotate/ccw/<seconds>')
-def motor_rotate_ccw(seconds):
-    return motor.rotate_ccw(seconds)
+@app.route('/ajax/motor/rotate/ccw/<second_hundredths>')
+def motor_rotate_ccw(second_hundredths):
+    return motor.rotate_ccw(second_hundredths)
 
 
-@app.route('/ajax/motor/rotate/cw/<seconds>')
-def motor_rotate_cw(seconds):
-    return motor.rotate_cw(seconds)
+@app.route('/ajax/motor/rotate/cw/<second_hundredths>')
+def motor_rotate_cw(second_hundredths):
+    return motor.rotate_cw(second_hundredths)
 
 
 # cmd = "ip addr show eth0 | grep inet | awk '{print $2}' | cut -d/ -f1"

@@ -1,6 +1,6 @@
 <html>
 <head>
-    <link rel="stylesheet" href="/static/css/high-contrast-theme.css?q=20170219b" >
+    <link rel="stylesheet" href="/static/css/high-contrast-theme.css?q=20170210d" >
     <link rel="stylesheet" href="/static/css/font-awesome.min.css">
 </head>
 <body>
@@ -15,7 +15,7 @@
 
         {% if uis['camera'] == '' %}
             $('#stop_refresh_sm').click(function() { clearInterval(interval); });
-            var interval = setInterval(function () { view_refresh(); }, 3000);
+            var interval = setInterval(function () { view_refresh(); }, 5000);
         {% endif %}
     });
 
