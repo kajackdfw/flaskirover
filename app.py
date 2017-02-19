@@ -23,15 +23,18 @@ startup_settings['view_x'] = 800
 startup_settings['view_y'] = 600
 
 uis = {}
+# Instrument Status
 uis['compass'] = '-disabled'
-uis['direction'] = 'fa-spin'
 uis['tilt'] = '-disabled'
 uis['battery'] = '-disabled'
-uis['charge'] = '2'
 uis['thermometer'] = '-disabled'
-uis['temperature'] = '2'
 uis['sensors'] = '-disabled'
-uis['wifi'] = ''
+uis['wifi'] = '-active'
+
+# Instrument Values
+uis['direction'] = 'fa-spin'
+uis['charge'] = '2'
+uis['temperature'] = '2'
 uis['current'] = 'index'
 
 status_dic = {
