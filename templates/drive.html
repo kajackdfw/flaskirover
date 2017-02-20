@@ -14,7 +14,7 @@
 
         {% include 'partials/common_button_methods.js' %}
 
-        {% if uis['camera'] == '' %}
+        {% if uis['camera'] == 'active' %}
             $('#stop_refresh_sm').click(function() { clearInterval(interval); });
             var web_cam_timer = setInterval(function () { view_refresh(); }, 5000);
         {% endif %}

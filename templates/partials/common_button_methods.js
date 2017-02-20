@@ -7,7 +7,7 @@
         $("#lg_pictures_page").click(function(){ window.location.href = "/pictures"; });
         $("#lg_about_page").click(function(){ window.location.href = "/about"; });
 
-        {% if uis['camera'] == '' %}
+        {% if uis['camera'] == 'active' %}
                 $("#sm_take_picture").click(function(){ take_picture(); });
                 $("#lg_take_picture").click(function(){ take_picture(); });
         {% endif %}

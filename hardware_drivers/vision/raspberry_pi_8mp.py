@@ -62,7 +62,7 @@ class Vision:
             self.settings['camera'] = 'disabled'
 
     def take_web_cam_image(self):
-        if self.settings['camera'] == '':
+        if self.settings['camera'] == 'active':
             time_stamp = '{:%Y%m%d%H%M%S}'.format(datetime.datetime.now())
             new_image_path_and_name = self.settings['path_to_web_cam'] + "/" + time_stamp + ".jpg"
             new_cam_image = open(new_image_path_and_name, 'wb')
