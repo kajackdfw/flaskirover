@@ -16,10 +16,6 @@ class Vision:
 
     settings = {}
 
-    # startup_settings['path_to_webcam'] = '/tmp/static/webcam'
-    # startup_settings['path_to_pictures'] = '/tmp/static/camera/photos'
-    # startup_settings['path_to_thunbnails'] = '/tmp/static/camera/thumbnails'
-
     def __init__(self, start_settings):
 
         if 'path_to_web_cam' in start_settings:
