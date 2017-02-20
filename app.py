@@ -25,12 +25,12 @@ startup_settings['view_optimize'] = 'LG G4'
 
 uis = {}
 # Instrument Status
-uis['compass'] = '-disabled'
-uis['tilt'] = '-disabled'
-uis['battery'] = '-disabled'
-uis['thermometer'] = '-disabled'
-uis['sensors'] = '-disabled'
-uis['wifi'] = '-active'
+uis['compass'] = 'disabled'
+uis['tilt'] = 'disabled'
+uis['battery'] = 'disabled'
+uis['thermometer'] = 'disabled'
+uis['sensors'] = 'disabled'
+uis['wifi'] = 'active'
 
 # Instrument Values
 uis['direction'] = 'fa-spin'

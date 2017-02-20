@@ -47,7 +47,7 @@
 
     function set_awb_mode( mode ) { $.get("/ajax/camera/awb_mode/" + mode , function(data, status){ return false; }); }
 
-    {% if uis['camera'] == '' %}
+    {% if uis['drive'] == 'active' %}
     function rover_forward( seconds ) {
         clearInterval(web_cam_timer);
         $.get("/ajax/motor/forward/crawl/" + seconds , function(data, status){ return false; });

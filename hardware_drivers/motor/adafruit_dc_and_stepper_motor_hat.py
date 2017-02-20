@@ -17,10 +17,10 @@ class Motor:
     settings = {}
     try:
         mh = Adafruit_MotorHAT(addr=0x60)
-        settings['drive'] = ''
+        settings['drive'] = 'active'
     except NameError:
         print(" - No Adafruit_MotorHAT library available.")
-        settings['drive'] = '-disabled'
+        settings['drive'] = 'disabled'
 
     def __init__(self, start_settings):
         if 'drive_mode' in start_settings:
@@ -33,7 +33,7 @@ class Motor:
         else:
             self.can_rotate_in_place = False
 
-        if self.settings['drive'] == "":
+        if self.settings['drive'] == "active":
             # self.test(3)
             # self.test(4)
             self.turnOffMotors()
