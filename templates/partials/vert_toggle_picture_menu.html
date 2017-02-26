@@ -49,7 +49,7 @@
 
     function zoom_in() {
         zoom_factor = zoom_factor * 0.75;
-        $.get("/ajax/zoom/{{ image }}/" + zoom_factor , function(data, status){
+        $.get("/ajax/zoom/{{ pic }}/" + zoom_factor , function(data, status){
             var results = JSON.parse( data );
             $("#zoomable_image").attr('src',results.url);
             return false;
@@ -59,7 +59,7 @@
     function zoom_out() {
         zoom_factor = zoom_factor / 0.75;
         if( zoom_factor > 1.0 ){ zoom_factor = 1.0; }
-        $.get("/ajax/zoom/{{ image }}/" + zoom_factor , function(data, status){
+        $.get("/ajax/zoom/{{ pic }}/" + zoom_factor , function(data, status){
             var results = JSON.parse( data );
             $("#zoomable_image").attr('src',results.url);
             return false;
@@ -67,7 +67,7 @@
     }
 
     function zoom_restore() {
-        $.get("/ajax/zoom/{{ image }}/1.0", function(data, status){
+        $.get("/ajax/zoom/{{ pic }}/1.0", function(data, status){
             var results = JSON.parse( data );
             $("#zoomable_image").attr('src',results.url);
             zoom_factor = 1.0;
@@ -77,7 +77,7 @@
     }
 
     function pan(direction) {
-        $.get("/ajax/pan/{{ image }}/" + direction , function(data, status){
+        $.get("/ajax/pan/{{ pic }}/" + direction , function(data, status){
             var results = JSON.parse( data );
             $("#zoomable_image").attr('src',results.url);
             return false;
@@ -103,7 +103,7 @@
     <button type="button" class="btn-menu" id="pan_s" title="Pan Down">
         <i class="fa fa-binoculars fa-3x"></i>
     </button>
-    <button type="button" class="btn btn-instrument menu-bottom" id="toggle_menu_1" title="Pan">
+    <button type="button" class="btn btn-menu menu-bottom" id="toggle_menu_1" title="Pan">
         <i class="fa fa-arrows fa-3x"></i>
     </button>
 </div>
@@ -113,12 +113,12 @@
         <i class="fa fa-search-plus fa-3x"></i>
     </button>
     <button type="button" class="btn-menu" id="zoom_restore" title="No Zoom">
-        <i class="fa fa-search fa-3x"></i>
+        <i class="fa fa-crosshairs fa-3x"></i>
     </button>
     <button type="button" class="btn-menu" id="zoom_out" title="Zoom Out">
         <i class="fa fa-search-minus fa-3x"></i>
     </button>
-    <button type="button" class="btn btn-instrument menu-bottom" id="toggle_menu_2" title="Zoom In/Out Of Image">
+    <button type="button" class="btn btn-menu menu-bottom" id="toggle_menu_2" title="Zoom In/Out Of Image">
         <i class="fa fa-search fa-3x"></i>
     </button>
 </div>
@@ -137,7 +137,7 @@
         <i class="fa fa-list fa-3x"></i>
     </button>
 
-    <button type="button" class="btn btn-instrument menu-bottom" id="toggle_menu_3" title="File Menu">
+    <button type="button" class="btn btn-menu menu-bottom" id="toggle_menu_3" title="File Menu">
         <i class="fa fa-file fa-3x"></i>
     </button>
 </div>
