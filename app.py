@@ -31,6 +31,7 @@ uis['battery'] = 'disabled'
 uis['thermometer'] = 'disabled'
 uis['sensors'] = 'disabled'
 uis['wifi'] = 'active'
+uis['drive'] = 'active'
 
 # Instrument Values
 uis['direction'] = 'fa-spin'
@@ -59,7 +60,7 @@ vision = Vision(startup_settings)
 uis['camera'] = vision.settings['camera']
 
 motor = Motor(startup_settings)
-uis['drive'] = motor.settings['drive']
+# uis['drive'] = motor.settings['drive']
 
 picture = Picture(startup_settings)
 
