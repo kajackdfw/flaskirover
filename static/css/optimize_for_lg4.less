@@ -1,0 +1,137 @@
+@import "bootstrap.css";
+
+@radius: 15px;
+@button_high: 88px;
+@button_wide: 94px;
+
+.thumbnail_container {
+    margin: 20px;
+    padding: 20px;
+}
+
+.button_bar_bottom {
+    text-align: center;
+    align-content: center;
+}
+
+.view-row {
+    height: 600px;
+}
+
+.index-viewport {
+    padding: 6px;
+    float: left;
+    max-height: 550px;
+}
+
+.index-viewport > image {
+    max-height: 550px;
+    max-width: 100%;
+}
+
+.viewport {
+    padding: 2px;
+    text-align: center;
+    align-content: center;
+    min-width: 800px;
+}
+
+.index-container {
+    &:extend(.container-fluid);
+    padding: 2px;
+    text-align: center;
+    align-content: center;
+}
+
+.dashboard-button-row {
+    &:extend(.col-lg-12);
+    padding: 2px;
+    margin-left: 0;
+}
+
+.btn-xlg {
+    &:extend(.btn-lg);
+    height: @button_high;
+    width: @button_wide;
+}
+
+.btn-menu {
+    &:extend(.btn-lg);
+    margin: 3px 2px 1px 2px;
+    height: @button_high;
+    width: @button_wide;
+}
+
+.btn-menu-selected {
+    &:extend(.btn-lg);
+    margin: 3px 2px 1px 2px;
+    height: @button_high;
+    width: @button_wide;
+}
+
+.menu-top {
+    -moz-border-radius-topleft: @radius;
+    border-top-left-radius: @radius;
+    -moz-border-radius-topright: @radius;
+    border-top-right-radius: @radius;
+}
+
+.menu-bottom {
+    -moz-border-radius-bottomleft: @radius;
+    border-bottom-left-radius: @radius;
+    -moz-border-radius-bottomright: @radius;
+    border-bottom-right-radius: @radius;
+}
+
+.menu-right {
+    -moz-border-radius-topright: @radius;
+    border-top-right-radius: @radius;
+    -moz-border-radius-bottomright: @radius;
+    border-bottom-right-radius: @radius;
+}
+
+.menu-left {
+    -moz-border-radius-bottomleft: @radius;
+    border-bottom-left-radius: @radius;
+    -moz-border-radius-topleft: @radius;
+    border-top-left-radius: @radius;
+}
+
+.btn-instrument-active {
+    &:extend(.btn-xlg);
+    margin: 2px 0px 1px 0px;
+}
+
+.btn-instrument-disabled {
+    &:extend(.btn-xlg);
+    margin: 2px 0px 1px 0px;
+}
+
+.btn-col {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.fa-rotate-11:extend(.fa-rotate-90) { transform: rotate(11deg); }
+.fa-rotate-45:extend(.fa-rotate-90) { transform: rotate(45deg); }
+.fa-rotate-315:extend(.fa-rotate-90) { transform: rotate(315deg); }
+.fa-rotate-225:extend(.fa-rotate-90) { transform: rotate(225deg); }
+.fa-rotate-135:extend(.fa-rotate-90) { transform: rotate(135deg); }
+
+#zoomable_image {
+    width: 1056px;
+    height: 594px;
+    cursor: crosshair;
+}
+
+.nav_column {
+    min-width: @button_high;
+    padding: 3px;
+    vertical-align: bottom;
+}
+
+.view_column {
+    padding-left: 1px;
+    padding-top: 8px;
+    padding-right: 1px;
+}

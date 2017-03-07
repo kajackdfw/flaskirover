@@ -1,0 +1,72 @@
+@import "optimize_for_lg4.css";
+
+@disabled: #4f4f4f;
+@active: gray;
+@radius: 15px;
+
+body {
+  background: black;
+  color: yellow;
+}
+
+.btn-xlg {
+    &:extend(.btn-lg);
+    color: black;
+    border: 3px solid olivedrab;
+    background-color: darkolivegreen;
+}
+
+.btn-menu {
+    &:extend(.btn-lg);
+    background-color: darkolivegreen;
+    color: black;
+    border: 3px solid olivedrab;
+}
+
+.btn-menu-selected {
+    &:extend(.btn-lg);
+    background-color: darkolivegreen;
+    color: greenyellow;
+    border: 3px solid olivedrab;
+}
+
+.btn-instrument-active {
+    &:extend(.btn-xlg);
+    background-color: black;
+    border-color: darkgray;
+    color: @active;
+}
+
+.btn-instrument-disabled {
+    &:extend(.btn-xlg);
+    background-color: black;
+    border-color: @disabled;
+    color: @disabled;
+}
+
+.btn-menu:hover {
+    color: olive;
+}
+
+.btn-instrument-active > .fa-wifi { color: dodgerblue; }
+.btn-instrument-active > .fa-battery-full { color: lawngreen; }
+.btn-instrument-active > .fa-battery-full { color: lawngreen; }
+.btn-instrument-active > .fa-thermometer-2 { color: lawngreen; }
+.btn-instrument-active > .fa-long-arrow-up { color: red; }
+.btn-instrument-active > .fa-handshake-o { color: white; }
+.btn-instrument-active > .fa-balance-scale { color: white; }
+.btn-instrument-active > .fa-camera-retro { color: olivedrab; }
+
+.btn-instrument-disabled > i { color: @disabled; }
+.btn-instrument-disabled > i { color: @disabled; }
+
+.btn-menu > .fa-sun-o { color: yellow; }
+.btn-menu > .fa-cloud { color: lightgrey; }
+.btn-menu > .fa-bars { color: lightblue; }
+.btn-menu > .fa-lightbulb-o { color: indianred; }
+.btn-menu > .fa-magic { color: gold; }
+
+#zoomable_image {
+    background-color: black;
+    cursor: crosshair;
+}
