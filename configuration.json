@@ -3,5 +3,5 @@
     "motor_mode": "tank",
     "vision": "raspberry_pi_9mp",
     "sensor": "none",
-    "theme": "theme-lg4-green",
+    "theme": "theme-lg4-green"
 }
