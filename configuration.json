@@ -1,0 +1,7 @@
+{
+    "motor": "adafruit_dc_and_stepper_motor",
+    "motor_mode": "tank",
+    "vision": "raspberry_pi_9mp",
+    "sensor": "none",
+    "theme": "theme-lg4-green"
+}
