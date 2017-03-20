@@ -6,22 +6,30 @@ from PIL import Image
 import datetime
 import json
 from picture_class import Picture
+from start_up import Startup
 
+startup = Startup()
 
+# FPV System
 sys.path.append('hardware_drivers/vision')
-from raspberry_pi_8mp import Vision  # change raspberry_pi_8mp to match your hardware
+if startup.config['fpv'] == 'raspberry_pi_8mp':
+    from raspberry_pi_8mp import Vision  # change raspberry_pi_8mp to match your hardware
+else:
+    print('Error : Rover requires some kind of vision!')
+    exit()
 
+# MOTOR System
 sys.path.append('hardware_drivers/motor')
-from adafruit_dc_and_stepper_motor_hat import Motor  # change to match your motor hat
+if startup.config['motor_hat'] == 'adafruit_dc_and_stepper_motor_hat':
+    from adafruit_dc_and_stepper_motor_hat import Motor
+elif startup.config['motor_hat'] == 'raspirobot_board_v3':
+    from raspirobot_board_v3 import Motor
+elif startup.config['motor_hat'] == 'immobile_wildlife_cam':
+    from immobile_wildlife_cam import Motor
+
 
 app = Flask(__name__, static_url_path='/static')
 server_os = os.name
-
-# This will be put in a config file some day
-startup_settings = {}
-startup_settings['view_x'] = 1056
-startup_settings['view_y'] = 594
-startup_settings['view_optimize'] = 'LG G4'
 
 uis = {}
 # Instrument Status
@@ -45,24 +53,15 @@ status_dic = {
     # 'os': str(os.environ['OS'])
 }
 
-if os.path.isdir('static/webcam'):
-    startup_settings['path_to_web_cam'] = 'static/webcam'
-    startup_settings['path_to_pictures'] = 'static/camera/photos'
-    startup_settings['path_to_thumbnails'] = 'static/camera/thumbnails'
-else:
-    # We can function without the std directories, but all photos will be lost in tmp
-    startup_settings['path_to_web_cam'] = '/tmp/static/webcam'
-    startup_settings['path_to_pictures'] = '/tmp/static/camera/photos'
-    startup_settings['path_to_thumbnails'] = '/tmp/static/camera/thumbnails'
 
-# Plugin the hardware drivers here
-vision = Vision(startup_settings)
+# CAMERA System
+vision = Vision(startup.config)
 uis['camera'] = vision.settings['camera']
 
-motor = Motor(startup_settings)
+motor = Motor(startup.config)
 # uis['drive'] = motor.settings['drive']
 
-picture = Picture(startup_settings)
+picture = Picture(startup.config)
 
 
 @app.route('/')
