@@ -6,13 +6,13 @@ from PIL import Image
 import datetime
 import json
 from picture_class import Picture
-from start_up import Startup
+from configure import Configure
 
-startup = Startup()
+rover = Configure()
 
 # FPV System
 sys.path.append('hardware_drivers/vision')
-if startup.config['fpv'] == 'raspberry_pi_8mp':
+if rover.config['fpv'] == 'raspberry_pi_8mp':
     from raspberry_pi_8mp import Vision  # change raspberry_pi_8mp to match your hardware
 else:
     print('Error : Rover requires some kind of vision!')
@@ -20,48 +20,30 @@ else:
 
 # MOTOR System
 sys.path.append('hardware_drivers/motor')
-if startup.config['motor_hat'] == 'adafruit_dc_and_stepper_motor_hat':
+if rover.config['motor_hat'] == 'adafruit_dc_and_stepper_motor_hat':
     from adafruit_dc_and_stepper_motor_hat import Motor
-elif startup.config['motor_hat'] == 'raspirobot_board_v3':
+elif rover.config['motor_hat'] == 'raspirobot_board_v3':
     from raspirobot_board_v3 import Motor
-elif startup.config['motor_hat'] == 'immobile_wildlife_cam':
+elif rover.config['motor_hat'] == 'immobile_wildlife_cam':
     from immobile_wildlife_cam import Motor
 
 
 app = Flask(__name__, static_url_path='/static')
 server_os = os.name
 
-uis = {}
-# Instrument Status
-uis['compass'] = 'disabled'
-uis['tilt'] = 'disabled'
-uis['battery'] = 'disabled'
-uis['thermometer'] = 'disabled'
-uis['sensors'] = 'disabled'
-uis['wifi'] = 'active'
-uis['drive'] = 'active'
-
-# Instrument Values
-uis['direction'] = 'fa-spin'
-uis['charge'] = '2'
-uis['temperature'] = '2'
+# User Interface Status
+uis = rover.get_uis_at_startup()
 uis['current'] = 'index'
 
-status_dic = {
-    'code': 'incomplete',
-    'access': 'private wifi'
-    # 'os': str(os.environ['OS'])
-}
-
-
 # CAMERA System
-vision = Vision(startup.config)
+vision = Vision(rover.config)
 uis['camera'] = vision.settings['camera']
 
-motor = Motor(startup.config)
-# uis['drive'] = motor.settings['drive']
+# MOTOR SYSTEM
+motor = Motor(rover.config)
+uis['drive'] = motor.uis['drive']
 
-picture = Picture(startup.config)
+picture = Picture(rover.config)
 
 
 @app.route('/')

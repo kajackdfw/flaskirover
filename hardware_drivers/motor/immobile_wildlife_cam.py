@@ -4,7 +4,14 @@
 class Motor:
 
     settings = {}
+    uis = {}
 
     def __init__(self, start_settings):
+        self.settings = {}
         self.settings['drive_mode'] = 'immobile'
-        self.can_rotate_in_place = False
+        self.settings['drive'] = 'disabled'
+
+        self.uis['motor'] = 'hidden'
+
+    def get_uis(self):
+        return self.uis

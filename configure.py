@@ -5,7 +5,7 @@ import gc
 import os
 
 
-class Startup:
+class Configure:
 
     def __init__(self):
 
@@ -64,3 +64,21 @@ class Startup:
 
     def setup(self):
         return True
+
+    def get_uis_at_startup(self):
+        uis = {}
+
+        # Instrument Status
+        uis['compass'] = 'disabled'
+        uis['tilt'] = 'disabled'
+        uis['battery'] = 'disabled'
+        uis['thermometer'] = 'disabled'
+        uis['sensors'] = 'disabled'
+        uis['wifi'] = 'active'
+        uis['drive'] = 'disabled'
+
+        # Instrument Values
+        uis['direction'] = 'fa-spin'
+        uis['charge'] = '2'
+        uis['temperature'] = '2'
+        return uis

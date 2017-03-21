@@ -15,12 +15,16 @@ from time import sleep
 class Motor:
 
     settings = {}
+    uis = {}
+
     try:
         mh = Adafruit_MotorHAT(addr=0x60)
         settings['drive'] = 'active'
+        uis['drive'] = 'active'
     except NameError:
         print(" - No Adafruit_MotorHAT library available.")
         settings['drive'] = 'disabled'
+        uis['drive'] = 'disabled'
 
     def __init__(self, start_settings):
         if 'drive_mode' in start_settings:
@@ -37,6 +41,7 @@ class Motor:
             # self.test(3)
             # self.test(4)
             self.turnOffMotors()
+
 
     def forward_crawl(self, seconds):
         right_motor = self.mh.getMotor(3)
@@ -128,3 +133,6 @@ class Motor:
             myMotor.run(Adafruit_MotorHAT.RELEASE)
             sleep(1.0)
             return True
+
+    def get_uis(self):
+        return self.uis
