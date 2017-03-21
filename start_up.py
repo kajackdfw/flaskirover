@@ -33,15 +33,15 @@ class Startup:
         self.config['fpv'] = 'raspberry_pi_8mp'
         self.config['camera'] = 'raspberry_pi_8mp'
         self.config['sensor_array'] = 'none'
-        self.config['path_to_web_cam'] = 'static/webcam'
+        self.config['path_to_web_cam'] = 'static/fpv'
 
-        if os.path.isdir('static/webcam'):
-            self.config['path_to_web_cam'] = 'static/webcam'
+        if os.path.isdir('static/fpv'):
+            self.config['path_to_web_cam'] = 'static/fpv'
             self.config['path_to_pictures'] = 'static/camera/photos'
             self.config['path_to_thumbnails'] = 'static/camera/thumbnails'
         else:
             # We can function without the std directories, but all photos will be lost in tmp
-            self.config['path_to_web_cam'] = '/tmp/static/webcam'
+            self.config['path_to_web_cam'] = '/tmp/static/fpv'
             self.config['path_to_pictures'] = '/tmp/static/camera/photos'
             self.config['path_to_thumbnails'] = '/tmp/static/camera/thumbnails'
 

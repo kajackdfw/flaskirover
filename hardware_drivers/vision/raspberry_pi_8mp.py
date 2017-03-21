@@ -21,7 +21,7 @@ class Vision:
         if 'path_to_web_cam' in start_settings:
             self.settings['path_to_web_cam'] = start_settings['path_to_web_cam']
         else:
-            self.settings['path_to_web_cam'] = 'static/webcam'
+            self.settings['path_to_web_cam'] = 'static/fpv'
 
         if 'path_to_pictures' in start_settings:
             self.settings['path_to_pictures'] = start_settings['path_to_pictures']

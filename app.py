@@ -126,7 +126,7 @@ def view_refresh():
     if vision.settings['camera'] == 'active':
         vision.take_web_cam_image()
         latest_image = vision.get_latest_web_cam_image()
-        picture.clean_webcam_cache(latest_image)
+        picture.clean_fpv_cache(latest_image)
     latest_image = vision.get_latest_web_cam_image()
     refresh_info = {}
     refresh_info['url'] = latest_image
@@ -141,7 +141,7 @@ def take_picture():
     return True
 
 
-@app.route('/ajax/camera/awb_mode/<mode>')
+@app.route('/ajax/camera/color_mode/<mode>')
 def set_white_balance(mode):
     return vision.set_awb(mode)
 

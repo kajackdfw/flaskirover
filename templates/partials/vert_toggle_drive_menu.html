@@ -1,12 +1,12 @@
 <script type="application/javascript">
 
-    var menu_mode = 'webcam';
+    var menu_mode = 'fpv';
     var web_cam_timer = '';
 
     $( document ).ready(function() {
 
         $('#drive_menu').hide();
-        $('#awb_menu').hide();
+        $('#color_menu').hide();
 
         $("#sm_rover_forward").click(function () { rover_forward(2); });
         $("#sm_rover_backward").click(function () { rover_backward(2); });
@@ -17,36 +17,36 @@
         $("#toggle_menu_2").click(function () { toggle_menu(); });
         $("#toggle_menu_3").click(function () { toggle_menu(); });
 
-        $("#awb_sunlight").click(function () { set_awb_mode('sunlight'); });
-        $("#awb_cloudy").click(function () { set_awb_mode('cloudy'); });
-        $("#awb_fluorescent").click(function () { set_awb_mode('fluorescent'); });
-        $("#awb_tungsten").click(function () { set_awb_mode('tungsten'); });
-        $("#awb_auto").click(function () { set_awb_mode('auto'); });
+        $("#color_sunlight").click(function () { set_color_mode('sunlight'); });
+        $("#color_cloudy").click(function () { set_color_mode('cloudy'); });
+        $("#color_fluorescent").click(function () { set_color_mode('fluorescent'); });
+        $("#color_tungsten").click(function () { set_color_mode('tungsten'); });
+        $("#color_auto").click(function () { set_color_mode('auto'); });
     });
 
     function toggle_menu() {
 
-        if( menu_mode == 'webcam' ) {
+        if( menu_mode == 'fpv' ) {
             menu_mode = 'drive';
-            $('#webcam_menu').hide();
-            $('#awb_menu').hide();
+            $('#fpv_menu').hide();
+            $('#color_menu').hide();
             $('#drive_menu').show();
         }
         else if( menu_mode == 'drive' ) {
-            menu_mode = 'awb';
+            menu_mode = 'color';
             $('#drive_menu').hide();
-            $('#awb_menu').show();
-            $('#webcam_menu').hide();
+            $('#color_menu').show();
+            $('#fpv_menu').hide();
         }
-        else if( menu_mode == 'awb' ) {
-            menu_mode = 'webcam';
-            $('#awb_menu').hide();
+        else if( menu_mode == 'color' ) {
+            menu_mode = 'fpv';
+            $('#color_menu').hide();
             $('#drive_menu').hide();
-            $('#webcam_menu').show();
+            $('#fpv_menu').show();
         }
     }
 
-    function set_awb_mode( mode ) { $.get("/ajax/camera/awb_mode/" + mode , function(data, status){ return false; }); }
+    function set_color_mode( mode ) { $.get("/ajax/camera/color_mode/" + mode , function(data, status){ return false; }); }
 
     {% if uis['drive'] == 'active' %}
     function rover_forward( seconds ) {
@@ -97,7 +97,7 @@
     </button>
 </div>
 
-<div id="webcam_menu">
+<div id="fpv_menu">
     <button type="button" class="btn-menu menu-top" id="sm_turn_cam_up" title="Look Up">
         <i class="fa fa-binoculars fa-rotate-180 fa-3x"></i>
     </button>
@@ -119,20 +119,20 @@
 </div>
 
 
-<div id="awb_menu">
-    <button type="button" class="btn-menu menu-top" id="awb_sunlight" title="Sun Light">
+<div id="color_menu">
+    <button type="button" class="btn-menu menu-top" id="color_sunlight" title="Sun Light">
         <i class="fa fa-sun-o fa-3x"></i>
     </button>
-    <button type="button" class="btn-menu" id="awb_cloudy" title="Cloudy">
+    <button type="button" class="btn-menu" id="color_cloudy" title="Cloudy">
         <i class="fa fa-cloud fa-3x"></i>
     </button>
-    <button type="button" class="btn-menu" id="awb_tungsten" title="Tungsten Light">
+    <button type="button" class="btn-menu" id="color_tungsten" title="Tungsten Light">
         <i class="fa fa-lightbulb-o fa-3x"></i>
     </button>
-    <button type="button" class="btn-menu" id="awb_fluorescent" title="Fluorescent">
+    <button type="button" class="btn-menu" id="color_fluorescent" title="Fluorescent">
         <i class="fa fa-bars fa-3x"></i>
     </button>
-    <button type="button" class="btn-menu" id="awb_auto" title="Auto">
+    <button type="button" class="btn-menu" id="color_auto" title="Auto">
         <i class="fa fa-magic fa-3x"></i>
     </button>
     <button type="button" class="btn-menu-selected menu-bottom" id="toggle_menu_3" title="Color Balance">

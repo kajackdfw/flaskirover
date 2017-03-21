@@ -15,7 +15,7 @@ class Picture:
         if 'path_to_web_cam' in start_settings:
             self.settings['path_to_web_cam'] = start_settings['path_to_web_cam']
         else:
-            self.settings['path_to_web_cam'] = 'static/webcam'
+            self.settings['path_to_web_cam'] = 'static/fpv'
 
         if 'path_to_pictures' in start_settings:
             self.settings['path_to_pictures'] = start_settings['path_to_pictures']
@@ -219,7 +219,7 @@ class Picture:
             os.remove('static/tmp/' + filename_pieces[0] + '.' + filename_pieces[1])
         return True
 
-    def clean_webcam_cache(self, last_image):
+    def clean_fpv_cache(self, last_image):
         delete_list = [f for f in listdir(self.settings['path_to_web_cam']) if isfile(join(self.settings['path_to_web_cam'], f))]
         for image in delete_list:
             filename_pieces = image.split('.')
