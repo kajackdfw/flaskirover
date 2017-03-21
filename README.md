@@ -11,13 +11,16 @@
 
 **TESING OR IN DEVELOPMENT**
 
-1. Suspend web cam during drive actions for latency issues
+1. RaspiRover Board v3 support
 
 **TODOS:**
 
 1. Compose About page
 1. Load A Config file for startup settings
-1. Prompt User for settings and write a startup setting file
+1. Prompt User for setup and write a default config file
+1. Allow user to edit / tweek some numeric settings
+
+**FUTURE FEATURES:**
 1. Link to Arduino by USB
 1. Get sensor data from Arduino
 1. Head lights
