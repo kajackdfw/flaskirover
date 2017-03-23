@@ -43,6 +43,7 @@ uis['camera'] = vision.settings['camera']
 motor = Motor(rover.config)
 uis['drive'] = motor.uis['drive']
 
+# PICTURE GALLERY
 picture = Picture(rover.config)
 
 
@@ -75,7 +76,6 @@ def page_picture(pic):
     picture.settings['zoom'] = 1.0
     picture.settings['pan_x'] = 0
     picture.settings['pan_y'] = 0
-
     path = picture.settings['path_to_pictures']
     pic_info = picture.info(pic)
     uis['current'] = 'pictures'
