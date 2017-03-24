@@ -12,6 +12,7 @@
 **TESING OR IN DEVELOPMENT**
 
 1. RaspiRover Board v3 support
+1. Loadable hardware configs
 
 **TODOS:**
 
@@ -24,10 +25,11 @@
 1. Link to Arduino by USB
 1. Get sensor data from Arduino
 1. Head lights
-1. If no Adafruit Hat, default to Arduino Motor Shield
-1. If no Arduino, replace Handshake with something else
+1. Nexus 7 UI Optimization
+1. Arduino + Adafruit Motor Shield support
 1. Camera Macro Support
 1. Power Levels
+1. 4G connection to cloud, instead of wifi/lan
 
 **Raspberry Pi Install Dependencies** 
 
