@@ -32,9 +32,9 @@
 **Raspberry Pi Install Dependencies** 
 
 1. Python 3
-2. Pillow ( with pip )
-3. Flask ( with pip )
-3. AdaFruit Motor Hat ( see Adafruit.com )
+1. sudo apt-get install python-dev
+1. Pillow ( with pip )
+1. Flask ( with pip )
 
 **Windows**
 
@@ -42,3 +42,8 @@ _The windows setup is for UI development or demo only, no Camera or Motor contro
 
 1. Python 3
 2. Flask
+
+**Raspberry Pi Hardware Support**
+
+1. AdaFruit Motor Hat ( https://learn.adafruit.com/adafruit-dc-and-stepper-motor-hat-for-raspberry-pi/installing-software )
+1. RaspiRobot v3 ( https://github.com/simonmonk/raspirobotboard3 )
