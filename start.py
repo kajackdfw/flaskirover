@@ -43,6 +43,7 @@ uis['camera'] = vision.settings['camera']
 motor = Motor(rover.config)
 uis['drive'] = motor.uis['drive']
 
+# PICTURE GALLERY
 picture = Picture(rover.config)
 
 
@@ -75,11 +76,10 @@ def page_picture(pic):
     picture.settings['zoom'] = 1.0
     picture.settings['pan_x'] = 0
     picture.settings['pan_y'] = 0
-
     path = picture.settings['path_to_pictures']
     pic_info = picture.info(pic)
     uis['current'] = 'pictures'
-    print(str(pic_info))
+    # print(str(pic_info))
     return render_template('picture.html', pic=pic, page_title='Picture : ' + pic, path=path, pic_info=pic_info, uis=uis)
 
 
@@ -112,7 +112,7 @@ def view_refresh():
     latest_image = vision.get_latest_web_cam_image()
     refresh_info = {}
     refresh_info['url'] = latest_image
-    print('latest = ' + latest_image)
+    # print('latest = ' + latest_image)
     return json.dumps(refresh_info, separators=(',', ':'))
 
 

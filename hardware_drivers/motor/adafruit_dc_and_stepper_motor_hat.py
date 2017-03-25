@@ -33,7 +33,9 @@ class Motor:
             self.settings['drive_mode'] = 'tank'
 
         if self.settings['drive_mode'] == 'tank':
-            self.settings['can_rotate'] = True
+            for setting, value in start_settings.items():
+                if setting[0:4] == 'tank':
+                    self.settings[setting] = int(value)
         else:
             self.can_rotate_in_place = False
 
@@ -41,65 +43,64 @@ class Motor:
             # self.test(3)
             # self.test(4)
             self.turnOffMotors()
-
+        print('Motor Settings:' + str(self.settings))
 
     def forward_crawl(self, seconds):
-        right_motor = self.mh.getMotor(3)
-        left_motor = self.mh.getMotor(4)
-        right_motor.setSpeed(115)
-        left_motor.setSpeed(125)
-        right_motor.run(Adafruit_MotorHAT.FORWARD)
-        left_motor.run(Adafruit_MotorHAT.BACKWARD)
+        right_motor = self.mh.getMotor(self.settings['tank_right_motor'])
+        left_motor = self.mh.getMotor(self.settings['tank_left_motor'])
+        right_motor.setSpeed(self.settings['tank_speed_right'])
+        left_motor.setSpeed(self.settings['tank_speed_left'])
+        right_motor.run(self.settings['tank_right_forward'])
+        left_motor.run(self.settings['tank_left_forward'])
         sleep(int(seconds))
         left_motor.setSpeed(0)
         right_motor.setSpeed(0)
         return True
 
     def backward_crawl(self, seconds):
-        right_motor = self.mh.getMotor(3)
-        left_motor = self.mh.getMotor(4)
-        right_motor.setSpeed(115)
-        left_motor.setSpeed(125)
-        right_motor.run(Adafruit_MotorHAT.BACKWARD)
-        left_motor.run(Adafruit_MotorHAT.FORWARD)
+        right_motor = self.mh.getMotor(self.settings['tank_right_motor'])
+        left_motor = self.mh.getMotor(self.settings['tank_left_motor'])
+        right_motor.setSpeed(self.settings['tank_speed_right'])
+        left_motor.setSpeed(self.settings['tank_speed_left'])
+        right_motor.run(self.settings['tank_right_backward'])
+        left_motor.run(self.settings['tank_left_backward'])
         sleep(int(seconds))
         left_motor.setSpeed(0)
         right_motor.setSpeed(0)
         return True
 
     def rotate_ccw(self, second_hundredths):
-        right_motor = self.mh.getMotor(3)
-        left_motor = self.mh.getMotor(4)
-        right_motor.setSpeed(100)
-        left_motor.setSpeed(100)
-        right_motor.run(Adafruit_MotorHAT.FORWARD)
-        left_motor.run(Adafruit_MotorHAT.FORWARD)
+        right_motor = self.mh.getMotor(self.settings['tank_right_motor'])
+        left_motor = self.mh.getMotor(self.settings['tank_left_motor'])
+        right_motor.setSpeed(self.settings['tank_turn_speed'])
+        left_motor.setSpeed(self.settings['tank_turn_speed'])
+        right_motor.run(self.settings['tank_right_forward'])
+        left_motor.run(self.settings['tank_left_backward'])
         sleep(float(second_hundredths) / 100)
         left_motor.setSpeed(0)
         right_motor.setSpeed(0)
         return True
 
     def rotate_cw(self, second_hundredths):
-        right_motor = self.mh.getMotor(3)
-        left_motor = self.mh.getMotor(4)
-        right_motor.setSpeed(100)
-        left_motor.setSpeed(100)
-        right_motor.run(Adafruit_MotorHAT.BACKWARD)
-        left_motor.run(Adafruit_MotorHAT.BACKWARD)
+        right_motor = self.mh.getMotor(self.settings['tank_right_motor'])
+        left_motor = self.mh.getMotor(self.settings['tank_left_motor'])
+        right_motor.setSpeed(self.settings['tank_turn_speed'])
+        left_motor.setSpeed(self.settings['tank_turn_speed'])
+        right_motor.run(self.settings['tank_right_backward'])
+        left_motor.run(self.settings['tank_left_forward'])
         sleep(float(second_hundredths) / 100)
         left_motor.setSpeed(0)
         right_motor.setSpeed(0)
         return True
 
     # recommended for auto-disabling motors on shutdown!
-    def turnOffMotors(self):
-        self.mh.getMotor(1).run(Adafruit_MotorHAT.RELEASE)
-        self.mh.getMotor(2).run(Adafruit_MotorHAT.RELEASE)
-        self.mh.getMotor(3).run(Adafruit_MotorHAT.RELEASE)
-        self.mh.getMotor(4).run(Adafruit_MotorHAT.RELEASE)
+    def turn_off_motors(self):
+        if self.settings['drive_mode'] == 'tank':
+            self.mh.getMotor(self.settings['tank_left_motor']).run(Adafruit_MotorHAT.RELEASE)
+            self.mh.getMotor(self.settings['tank_right_motor']).run(Adafruit_MotorHAT.RELEASE)
 
     def test(self, motor_number):
-        #self.atexit.register(turnOffMotors)
+        # self.atexit.register(turnOffMotors)
         myMotor = self.mh.getMotor(motor_number)
         myMotor.setSpeed(75)
         while (True):

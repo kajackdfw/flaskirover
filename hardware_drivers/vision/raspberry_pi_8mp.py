@@ -64,6 +64,9 @@ class Vision:
             new_cam_image = open(new_image_path_and_name, 'wb')
             # camera.start_preview()
             try:
+                self.camera.start_preview()
+                self.camera.vflip = True
+                self.camera.hflip = True
                 self.camera.capture(new_cam_image)
             except SystemError:
                 new_cam_image.close()
@@ -79,7 +82,9 @@ class Vision:
             self.camera.resolution = (2592, 1944)
             new_cam_image = open(new_image_path_and_name, 'wb')
             self.camera.start_preview()
-            sleep(2)
+            self.camera.vflip = True
+            self.camera.hflip = True
+            sleep(1)
             self.camera.capture(new_cam_image)
             new_cam_image.close()
             # restore web cam res
