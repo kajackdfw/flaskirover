@@ -42,3 +42,9 @@ _The windows setup is for UI development or demo only, no Camera or Motor contro
 
 1. Python 3
 2. Flask
+
+**Aadafruit Motor Hat Activation**
+
+1. >cd Adafruit-Motor-HAT-Python-Library 
+1. >sudo python setup.py install
+
