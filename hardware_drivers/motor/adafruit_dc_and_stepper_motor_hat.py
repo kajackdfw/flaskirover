@@ -42,7 +42,7 @@ class Motor:
         if self.settings['drive'] == "active":
             # self.test(3)
             # self.test(4)
-            self.turnOffMotors()
+            self.turn_off_motors()
         print('Motor Settings:' + str(self.settings))
 
     def forward_crawl(self, seconds):
@@ -100,7 +100,7 @@ class Motor:
             self.mh.getMotor(self.settings['tank_right_motor']).run(Adafruit_MotorHAT.RELEASE)
 
     def test(self, motor_number):
-        # self.atexit.register(turnOffMotors)
+        # self.atexit.register(turn_off_motors)
         myMotor = self.mh.getMotor(motor_number)
         myMotor.setSpeed(75)
         while (True):
