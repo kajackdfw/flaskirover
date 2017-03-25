@@ -24,6 +24,7 @@ class Configure:
     def reset(self):
         self.config = {}
         self.config['description'] = 'Afafruit Motor Hat Tank Config'
+        self.config['drive_mode'] = 'tank'
         self.config['view_x'] = 1056
         self.config['view_y'] = 594
         self.config['view_optimize'] = 'LG G4'
@@ -33,19 +34,20 @@ class Configure:
         self.config['sensor_array'] = 'none'
         self.config['path_to_web_cam'] = 'static/fpv'
         self.config['sensor_array'] = 'none'
-        self.config['tread_left_motor'] = 3
-        self.config['tread_right_motor'] = 4
-        self.config['speed_right'] = 115
-        self.config['speed_left'] = 125
+        self.config['tank_left_motor'] = 3
+        self.config['tank_right_motor'] = 4
+        self.config['tank_speed_right'] = 125
+        self.config['tank_speed_left'] = 135
+        self.config['tank_turn_speed'] = 110
         # Adafruit_MotorHAT:
         #   FORWARD = 1
         #   BACKWARD = 2
         #   BRAKE = 3
         #   RELEASE = 4
-        self.config['tread_left_forward'] = 2
-        self.config['tread_left_reverse'] = 1
-        self.config['tread_right_forward'] = 1
-        self.config['tread_right_reverse'] = 2
+        self.config['tank_left_forward'] = 2
+        self.config['tank_left_reverse'] = 1
+        self.config['tank_right_forward'] = 1
+        self.config['tank_right_reverse'] = 2
 
         if os.path.isdir('static/fpv'):
             self.config['path_to_web_cam'] = 'static/fpv'
