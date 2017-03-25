@@ -24,6 +24,7 @@ class Configure:
     def reset(self):
         self.config = {}
         self.config['description'] = 'Afafruit Motor Hat Tank Config'
+        self.config['motor_hat'] = 'adafruit_dc_and_stepper_motor_hat'
         self.config['drive_mode'] = 'tank'
         self.config['view_x'] = 1056
         self.config['view_y'] = 594
