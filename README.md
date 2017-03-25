@@ -12,6 +12,7 @@
 **TESING OR IN DEVELOPMENT**
 
 1. RaspiRover Board v3 support
+1. Loadable hardware configs
 
 **TODOS:**
 
@@ -24,17 +25,18 @@
 1. Link to Arduino by USB
 1. Get sensor data from Arduino
 1. Head lights
-1. If no Adafruit Hat, default to Arduino Motor Shield
-1. If no Arduino, replace Handshake with something else
+1. Nexus 7 UI Optimization
+1. Arduino + Adafruit Motor Shield support
 1. Camera Macro Support
 1. Power Levels
+1. 4G connection to cloud, instead of wifi/lan
 
 **Raspberry Pi Install Dependencies** 
 
 1. Python 3
-2. Pillow ( with pip )
-3. Flask ( with pip )
-3. AdaFruit Motor Hat ( see Adafruit.com )
+1. sudo apt-get install python-dev
+1. Pillow ( with pip )
+1. Flask ( with pip )
 
 **Windows**
 
@@ -42,3 +44,8 @@ _The windows setup is for UI development or demo only, no Camera or Motor contro
 
 1. Python 3
 2. Flask
+
+**Raspberry Pi Hardware Support**
+
+1. AdaFruit Motor Hat ( https://learn.adafruit.com/adafruit-dc-and-stepper-motor-hat-for-raspberry-pi/installing-software )
+1. RaspiRobot v3 ( https://github.com/simonmonk/raspirobotboard3 )
