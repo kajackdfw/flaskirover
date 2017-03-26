@@ -45,8 +45,8 @@ class Configure:
         #   BACKWARD = 2
         #   BRAKE = 3
         #   RELEASE = 4
-        self.config['tank_left_forward'] = 2
-        self.config['tank_left_reverse'] = 1
+        self.config['tank_left_forward'] = 1
+        self.config['tank_left_reverse'] = 2
         self.config['tank_right_forward'] = 1
         self.config['tank_right_reverse'] = 2
 
