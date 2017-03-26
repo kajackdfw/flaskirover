@@ -156,11 +156,13 @@ def motor_rotate_cw(second_hundredths):
     return True
 
 
-# cmd = "ip addr show eth0 | grep inet | awk '{print $2}' | cut -d/ -f1"
-def run_cmd(cmd):
-    p = Popen(cmd, shell=True, stdout=PIPE)
-    print(p.communicate()[0])
-    return True
+@app.route('/stop')
+def stop():
+    motor.turn_off_motors()
+    vision.take_web_cam_image()
+    latest_image = vision.get_latest_web_cam_image()
+    uis['current'] = 'index'
+    return render_template('drive.html', page_title='Home', image=latest_image, uis=uis)
 
 
 @app.route('/quit')
@@ -169,6 +171,13 @@ def quit():
     func()
     run_cmd('git pull')
     return "Quitting..."
+
+
+# cmd = "ip addr show eth0 | grep inet | awk '{print $2}' | cut -d/ -f1"
+def run_cmd(cmd):
+    p = Popen(cmd, shell=True, stdout=PIPE)
+    print(p.communicate()[0])
+    return True
 
 
 if __name__ == '__main__' and os.name == 'posix':

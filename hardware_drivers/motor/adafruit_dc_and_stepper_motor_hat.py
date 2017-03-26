@@ -43,7 +43,7 @@ class Motor:
             # self.test(3)
             # self.test(4)
             self.turn_off_motors()
-        print('Motor Settings:' + str(self.settings))
+        print('\nMotor Settings:' + str(self.settings) + '\n')
 
     def forward_crawl(self, seconds):
         right_motor = self.mh.getMotor(self.settings['tank_right_motor'])
@@ -95,9 +95,10 @@ class Motor:
 
     # recommended for auto-disabling motors on shutdown!
     def turn_off_motors(self):
-        if self.settings['drive_mode'] == 'tank':
-            self.mh.getMotor(self.settings['tank_left_motor']).run(Adafruit_MotorHAT.RELEASE)
-            self.mh.getMotor(self.settings['tank_right_motor']).run(Adafruit_MotorHAT.RELEASE)
+        self.mh.getMotor(1).run(Adafruit_MotorHAT.RELEASE)
+        self.mh.getMotor(2).run(Adafruit_MotorHAT.RELEASE)
+        self.mh.getMotor(3).run(Adafruit_MotorHAT.RELEASE)
+        self.mh.getMotor(4).run(Adafruit_MotorHAT.RELEASE)
 
     def test(self, motor_number):
         # self.atexit.register(turn_off_motors)
