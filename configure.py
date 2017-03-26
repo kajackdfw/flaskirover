@@ -46,9 +46,9 @@ class Configure:
         #   BRAKE = 3
         #   RELEASE = 4
         self.config['tank_left_forward'] = 1
-        self.config['tank_right_forward'] = 1
+        self.config['tank_right_forward'] = 2
         self.config['tank_left_reverse'] = 2
-        self.config['tank_right_reverse'] = 2
+        self.config['tank_right_reverse'] = 1
 
         if os.path.isdir('static/fpv'):
             self.config['path_to_web_cam'] = 'static/fpv'
