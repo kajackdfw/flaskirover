@@ -48,7 +48,7 @@ class Picture:
             filename_pieces = image.split('.')
             new_image = {
                 'timestamp': int(filename_pieces[0]),
-                'view_url': 'view/' + str(filename_pieces[0] + '.' + filename_pieces[1]),
+                'view_url': 'picture/' + str(filename_pieces[0] + '.' + filename_pieces[1]),
                 'thumbnail': self.settings['path_to_thumbnails'] + '/' + filename_pieces[0] + '.' + filename_pieces[1]}
             pictures.insert(picture_insert, new_image)
         pictures = sorted(pictures, key=self.by_timestamp)

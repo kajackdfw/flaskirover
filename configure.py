@@ -70,9 +70,9 @@ class Configure:
             config_fh = open("configuration.json", "r")
             json_array_string = str(config_fh.read())
             self.config = json.loads(json_array_string)
-            print('Config for ' + self.config['description'] + ' loaded')
+            print('  + Config for ' + self.config['description'] + ' loaded')
             config_fh.close()
-            print(self.config)
+            # print(self.config)
             self.status = 'ready'
         except IOError:
             self.status = 'invalid_config'

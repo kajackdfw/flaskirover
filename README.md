@@ -11,6 +11,7 @@
 
 **TESING OR IN DEVELOPMENT**
 
+1. Settings page for reversing or tweaking drive system 
 1. RaspiRover Board v3 support
 1. Loadable hardware configs
 

@@ -2,7 +2,7 @@ from flask import Flask, render_template, url_for, request
 import os
 import sys
 from subprocess import *
-from PIL import Image
+# from PIL import Image
 import datetime
 import json
 from picture_class import Picture
@@ -70,7 +70,7 @@ def page_pictures():
     return render_template('pictures.html', page_title='Pictures', pictures=pictures, uis=uis)
 
 
-@app.route('/view/<pic>')
+@app.route('/picture/<pic>')
 def page_picture(pic):
     # reset some picture class vars for a new image
     picture.settings['zoom'] = 1.0
@@ -83,10 +83,10 @@ def page_picture(pic):
     return render_template('picture.html', pic=pic, page_title='Picture : ' + pic, path=path, pic_info=pic_info, uis=uis)
 
 
-@app.route('/about')
-def page_about():
-    uis['current'] = 'about'
-    return render_template('about.html', page_title=' / About RaspRover', uis=uis)
+@app.route('/settings')
+def page_settings():
+    uis['current'] = 'settings'
+    return render_template('settings.html', page_title=' / RaspRover Settings', uis=uis)
 
 
 @app.route('/ajax/zoom/<image_file>/<zoom_factor>')
