@@ -1,6 +1,6 @@
 <html>
 <head>
-    <link rel="stylesheet" href="/static/css/theme-lg4-green.css?q=20170307" >
+    <link rel="stylesheet" href="/static/css/theme-lg4-green.css?q=20170402b" >
     <link rel="stylesheet" href="/static/css/font-awesome.min.css">
 </head>
 <body>
@@ -21,27 +21,22 @@
         <tr>
             <td rowspan="2" valign="bottom" width="98px">
                 {% include 'partials/nav_sm_grid_menu.html' %}
-
-                <button type="button" class="btn-instrument{{ uis.wifi }} menu-bottom menu-top" id="lg_git_update" title="Update This Rover">
-                    <i class="fa fa-cloud-download fa-3x"></i>
-                </button>
-
             </td>
-            <td valign="center" align="center" width="100%">
+            <td valign="top" align="center" width="100%">
 
-                <h2>Raspi Rover OS</h2>
-                <ul>
-                    <li>
-                        Picamera
-                    </li>
-                    <li>
-                        Adafruit Motor Hat
-                    </li>
-                    <li>
-                        https://learn.adafruit.com/adafruit-dc-and-stepper-motor-hat-for-raspberry-pi/installing-software
-                    </li>
-                </ul>
+                <h2>Raspi Rover Motor Settings</h2>
 
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-primary active">
+                        <input type="radio" name="options" id="option1" autocomplete="off" checked> Radio 1 (preselected)
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" id="option2" autocomplete="off"> Radio 2
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" id="option3" autocomplete="off"> Radio 3
+                    </label>
+</div>
             </td>
         </tr>
 
