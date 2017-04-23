@@ -50,6 +50,17 @@ class Configure:
         self.config['tank_left_reverse'] = 2
         self.config['tank_right_reverse'] = 1
 
+        # Camera Gimbal
+        # Available GPIOs ( 4, 17, 18, 22-25, 27 ) with AdaFruit Motor Hat
+        self.config['gimbal_horz_servo_gpio'] = False
+
+        self.config['gimbal_vert_servo_gpio'] = 23
+        self.config['gimbal_vert_full_down'] = -15
+        self.config['gimbal_vert_center'] = 0
+        self.config['gimbal_vert_full_up'] = 15
+        self.config['gimbal_vert_up'] = 1
+        self.config['gimbal_vert_down'] = -1
+
         if os.path.isdir('static/fpv'):
             self.config['path_to_web_cam'] = 'static/fpv'
             self.config['path_to_pictures'] = 'static/camera/photos'
