@@ -58,8 +58,7 @@ class Configure:
         self.config['gimbal_vert_full_down'] = -15
         self.config['gimbal_vert_center'] = 0
         self.config['gimbal_vert_full_up'] = 15
-        self.config['gimbal_vert_up'] = 1
-        self.config['gimbal_vert_down'] = -1
+        self.config['gimbal_vert_step'] = 1
 
         if os.path.isdir('static/fpv'):
             self.config['path_to_web_cam'] = 'static/fpv'
@@ -107,4 +106,8 @@ class Configure:
         uis['direction'] = 'fa-spin'
         uis['charge'] = '2'
         uis['temperature'] = '2'
+
+        # Gimbal un-initialized
+        uis['gimbal_vert'] = 'disabled'
+        uis['gimbal_vert'] = 'disabled'
         return uis

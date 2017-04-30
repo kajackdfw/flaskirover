@@ -3,7 +3,7 @@ import os
 import sys
 from subprocess import *
 # from PIL import Image
-import datetime
+# import datetime
 import json
 from picture_class import Picture
 from configure import Configure
@@ -17,6 +17,8 @@ if rover.config['fpv'] == 'raspberry_pi_8mp':
 else:
     print('Error : Rover requires some kind of vision!')
     exit()
+from servos_on_gpio import Gimbal
+
 
 # MOTOR System
 sys.path.append('hardware_drivers/motor')
@@ -26,6 +28,7 @@ elif rover.config['motor_hat'] == 'raspirobot_board_v3':
     from raspirobot_board_v3 import Motor
 elif rover.config['motor_hat'] == 'immobile_wildlife_cam':
     from immobile_wildlife_cam import Motor
+
 
 
 app = Flask(__name__, static_url_path='/static')
@@ -46,6 +49,10 @@ uis['drive'] = motor.uis['drive']
 # PICTURE GALLERY
 picture = Picture(rover.config)
 
+# Camera Gimbal
+gimbal = Gimbal(rover.config)
+for setting, val in gimbal.uis.iter():
+    uis[setting] = val
 
 @app.route('/')
 def page_index():

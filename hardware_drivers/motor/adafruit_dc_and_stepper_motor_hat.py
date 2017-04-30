@@ -43,7 +43,7 @@ class Motor:
             # self.test(3)
             # self.test(4)
             self.turn_off_motors()
-        print('\nMotor Settings:' + str(self.settings) + '\n')
+        # print('\nMotor Settings:' + str(self.settings) + '\n')
 
     def forward_crawl(self, seconds):
         right_motor = self.mh.getMotor(self.settings['tank_right_motor'])
