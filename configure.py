@@ -24,12 +24,13 @@ class Configure:
     def reset(self):
         self.config = {}
         self.config['description'] = 'Afafruit Motor Hat Tank Config'
-        self.config['motor_hat'] = 'adafruit_dc_and_stepper_motor_hat'
+        self.config['drive_hat'] = 'adafruit_dc_and_stepper_motor_hat'
         self.config['drive_mode'] = 'tank'
         self.config['view_x'] = 1056
         self.config['view_y'] = 594
         self.config['view_optimize'] = 'LG G4'
-        self.config['theme'] = 'green'
+        self.config['ui_color'] = 'green'
+        self.config['ui_size'] = 'lg4'
         self.config['fpv'] = 'raspberry_pi_8mp'
         self.config['camera'] = 'raspberry_pi_8mp'
         self.config['sensor_array'] = 'none'
