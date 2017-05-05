@@ -88,7 +88,7 @@ def page_picture(pic):
 @app.route('/settings')
 def page_settings():
     uis['current'] = 'settings'
-    return render_template('settings.html', page_title=' / RaspRover Settings', uis=uis)
+    return render_template('settings.html', page_title=' / RaspRover Settings', uis=uis, settings=rover.config)
 
 
 @app.route('/ajax/zoom/<image_file>/<zoom_factor>')
