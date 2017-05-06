@@ -200,8 +200,8 @@ class Picture:
         # What will we call this new image
         time_stamp = '{:%Y%m%d%H%M%S}'.format(datetime.datetime.now())
         file_name, extension = os.path.splitext(current_image)
-        output_file = 'zoom_' + time_stamp + extension
-        source_image.save('static/pillow_temp/' + output_file)
+        output_file = 'pillow_temp/zoom_' + time_stamp + extension
+        source_image.save('static/' + output_file)
         pan_results['file'] = output_file
         return pan_results
 
