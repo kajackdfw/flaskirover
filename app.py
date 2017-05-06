@@ -3,7 +3,7 @@ import os
 import sys
 from subprocess import *
 # from PIL import Image
-# import datetime
+import datetime
 import json
 from picture_class import Picture
 from configure import Configure
@@ -30,7 +30,6 @@ elif rover.config['drive_hat'] == 'immobile_wildlife_cam':
     from immobile_wildlife_cam import Motor
 
 
-
 app = Flask(__name__, static_url_path='/static')
 server_os = os.name
 
@@ -53,8 +52,9 @@ picture = Picture(rover.config)
 
 # Camera Gimbal
 gimbal = Gimbal(rover.config)
-for setting, val in gimbal.uis.iter():
+for setting, val in gimbal.uis.items():
     uis[setting] = val
+
 
 @app.route('/')
 def page_index():
