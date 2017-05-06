@@ -38,7 +38,8 @@ class Picture:
             self.settings['view_x'] = 600
 
         self.settings['zoom'] = 1.0
-        self.clean_tmp()
+        self.settings['path_to_web_cam'] = start_settings['path_to_web_cam']
+        self.clean_pillow_temp()
 
     def get_list_of_pictures(self):
         thumb_nail_list = [f for f in listdir(self.settings['path_to_thumbnails']) if isfile(join(self.settings['path_to_thumbnails'], f))]
@@ -105,7 +106,7 @@ class Picture:
         # What will we call this new image
         time_stamp = '{:%Y%m%d%H%M%S}'.format(datetime.datetime.now())
         file_name, extension = os.path.splitext(pic_selected)
-        output_file = 'tmp/zoom_' + time_stamp + extension
+        output_file = 'pillow_temp/zoom_' + time_stamp + extension
         source_image.save('static/' + output_file)
         zoom_options['file'] = output_file
         return zoom_options
@@ -199,8 +200,8 @@ class Picture:
         # What will we call this new image
         time_stamp = '{:%Y%m%d%H%M%S}'.format(datetime.datetime.now())
         file_name, extension = os.path.splitext(current_image)
-        output_file = 'tmp/zoom_' + time_stamp + extension
-        source_image.save('static/' + output_file)
+        output_file = 'zoom_' + time_stamp + extension
+        source_image.save('static/pillow_temp/' + output_file)
         pan_results['file'] = output_file
         return pan_results
 
@@ -212,11 +213,14 @@ class Picture:
         del image_info
         return pic_info
 
-    def clean_tmp(self):
-        delete_list = [f for f in listdir('static/tmp') if isfile(join('static/tmp', f))]
+    def clean_pillow_temp(self):
+        if not os.path.isdir("static/pillow_temp"):
+            os.mkdir("static/pillow_temp")
+            return True
+        delete_list = [f for f in listdir('static/pillow_temp') if isfile(join('static/pillow_temp', f))]
         for image in delete_list:
             filename_pieces = image.split('.')
-            os.remove('static/tmp/' + filename_pieces[0] + '.' + filename_pieces[1])
+            os.remove('static/pillow_temp/' + filename_pieces[0] + '.' + filename_pieces[1])
         return True
 
     def clean_fpv_cache(self, last_image):

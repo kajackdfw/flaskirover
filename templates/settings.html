@@ -1,6 +1,6 @@
 <html>
 <head>
-    <link rel="stylesheet" href="/static/css/theme-lg4-green.css?q=20170402b" >
+    <link rel="stylesheet" href="{{ uis['theme'] }}?t={{ uis['time'] }}" >
     <link rel="stylesheet" href="/static/css/font-awesome.min.css">
 </head>
 <body>
@@ -24,19 +24,34 @@
             </td>
             <td valign="top" align="center" width="100%">
 
-                <h2>Raspi Rover Motor Settings</h2>
+                <h2>{{ settings['tank_left_motor'] }}</h2>
 
+                <label class="btn setting-label"> Left Motor : </label>
                 <div class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-primary active">
-                        <input type="radio" name="options" id="option1" autocomplete="off" checked> Radio 1 (preselected)
+
+                    <label class="btn btn-primary
+                        {% if (settings['tank_left_motor'] == 1) %} active" {% endif %}>
+                        <input type="radio" name="tank_left_motor" id="option1" value="1"
+                               {% if (settings['tank_left_motor'] == 1) %}checked {% endif %} > Motor 1
                     </label>
-                    <label class="btn btn-primary">
-                        <input type="radio" name="options" id="option2" autocomplete="off"> Radio 2
+                    <label class="btn btn-primary
+                        {% if (settings['tank_left_motor'] == 2) %} active" {% endif %}>
+                        <input type="radio" name="tank_left_motor" id="option2" value="2"
+                               {% if (settings['tank_left_motor'] == 2) %}checked {% endif %} > Motor 2
                     </label>
-                    <label class="btn btn-primary">
-                        <input type="radio" name="options" id="option3" autocomplete="off"> Radio 3
+                    <label class="btn btn-primary
+                        {% if (settings['tank_left_motor'] == 3) %} active" {% endif %}>
+                        <input type="radio" name="tank_left_motor" id="option3" value="3"
+                               {% if (settings['tank_left_motor'] == 3) %}checked {% endif %} > Motor 3
                     </label>
-</div>
+                    <label class="btn btn-primary
+                        {% if (settings['tank_left_motor'] == 4) %} active" {% endif %}>
+                        <input type="radio" name="tank_left_motor" id="option4" value="4"
+                               {% if (settings['tank_left_motor'] == 4) %}checked {% endif %} > Motor 4
+                    </label>
+
+
+                </div>
             </td>
         </tr>
 

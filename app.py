@@ -22,11 +22,11 @@ from servos_on_gpio import Gimbal
 
 # MOTOR System
 sys.path.append('hardware_drivers/motor')
-if rover.config['motor_hat'] == 'adafruit_dc_and_stepper_motor_hat':
+if rover.config['drive_hat'] == 'adafruit_dc_and_stepper_motor_hat':
     from adafruit_dc_and_stepper_motor_hat import Motor
-elif rover.config['motor_hat'] == 'raspirobot_board_v3':
+elif rover.config['drive_hat'] == 'raspirobot_board_v3':
     from raspirobot_board_v3 import Motor
-elif rover.config['motor_hat'] == 'immobile_wildlife_cam':
+elif rover.config['drive_hat'] == 'immobile_wildlife_cam':
     from immobile_wildlife_cam import Motor
 
 
@@ -37,6 +37,8 @@ server_os = os.name
 # User Interface Status
 uis = rover.get_uis_at_startup()
 uis['current'] = 'index'
+uis['theme'] = "/static/css/theme-" + rover.config['ui_size'] + "-" + rover.config['ui_color'] + ".css"
+uis['time'] = '{:%Y%m%d%H%M}'.format(datetime.datetime.now())
 
 # CAMERA System
 vision = Vision(rover.config)
@@ -93,7 +95,7 @@ def page_picture(pic):
 @app.route('/settings')
 def page_settings():
     uis['current'] = 'settings'
-    return render_template('settings.html', page_title=' / RaspRover Settings', uis=uis)
+    return render_template('settings.html', page_title=' / RaspRover Settings', uis=uis, settings=rover.config)
 
 
 @app.route('/ajax/zoom/<image_file>/<zoom_factor>')

@@ -23,23 +23,20 @@ class Configure:
 
     def reset(self):
         self.config = {}
-        self.config['description'] = 'Afafruit Motor Hat Tank Config'
-        self.config['motor_hat'] = 'adafruit_dc_and_stepper_motor_hat'
+        self.config['config_name'] = 'default_afafruit_motor_hat_config'
+        self.config['config_description'] = 'Default Afafruit Motor Hat Tank Config'
+        self.config['drive_hat'] = 'adafruit_dc_and_stepper_motor_hat'
         self.config['drive_mode'] = 'tank'
         self.config['view_x'] = 1056
         self.config['view_y'] = 594
-        self.config['view_optimize'] = 'LG G4'
-        self.config['theme'] = 'green'
+        self.config['ui_color'] = 'green'
+        self.config['ui_size'] = 'lg4'
         self.config['fpv'] = 'raspberry_pi_8mp'
         self.config['camera'] = 'raspberry_pi_8mp'
         self.config['sensor_array'] = 'none'
         self.config['path_to_web_cam'] = 'static/fpv'
         self.config['sensor_array'] = 'none'
-        self.config['tank_left_motor'] = 3
-        self.config['tank_right_motor'] = 4
-        self.config['tank_speed_right'] = 125
-        self.config['tank_speed_left'] = 135
-        self.config['tank_turn_speed'] = 110
+
         # Adafruit_MotorHAT:
         #   FORWARD = 1
         #   BACKWARD = 2
@@ -49,6 +46,11 @@ class Configure:
         self.config['tank_right_forward'] = 2
         self.config['tank_left_reverse'] = 2
         self.config['tank_right_reverse'] = 1
+        self.config['tank_left_motor'] = 3
+        self.config['tank_right_motor'] = 4
+        self.config['tank_speed_right'] = 125
+        self.config['tank_speed_left'] = 135
+        self.config['tank_turn_speed'] = 110
 
         # Camera Gimbal
         # Available GPIOs ( 4, 17, 18, 22-25, 27 ) with AdaFruit Motor Hat
@@ -60,15 +62,12 @@ class Configure:
         self.config['gimbal_vert_full_up'] = 15
         self.config['gimbal_vert_step'] = 1
 
-        if os.path.isdir('static/fpv'):
-            self.config['path_to_web_cam'] = 'static/fpv'
-            self.config['path_to_pictures'] = 'static/camera/photos'
-            self.config['path_to_thumbnails'] = 'static/camera/thumbnails'
-        else:
-            # We can function without the std directories, but all photos will be lost in tmp
-            self.config['path_to_web_cam'] = '/tmp/static/fpv'
-            self.config['path_to_pictures'] = '/tmp/static/camera/photos'
-            self.config['path_to_thumbnails'] = '/tmp/static/camera/thumbnails'
+        # This folder gets purged of old images often, only the last image is safe
+        self.config['path_to_web_cam'] = 'static/fpv'
+
+        # This can be redirected to ? a dropbox folder maybe?
+        self.config['path_to_pictures'] = 'static/camera/photos'
+        self.config['path_to_thumbnails'] = 'static/camera/thumbnails'
 
         config_fh = open('configuration.json', "w")
         config_fh.write(json.dumps(self.config, sort_keys=True, indent=4, separators=(',', ': ')))
@@ -80,7 +79,7 @@ class Configure:
             config_fh = open("configuration.json", "r")
             json_array_string = str(config_fh.read())
             self.config = json.loads(json_array_string)
-            print('  + Config for ' + self.config['description'] + ' loaded')
+            print(' + Config for ' + self.config['config_description'] + ' loaded')
             config_fh.close()
             # print(self.config)
             self.status = 'ready'
