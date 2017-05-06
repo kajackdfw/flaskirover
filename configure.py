@@ -105,8 +105,4 @@ class Configure:
         uis['direction'] = 'fa-spin'
         uis['charge'] = '2'
         uis['temperature'] = '2'
-
-        # Gimbal un-initialized
-        uis['gimbal_vert'] = 'disabled'
-        uis['gimbal_vert'] = 'disabled'
         return uis
