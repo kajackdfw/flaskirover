@@ -17,7 +17,7 @@ if rover.config['fpv'] == 'raspberry_pi_8mp':
 else:
     print('Error : Rover requires some kind of vision!')
     exit()
-from servos_on_gpio import Gimbal
+from gimbal_servos_on_gpio import Gimbal
 
 
 # MOTOR System
@@ -162,6 +162,24 @@ def motor_rotate_ccw(second_hundredths):
 def motor_rotate_cw(second_hundredths):
     motor.rotate_cw(second_hundredths)
     vision.take_web_cam_image()
+    return True
+
+
+@app.route('/ajax/gimbal/rotate/up/<degrees>')
+def gimbal_rotate_up(degrees):
+    gimbal.rotate_up(degrees)
+    return True
+
+
+@app.route('/ajax/gimbal/rotate/down/<degrees>')
+def gimbal_rotate_down(degrees):
+    gimbal.rotate_down(degrees)
+    return True
+
+
+@app.route('/ajax/gimbal/center')
+def gimbal_center():
+    gimbal.center()
     return True
 
 

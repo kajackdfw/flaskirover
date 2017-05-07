@@ -238,7 +238,7 @@ class Picture:
         filename_pieces = full_size_image.split('/')
         source_image = Image.open(full_size_image)
         width, height = source_image.size  # Get dimensions
-        ratio = float(int(width) / int(height))
+        ratio = float(float(width) / float(height))
         new_width = int(round(int(200) * ratio, 0))
         thumbnail_size = (new_width, 200)
         thumbnail = source_image.resize(thumbnail_size)

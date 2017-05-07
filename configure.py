@@ -57,9 +57,9 @@ class Configure:
         self.config['gimbal_horz_servo_gpio'] = False
 
         self.config['gimbal_vert_servo_gpio'] = 23
-        self.config['gimbal_vert_full_down'] = -15
-        self.config['gimbal_vert_center'] = 0
-        self.config['gimbal_vert_full_up'] = 15
+        self.config['gimbal_vert_full_down'] = 0
+        self.config['gimbal_vert_center'] = 125
+        self.config['gimbal_vert_full_up'] = 255
         self.config['gimbal_vert_step'] = 1
 
         # This folder gets purged of old images often, only the last image is safe
