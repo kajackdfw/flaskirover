@@ -22,6 +22,18 @@
         $("#color_fluorescent").click(function () { set_color_mode('fluorescent'); });
         $("#color_tungsten").click(function () { set_color_mode('tungsten'); });
         $("#color_auto").click(function () { set_color_mode('auto'); });
+
+        {% if uis['gimbal_vert'] == 'active' %}
+            $("#sm_gimbal_up").click(function () { gimbal_up(10); });
+            $("#sm_gimbal_down").click(function () { gimbal_down(10); });
+        {% endif %}
+
+        $("#sm_gimbal_center").click(function () { gimbal_center(); });
+
+        {% if uis['gimbal_horz'] == 'active' %}
+            $("#sm_gimbal_left").click(function () { gimbal_left(10); });
+            $("#sm_gimbal_right").click(function () { gimbal_right(10); });
+        {% endif %}
     });
 
     function toggle_menu() {
@@ -74,6 +86,37 @@
     }
     {% endif %}
 
+    {% if uis['gimbal_vert'] == 'active' %}
+
+        function gimbal_up( degrees ) {
+            $.get("/ajax/gimbal/rotate/up/" + degrees , function(data, status){ return false; });
+            view_refresh();
+        }
+
+        function gimbal_down( degrees ) {
+            $.get("/ajax/gimbal/rotate/down/" + degrees , function(data, status){ return false; });
+            view_refresh();
+        }
+    {% endif %}
+
+    {% if uis['gimbal_horz'] == 'active' %}
+
+        function gimbal_left( degrees ) {
+            $.get("/ajax/gimbal/rotate/left/" + degrees , function(data, status){ return false; });
+            view_refresh();
+        }
+
+        function gimbal_right( degrees ) {
+            $.get("/ajax/gimbal/rotate/right/" + degrees , function(data, status){ return false; });
+            view_refresh();
+        }
+    {% endif %}
+
+    function gimbal_center() {
+        $.get("/ajax/gimbal/center", function(data, status){ return false; });
+        view_refresh();
+    }
+
 </script>
 
 <div id="drive_menu">
@@ -98,21 +141,31 @@
 </div>
 
 <div id="fpv_menu">
-    <button type="button" class="btn-menu menu-top" id="sm_turn_cam_up" title="Look Up">
+
+    <button type="button" class="btn-menu menu-top" id="sm_gimbal_up" title="Look Up">
         <i class="fa fa-binoculars fa-rotate-180 fa-3x"></i>
     </button>
-    <button type="button" class="btn-menu" id="sm_turn_cam_left" title="Look Left">
+
+    {% if uis['gimbal_horz'] == 'active' %}
+    <button type="button" class="btn-menu" id="sm_gimbal_left" title="Look Left">
         <i class="fa fa-binoculars fa-rotate-90 fa-3x"></i>
     </button>
-    <button type="button" class="btn-menu" id="sm_center_cam" title="Center The Camera">
+    {% endif %}
+
+    <button type="button" class="btn-menu" id="sm_gimbal_center" title="Center The Camera">
         <i class="fa fa-crosshairs fa-3x"></i>
     </button>
-    <button type="button" class="btn-menu" id="sm_turn_cam_right" title="Look Right">
+
+    {% if uis['gimbal_horz'] == 'active' %}
+    <button type="button" class="btn-menu" id="sm_gimbal_right" title="Look Right">
         <i class="fa fa-binoculars fa-rotate-270 fa-3x"></i>
     </button>
-    <button type="button" class="btn-menu" id="sm_turn_cam_down" title="Look Down">
+    {% endif %}
+
+    <button type="button" class="btn-menu" id="sm_gimbal_down" title="Look Down">
         <i class="fa fa-binoculars fa-3x"></i>
     </button>
+
     <button type="button" class="btn-menu-selected menu-bottom" id="toggle_menu_2" title="Aim Camera">
         <i class="fa fa-video-camera fa-3x"></i>
     </button>
