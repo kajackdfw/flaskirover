@@ -37,7 +37,7 @@ server_os = os.name
 uis = rover.get_uis_at_startup()
 uis['current'] = 'index'
 uis['theme'] = "/static/css/theme-" + rover.config['ui_size'] + "-" + rover.config['ui_color'] + ".css"
-uis['time'] = '{:%Y%m%d%H%M}'.format(datetime.datetime.now())
+uis['time'] = '{:%Y%m%d%H}'.format(datetime.datetime.now())
 
 # CAMERA System
 vision = Vision(rover.config)
@@ -95,6 +95,9 @@ def page_picture(pic):
 @app.route('/settings')
 def page_settings():
     uis['current'] = 'settings'
+    # on Windows, refresh the CSS every time of UI development, but not for Rpi os
+    if not os.name == 'posix':
+        uis['time'] = '{:%Y%m%d%H%M}'.format(datetime.datetime.now())
     return render_template('settings.html', page_title=' / RaspRover Settings', uis=uis, settings=rover.config)
 
 
