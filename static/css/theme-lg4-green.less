@@ -82,3 +82,34 @@ body {
     color: greenyellow;
     border: 2px solid olivedrab;
 }
+
+.panel-settings {
+    &:extend(.panel-settings);
+    border: 2px solid olivedrab;
+    background-color: darkolivegreen;
+    color: greenyellow;
+    margin-left : 8px;
+    margin-right: 8px;
+    margin-top: 3px;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+}
+
+.panel-settings-heading {
+    &:extend(.panel-heading);
+    background-color: darkolivegreen;
+    color: black;
+    border-bottom: 1px solid darkolivegreen;
+}
+
+.panel-settings-body {
+    &:extend(.panel-body);
+    background-color: black;
+    color: greenyellow;
+    padding: 10px;
+    -moz-border-radius-bottomleft: @radius;
+    -moz-border-radius-bottomright: @radius;
+    border-bottom-left-radius: @radius;
+    border-bottom-right-radius: @radius;
+}
+
