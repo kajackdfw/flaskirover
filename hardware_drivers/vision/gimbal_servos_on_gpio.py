@@ -16,10 +16,10 @@ class Gimbal:
         uis['gimbal_vert'] = 'active'
     except NameError:
         print(" - No Rpi GPIO library available.")
-        settings['gimbal_horz'] = 'False'
-        uis['gimbal_horz'] = 'disabled'
-        settings['gimbal_vert'] = 'False'
+        settings['gimbal_horz_servo_gpio'] = False
+        settings['gimbal_vert_servo_gpio'] = False
         uis['gimbal_vert'] = 'disabled'
+        uis['gimbal_horz'] = 'disabled'
 
     def __init__(self, start_settings):
         self.settings['gimbal_horz_servo_gpio'] = start_settings['gimbal_horz_servo_gpio']
@@ -30,7 +30,6 @@ class Gimbal:
             self.settings['gimbal_horz_center'] = start_settings['gimbal_horz_center']
             self.settings['gimbal_horz_full_right'] = start_settings['gimbal_horz_full_right']
             self.settings['gimbal_horz_step'] = start_settings['gimbal_horz_step']
-            self.uis['gimbal_horz'] = 'active'
         else:
             self.uis['gimbal_horz'] = 'disabled'
 
@@ -39,18 +38,17 @@ class Gimbal:
             self.settings['gimbal_vert_center'] = start_settings['gimbal_vert_center']
             self.settings['gimbal_vert_full_up'] = start_settings['gimbal_vert_full_up']
             self.settings['gimbal_vert_step'] = start_settings['gimbal_vert_step']
-            self.uis['gimbal_vert'] = 'active'
         else:
             self.uis['gimbal_vert'] = 'disabled'
 
         # Initialize servos
-        if self.settings['gimbal_vert_servo_gpio']:
+        if self.settings['gimbal_vert_servo_gpio'] and self.uis['gimbal_vert'] == 'active':
             GPIO.setup(self.settings['gimbal_vert_servo_gpio'], GPIO.OUT)
             self.pwm_vert = GPIO.PWM(self.settings['gimbal_vert_servo_gpio'], 50)
             self.pwm_vert.start(5)
             self.center()
 
-        if self.settings['gimbal_horz_servo_gpio']:
+        if self.settings['gimbal_horz_servo_gpio'] and self.uis['gimbal_horz'] == 'active':
             GPIO.setup(self.settings['gimbal_horz_servo_gpio'], GPIO.OUT)
             self.pwm_horz= GPIO.PWM(self.settings['gimbal_horz_servo_gpio'], 50)
             self.pwm_horz.start(5)
