@@ -10,8 +10,7 @@ class Motor:
         self.settings = {}
         self.settings['drive_mode'] = 'immobile'
         self.settings['drive'] = 'disabled'
-
-        self.uis['motor'] = 'hidden'
+        self.uis['motor'] = 'disabled'
 
     def get_uis(self):
         return self.uis
