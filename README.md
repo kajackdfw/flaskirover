@@ -1,6 +1,6 @@
-# Raspi Rover OS
+# Flaski Rover
 
-***A Python based Rover OS for the Raspberry PI***
+***A Python Flask based Rover OS for the Raspberry PI***
 
 **v0.03.01 WORKING**
 
@@ -20,7 +20,7 @@
 1. Compose About page
 1. Load A Config file for startup settings
 1. Prompt User for setup and write a default config file
-1. Allow user to edit / tweek some numeric settings
+1. Build a settings page
 
 **FUTURE FEATURES:**
 1. Link to Arduino by USB
@@ -41,7 +41,7 @@
 
 **Windows**
 
-_The windows setup is for UI development or demo only, no Camera or Motor control._
+_The windows setup is for UI development or demo only, Camera and Motor control on Raspberry Pi only._
 
 1. Python 3
 2. Flask
