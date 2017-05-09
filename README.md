@@ -1,4 +1,4 @@
-# Flaski Rover
+# FlaskiRover
 
 ***A Python Flask based Rover OS for the Raspberry PI***
 
