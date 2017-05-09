@@ -27,6 +27,10 @@ class Motor:
         uis['drive'] = 'disabled'
 
     def __init__(self, start_settings):
+
+        if self.uis['drive'] == 'disabled':
+            return False
+
         if 'drive_mode' in start_settings:
             self.settings['drive_mode'] = start_settings['drive_mode']
         else:
