@@ -1,7 +1,8 @@
 try:
-    import RPi.GPIO as GPIO
+    import time
+    import wiringpi
 except ImportError:
-    print(' - Library Rpi GPIO is not available on Windows.')
+    print(' - Library wiringpi is not available on Windows.')
 
 class Gimbal:
 
@@ -11,13 +12,16 @@ class Gimbal:
     pwm_vert = False
 
     try:
-        GPIO.setmode(GPIO.BOARD)
+        wiringpi.wiringPiSetupGpio()
+        wiringpi.pinMode(18, wiringpi.GPIO.PWM_OUTPUT)
+        wiringpi.pwmSetMode(wiringpi.GPIO.PWM_MODE_MS)
+        wiringpi.pwmSetClock(192)
+        wiringpi.pwmSetRange(2000)
+        delay_period = 0.01
         uis['gimbal_horz'] = 'active'
         uis['gimbal_vert'] = 'active'
     except NameError:
-        print(" - No Rpi GPIO library available.")
-        settings['gimbal_horz_servo_gpio'] = False
-        settings['gimbal_vert_servo_gpio'] = False
+        print(" - No wiringpi library available.")
         uis['gimbal_vert'] = 'disabled'
         uis['gimbal_horz'] = 'disabled'
 
@@ -25,7 +29,7 @@ class Gimbal:
         self.settings['gimbal_horz_servo_gpio'] = start_settings['gimbal_horz_servo_gpio']
         self.settings['gimbal_vert_servo_gpio'] = start_settings['gimbal_vert_servo_gpio']
 
-        if (self.settings['gimbal_horz_servo_gpio']) is not False:
+        if (self.settings['gimbal_horz_servo_gpio']) is not False and self.uis['gimbal_horz'] is not 'disabled':
             self.settings['gimbal_horz_full_left'] = start_settings['gimbal_horz_full_left']
             self.settings['gimbal_horz_center'] = start_settings['gimbal_horz_center']
             self.settings['gimbal_horz_full_right'] = start_settings['gimbal_horz_full_right']
@@ -33,7 +37,7 @@ class Gimbal:
         else:
             self.uis['gimbal_horz'] = 'disabled'
 
-        if (self.settings['gimbal_vert_servo_gpio']) is not False:
+        if (self.settings['gimbal_vert_servo_gpio']) is not False and self.uis['gimbal_vert'] is not 'disabled':
             self.settings['gimbal_vert_full_down'] = start_settings['gimbal_vert_full_down']
             self.settings['gimbal_vert_center'] = start_settings['gimbal_vert_center']
             self.settings['gimbal_vert_full_up'] = start_settings['gimbal_vert_full_up']
