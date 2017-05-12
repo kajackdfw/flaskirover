@@ -102,7 +102,7 @@ def page_settings():
     # on Windows, refresh the CSS every time of UI development, but not for Rpi os
     if not os.name == 'posix':
         uis['time'] = '{:%Y%m%d%H%M}'.format(datetime.datetime.now())
-    return render_template('settings.html', page_title=' / RaspRover Settings', uis=uis, settings=rover.config)
+    return render_template('settings.html', page_title='Settings', uis=uis, settings=rover.config)
 
 
 @app.route('/ajax/zoom/<image_file>/<zoom_factor>')
