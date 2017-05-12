@@ -21,7 +21,7 @@ else:
 # Gimbal for camera and fpv
 if rover.config['gimbal_vert_servo_gpio'] is not False or rover.config['gimbal_horz_servo_gpio'] is not False:
     sys.path.append('hardware_drivers/gimbal')
-    from servos_on_gpio import Gimbal
+    from servos_using_wiringpi import Gimbal
 
 
 # MOTOR System

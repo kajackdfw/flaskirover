@@ -53,6 +53,7 @@ class Configure:
         self.config['tank_turn_speed'] = 110
 
         # Camera Gimbal
+        self.config['gimbal'] = "servos_using_wiringpi"
         self.config['gimbal_horz_servo_gpio'] = False
 
         # Available GPIO 4(p7), 17(p11) 27(p13) with AdaFruit Motor Hat
