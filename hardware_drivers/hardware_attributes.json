@@ -34,7 +34,12 @@
   },
   "Vision": {
       "raspberry_pi_8mp": {
-
+          "camera_vflip": { "0": false, "1": true },
+          "camera_hflip": { "0": false, "1": true }
+      },
+      "raspberry_pi_5mp": {
+          "camera_vflip": { "0": false, "1": true },
+          "camera_hflip": { "0": false, "1": true }
       }
   }
 
