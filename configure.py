@@ -27,8 +27,8 @@ class Configure:
         self.config['config_description'] = 'Default Afafruit Motor Hat Tank Config'
         self.config['drive_hat'] = 'adafruit_dc_and_stepper_motor_hat'
         self.config['drive_mode'] = 'tank'
-        self.config['view_x'] = 1056
-        self.config['view_y'] = 594
+        self.config['camera_res_x'] = 1056
+        self.config['camera_res_y'] = 594
         self.config['ui_color'] = 'green'
         self.config['ui_size'] = 'lg4'
         self.config['fpv'] = 'raspberry_pi_8mp'

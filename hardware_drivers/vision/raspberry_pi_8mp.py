@@ -33,22 +33,25 @@ class Vision:
         else:
             self.settings['path_to_thumbnails'] = 'static/camera/thumbnails'
 
-        if 'view_x' in start_settings:
-            self.settings['view_x'] = int(start_settings['view_x'])
+        if 'camera_res_x' in start_settings:
+            self.settings['camera_res_x'] = int(start_settings['camera_res_x'])
         else:
-            self.settings['view_x'] = 800
+            self.settings['camera_res_x'] = 800
 
-        if 'view_y' in start_settings:
-            self.settings['view_y'] = int(start_settings['view_y'])
+        if 'camera_res_y' in start_settings:
+            self.settings['camera_res_y'] = int(start_settings['camera_res_y'])
         else:
-            self.settings['view_y'] = 600
+            self.settings['camera_res_y'] = 600
 
         self.settings['camera'] = 'active'
+
 
         try:
             self.camera = PiCamera()
             sleep(4)
-            self.camera.resolution = (int(self.settings['view_x']), int(self.settings['view_y']))
+            self.camera.resolution = (int(self.settings['camera_res_x']), int(self.settings['camera_res_y']))
+            self.settings['camera_vflip'] = True
+            self.settings['camera_hflip'] = True
 
         except NameError:
             print(" - No Picamera for Windows")
@@ -88,7 +91,7 @@ class Vision:
             self.camera.capture(new_cam_image)
             new_cam_image.close()
             # restore web cam res
-            self.camera.resolution = (int(self.settings['view_x']), int(self.settings['view_y']))
+            self.camera.resolution = (int(self.settings['camera_res_x']), int(self.settings['camera_res_y']))
             return new_image_path_and_name
 
     def get_latest_web_cam_image(self):

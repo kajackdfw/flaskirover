@@ -27,15 +27,15 @@ class Picture:
         else:
             self.settings['path_to_thumbnails'] = 'static/camera/thumbnails'
 
-        if 'view_x' in start_settings:
-            self.settings['view_x'] = int(start_settings['view_x'])
+        if 'camera_res_x' in start_settings:
+            self.settings['camera_res_x'] = int(start_settings['camera_res_x'])
         else:
-            self.settings['view_x'] = 800
+            self.settings['camera_res_x'] = 800
 
-        if 'view_y' in start_settings:
-            self.settings['view_y'] = int(start_settings['view_y'])
+        if 'camera_res_y' in start_settings:
+            self.settings['camera_res_y'] = int(start_settings['camera_res_y'])
         else:
-            self.settings['view_x'] = 600
+            self.settings['camera_res_x'] = 600
 
         self.settings['zoom'] = 1.0
         self.settings['path_to_web_cam'] = start_settings['path_to_web_cam']
@@ -84,9 +84,9 @@ class Picture:
             zoom_options['zoom'] = 1.0
             zoom_options['zoom_out'] = 0
             zoom_options['zoom_in'] = 0.75
-        elif new_width < int(self.settings['view_x']):
-            new_width = int(self.settings['view_x'])
-            new_height = int(self.settings['view_x'] * zoom_options['y_aspect'])
+        elif new_width < int(self.settings['camera_res_x']):
+            new_width = int(self.settings['camera_res_x'])
+            new_height = int(self.settings['camera_res_x'] * zoom_options['y_aspect'])
             zoom_options['zoom'] = new_width / int(source_image.size[0])
             zoom_options['zoom_out'] = zoom_options['zoom'] + 0.25
             zoom_options['zoom_in'] = 0
@@ -231,7 +231,6 @@ class Picture:
             if not last_image == old_image:
                 print('  removing ' + old_image)
                 os.remove(old_image)
-
         return True
 
     def make_thumbnail(self, full_size_image):
