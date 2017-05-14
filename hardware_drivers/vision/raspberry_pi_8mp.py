@@ -52,6 +52,8 @@ class Vision:
             self.camera.resolution = (int(self.settings['camera_res_x']), int(self.settings['camera_res_y']))
             self.settings['camera_vflip'] = start_settings['camera_vflip']
             self.settings['camera_hflip'] = start_settings['camera_hflip']
+            self.camera.vflip = self.settings['camera_vflip']
+            self.camera.hflip = self.settings['camera_hflip']
 
         except NameError:
             print(" - No Picamera for Windows")
@@ -68,8 +70,8 @@ class Vision:
             # camera.start_preview()
             try:
                 self.camera.start_preview()
-                self.camera.vflip = True
-                self.camera.hflip = True
+                # self.camera.vflip = True
+                # self.camera.hflip = True
                 self.camera.capture(new_cam_image)
             except SystemError:
                 new_cam_image.close()
@@ -85,8 +87,8 @@ class Vision:
             self.camera.resolution = (2592, 1944)
             new_cam_image = open(new_image_path_and_name, 'wb')
             self.camera.start_preview()
-            self.camera.vflip = True
-            self.camera.hflip = True
+            # self.camera.vflip = True
+            # self.camera.hflip = True
             sleep(1)
             self.camera.capture(new_cam_image)
             new_cam_image.close()
