@@ -50,8 +50,8 @@ class Vision:
             self.camera = PiCamera()
             sleep(4)
             self.camera.resolution = (int(self.settings['camera_res_x']), int(self.settings['camera_res_y']))
-            self.settings['camera_vflip'] = self.settings['camera_vflip']
-            self.settings['camera_hflip'] = self.settings['camera_hflip']
+            self.settings['camera_vflip'] = start_settings['camera_vflip']
+            self.settings['camera_hflip'] = start_settings['camera_hflip']
 
         except NameError:
             print(" - No Picamera for Windows")
