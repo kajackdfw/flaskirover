@@ -50,8 +50,8 @@ class Configure:
         self.config['tank_right_reverse'] = 2
         self.config['tank_left_motor'] = 1
         self.config['tank_right_motor'] = 2
-        self.config['tank_speed_right'] = 125
-        self.config['tank_speed_left'] = 135
+        self.config['tank_speed_right'] = 135
+        self.config['tank_speed_left'] = 125
         self.config['tank_turn_speed'] = 110
 
         # Camera Gimbal
