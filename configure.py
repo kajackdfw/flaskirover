@@ -29,6 +29,8 @@ class Configure:
         self.config['drive_mode'] = 'tank'
         self.config['camera_res_x'] = 1056
         self.config['camera_res_y'] = 594
+        self.config['camera_vflip'] = False
+        self.config['camera_hflip'] = False
         self.config['ui_color'] = 'green'
         self.config['ui_size'] = 'lg4'
         self.config['fpv'] = 'raspberry_pi_8mp'
@@ -43,8 +45,8 @@ class Configure:
         #   BRAKE = 3
         #   RELEASE = 4
         self.config['tank_left_forward'] = 1
-        self.config['tank_right_forward'] = 2
-        self.config['tank_left_reverse'] = 1
+        self.config['tank_right_forward'] = 1
+        self.config['tank_left_reverse'] = 2
         self.config['tank_right_reverse'] = 2
         self.config['tank_left_motor'] = 1
         self.config['tank_right_motor'] = 2

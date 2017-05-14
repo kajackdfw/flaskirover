@@ -36,8 +36,9 @@
 
 1. Python 3
 1. sudo apt-get install python-dev
-1. Pillow ( with pip )
-1. Flask ( with pip )
+1. Pillow ( with pip3 )
+1. Flask ( with pip3 )
+1. WiringPi ( with pip3 )
 
 **Windows**
 
