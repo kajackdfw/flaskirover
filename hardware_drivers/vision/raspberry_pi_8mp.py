@@ -18,10 +18,10 @@ class Vision:
 
     def __init__(self, start_settings):
 
-        if 'path_to_web_cam' in start_settings:
-            self.settings['path_to_web_cam'] = start_settings['path_to_web_cam']
+        if 'path_to_fpv' in start_settings:
+            self.settings['path_to_fpv'] = start_settings['path_to_fpv']
         else:
-            self.settings['path_to_web_cam'] = 'static/fpv'
+            self.settings['path_to_fpv'] = 'static/fpv'
 
         if 'path_to_pictures' in start_settings:
             self.settings['path_to_pictures'] = start_settings['path_to_pictures']
@@ -33,15 +33,26 @@ class Vision:
         else:
             self.settings['path_to_thumbnails'] = 'static/camera/thumbnails'
 
-        if 'camera_res_x' in start_settings:
-            self.settings['camera_res_x'] = int(start_settings['camera_res_x'])
+        if 'camera_fpv_res_x' in start_settings:
+            self.settings['camera_fpv_res_x'] = int(start_settings['camera_fpv_res_x'])
         else:
-            self.settings['camera_res_x'] = 800
+            self.settings['camera_fpv_res_x'] = 480
 
-        if 'camera_res_y' in start_settings:
-            self.settings['camera_res_y'] = int(start_settings['camera_res_y'])
+        if 'camera_fpv_res_y' in start_settings:
+            self.settings['camera_fpv_res_y'] = int(start_settings['camera_fpv_res_y'])
         else:
-            self.settings['camera_res_y'] = 600
+            self.settings['camera_fpv_res_y'] = 320
+
+        #  camera_photo_res_x
+        if 'camera_photo_res_x' in start_settings:
+            self.settings['camera_photo_res_x'] = int(start_settings['camera_photo_res_x'])
+        else:
+            self.settings['camera_photo_res_x'] = 800
+
+        if 'camera_photo_res_y' in start_settings:
+            self.settings['camera_photo_res_y'] = int(start_settings['camera_photo_res_y'])
+        else:
+            self.settings['camera_photo_res_y'] = 600
 
         self.settings['camera'] = 'active'
 
@@ -49,7 +60,7 @@ class Vision:
         try:
             self.camera = PiCamera()
             sleep(4)
-            self.camera.resolution = (int(self.settings['camera_res_x']), int(self.settings['camera_res_y']))
+            self.camera.resolution = (int(self.settings['camera_fpv_res_x']), int(self.settings['camera_fpv_res_y']))
             self.settings['camera_vflip'] = start_settings['camera_vflip']
             self.settings['camera_hflip'] = start_settings['camera_hflip']
             self.camera.vflip = self.settings['camera_vflip']
@@ -62,48 +73,65 @@ class Vision:
             print(" - Camera is probably not attached?")
             self.settings['camera'] = 'disabled'
 
-    def take_web_cam_image(self):
+    def take_fpv_image(self):
         if self.settings['camera'] == 'active':
             time_stamp = '{:%Y%m%d%H%M%S}'.format(datetime.datetime.now())
-            new_image_path_and_name = self.settings['path_to_web_cam'] + "/" + time_stamp + ".jpg"
+            new_image_path_and_name = self.settings['path_to_fpv'] + "/" + time_stamp + ".jpg"
+            new_cam_image = open(new_image_path_and_name, 'wb')
+            # camera.start_preview()
+            try:
+                #  self.camera.start_preview()
+                self.camera.capture(new_cam_image)
+                new_cam_image.close()
+                return new_image_path_and_name
+            except SystemError:
+                new_cam_image.close()
+                os.remove(new_image_path_and_name)
+                return False
+
+    def take_first_fpv_image(self):
+        if self.settings['camera'] == 'active':
+            time_stamp = '{:%Y%m%d%H%M%S}'.format(datetime.datetime.now())
+            self.camera.resolution = (self.settings['camera_fpv_res_x'] / 2, self.settings['camera_fpv_res_y'] / 2)
+            new_image_path_and_name = self.settings['path_to_fpv'] + "/" + time_stamp + ".jpg"
             new_cam_image = open(new_image_path_and_name, 'wb')
             # camera.start_preview()
             try:
                 self.camera.start_preview()
-                # self.camera.vflip = True
-                # self.camera.hflip = True
                 self.camera.capture(new_cam_image)
+                new_cam_image.close()
+                self.camera.resolution = (self.settings['camera_fpv_res_x'], self.settings['camera_fpv_res_y'])
+                return new_image_path_and_name
             except SystemError:
                 new_cam_image.close()
                 os.remove(new_image_path_and_name)
+                self.camera.resolution = (self.settings['camera_fpv_res_x'], self.settings['camera_fpv_res_y'])
+                return False
 
-            new_cam_image.close()
 
     def take_picture(self):
         if self.settings['camera'] == 'active':
             time_stamp = '{:%Y%m%d%H%M%S}'.format(datetime.datetime.now())
             new_image_path_and_name = self.settings['path_to_pictures'] + "/" + time_stamp + ".jpg"
             # 2592x1944
-            self.camera.resolution = (2592, 1944)
+            self.camera.resolution = (self.settings['camera_fpv_res_x'], self.settings['camera_fpv_res_y'])
             new_cam_image = open(new_image_path_and_name, 'wb')
             self.camera.start_preview()
-            # self.camera.vflip = True
-            # self.camera.hflip = True
-            sleep(1)
+            sleep(2)
             self.camera.capture(new_cam_image)
             new_cam_image.close()
             # restore web cam res
-            self.camera.resolution = (int(self.settings['camera_res_x']), int(self.settings['camera_res_y']))
+            self.camera.resolution = (int(self.settings['camera_fpv_res_x']), int(self.settings['camera_fpv_res_y']))
             return new_image_path_and_name
 
     def get_latest_web_cam_image(self):
-        image_list = [f for f in listdir(self.settings['path_to_web_cam']) if isfile(join(self.settings['path_to_web_cam'], f))]
+        image_list = [f for f in listdir(self.settings['path_to_fpv']) if isfile(join(self.settings['path_to_fpv'], f))]
         last_timestamp = 0
         for image in image_list:
             filename_pieces = image.split('.')
             if int(filename_pieces[0]) > last_timestamp:
                 last_timestamp = int(filename_pieces[0])
-        last_filename = self.settings['path_to_web_cam'] + '/' + str(last_timestamp) + '.jpg'
+        last_filename = self.settings['path_to_fpv'] + '/' + str(last_timestamp) + '.jpg'
         return last_filename
 
     def get_list_of_pictures(self):

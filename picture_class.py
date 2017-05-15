@@ -12,10 +12,10 @@ class Picture:
 
     def __init__(self, start_settings):
 
-        if 'path_to_web_cam' in start_settings:
-            self.settings['path_to_web_cam'] = start_settings['path_to_web_cam']
+        if 'path_to_fpv' in start_settings:
+            self.settings['path_to_fpv'] = start_settings['path_to_fpv']
         else:
-            self.settings['path_to_web_cam'] = 'static/fpv'
+            self.settings['path_to_fpv'] = 'static/fpv'
 
         if 'path_to_pictures' in start_settings:
             self.settings['path_to_pictures'] = start_settings['path_to_pictures']
@@ -27,18 +27,18 @@ class Picture:
         else:
             self.settings['path_to_thumbnails'] = 'static/camera/thumbnails'
 
-        if 'camera_res_x' in start_settings:
-            self.settings['camera_res_x'] = int(start_settings['camera_res_x'])
+        if 'camera_fpv_res_x' in start_settings:
+            self.settings['camera_fpv_res_x'] = int(start_settings['camera_fpv_res_x'])
         else:
-            self.settings['camera_res_x'] = 800
+            self.settings['camera_fpv_res_x'] = 800
 
-        if 'camera_res_y' in start_settings:
-            self.settings['camera_res_y'] = int(start_settings['camera_res_y'])
+        if 'camera_fpv_res_y' in start_settings:
+            self.settings['camera_fpv_res_y'] = int(start_settings['camera_fpv_res_y'])
         else:
-            self.settings['camera_res_x'] = 600
+            self.settings['camera_fpv_res_x'] = 600
 
         self.settings['zoom'] = 1.0
-        self.settings['path_to_web_cam'] = start_settings['path_to_web_cam']
+        self.settings['path_to_fpv'] = start_settings['path_to_fpv']
         self.clean_pillow_temp()
 
     def get_list_of_pictures(self):
@@ -84,9 +84,9 @@ class Picture:
             zoom_options['zoom'] = 1.0
             zoom_options['zoom_out'] = 0
             zoom_options['zoom_in'] = 0.75
-        elif new_width < int(self.settings['camera_res_x']):
-            new_width = int(self.settings['camera_res_x'])
-            new_height = int(self.settings['camera_res_x'] * zoom_options['y_aspect'])
+        elif new_width < int(self.settings['camera_fpv_res_x']):
+            new_width = int(self.settings['camera_fpv_res_x'])
+            new_height = int(self.settings['camera_fpv_res_x'] * zoom_options['y_aspect'])
             zoom_options['zoom'] = new_width / int(source_image.size[0])
             zoom_options['zoom_out'] = zoom_options['zoom'] + 0.25
             zoom_options['zoom_in'] = 0
@@ -224,10 +224,10 @@ class Picture:
         return True
 
     def clean_fpv_cache(self, last_image):
-        delete_list = [f for f in listdir(self.settings['path_to_web_cam']) if isfile(join(self.settings['path_to_web_cam'], f))]
+        delete_list = [f for f in listdir(self.settings['path_to_fpv']) if isfile(join(self.settings['path_to_fpv'], f))]
         for image in delete_list:
             filename_pieces = image.split('.')
-            old_image = self.settings['path_to_web_cam'] + '/' + filename_pieces[0] + '.' + filename_pieces[1]
+            old_image = self.settings['path_to_fpv'] + '/' + filename_pieces[0] + '.' + filename_pieces[1]
             if not last_image == old_image:
                 print('  removing ' + old_image)
                 os.remove(old_image)

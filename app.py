@@ -62,7 +62,7 @@ for setting, val in gimbal.uis.items():
 
 @app.route('/')
 def page_index():
-    vision.take_web_cam_image()
+    vision.take_fpv_image()
     latest_image = vision.get_latest_web_cam_image()
     uis['current'] = 'index'
     return render_template('drive.html', page_title='Home', image=latest_image, uis=uis)
@@ -70,7 +70,7 @@ def page_index():
 
 @app.route('/new')
 def page_new():
-    vision.take_web_cam_image()
+    vision.take_fpv_image()
     latest_image = vision.get_latest_web_cam_image()
     uis['current'] = 'new'
     return render_template('new.html', image=latest_image, uis=uis)
@@ -125,7 +125,7 @@ def pan_image(image_file, pan_direction):
 @app.route('/ajax/view_refresh')
 def view_refresh():
     if vision.settings['camera'] == 'active':
-        vision.take_web_cam_image()
+        vision.take_fpv_image()
         latest_image = vision.get_latest_web_cam_image()
         picture.clean_fpv_cache(latest_image)
     latest_image = vision.get_latest_web_cam_image()
@@ -150,28 +150,28 @@ def set_white_balance(mode):
 @app.route('/ajax/motor/forward/crawl/<seconds>')
 def motor_crawl(seconds):
     motor.forward_crawl(seconds)
-    vision.take_web_cam_image()
+    vision.take_fpv_image()
     return True
 
 
 @app.route('/ajax/motor/backward/crawl/<seconds>')
 def motor_crawl_back(seconds):
     motor.backward_crawl(seconds)
-    vision.take_web_cam_image()
+    vision.take_fpv_image()
     return True
 
 
 @app.route('/ajax/motor/rotate/ccw/<second_hundredths>')
 def motor_rotate_ccw(second_hundredths):
     motor.rotate_ccw(second_hundredths)
-    vision.take_web_cam_image()
+    vision.take_fpv_image()
     return True
 
 
 @app.route('/ajax/motor/rotate/cw/<second_hundredths>')
 def motor_rotate_cw(second_hundredths):
     motor.rotate_cw(second_hundredths)
-    vision.take_web_cam_image()
+    vision.take_fpv_image()
     return True
 
 
@@ -196,7 +196,7 @@ def gimbal_center():
 @app.route('/stop')
 def stop():
     motor.turn_off_motors()
-    vision.take_web_cam_image()
+    vision.take_fpv_image()
     latest_image = vision.get_latest_web_cam_image()
     uis['current'] = 'index'
     return render_template('drive.html', page_title='Home', image=latest_image, uis=uis)

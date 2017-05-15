@@ -27,8 +27,10 @@ class Configure:
         self.config['config_description'] = 'Default Afafruit Motor Hat Tank Config'
         self.config['drive_hat'] = 'adafruit_dc_and_stepper_motor_hat'
         self.config['drive_mode'] = 'tank'
-        self.config['camera_res_x'] = 1056
-        self.config['camera_res_y'] = 594
+        self.config['camera_fpv_res_x'] = 1056
+        self.config['camera_fpv_res_y'] = 594
+        self.config['camera_photo_res_x'] = 3280  # for v2, or 2592 for v1
+        self.config['camera_photo_res_y'] = 2464  # for v2, or 1944 for v1
         self.config['camera_vflip'] = False
         self.config['camera_hflip'] = False
         self.config['ui_color'] = 'green'
@@ -36,7 +38,7 @@ class Configure:
         self.config['fpv'] = 'raspberry_pi_8mp'
         self.config['camera'] = 'raspberry_pi_8mp'
         self.config['sensor_array'] = 'none'
-        self.config['path_to_web_cam'] = 'static/fpv'
+        self.config['path_to_fpv'] = 'static/fpv'
         self.config['sensor_array'] = 'none'
 
         # Adafruit_MotorHAT:
@@ -67,7 +69,7 @@ class Configure:
         self.config['gimbal_vert_step'] = 10
 
         # This folder gets purged of old images often, only the last image is safe
-        self.config['path_to_web_cam'] = 'static/fpv'
+        self.config['path_to_fpv'] = 'static/fpv'
 
         # This can be redirected to ? a dropbox folder maybe?
         self.config['path_to_pictures'] = 'static/camera/photos'
