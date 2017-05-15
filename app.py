@@ -180,7 +180,7 @@ def gimbal_rotate_up(degrees):
     gimbal.rotate_up(degrees)
     return True
 
-
+# 192.168.1.12 - - [14/May/2017 20:52:36] "GET /ajax/gimbal/rotate/up/10 HTTP/1.1" 500 -
 @app.route('/ajax/gimbal/rotate/down/<degrees>')
 def gimbal_rotate_down(degrees):
     gimbal.rotate_down(degrees)

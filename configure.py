@@ -60,10 +60,10 @@ class Configure:
 
         # Available GPIO 4(p7), 17(p11) 27(p13) with AdaFruit Motor Hat
         self.config['gimbal_vert_servo_gpio'] = 17
-        self.config['gimbal_vert_full_down'] = 0
+        self.config['gimbal_vert_full_down'] = 50
         self.config['gimbal_vert_park'] = 125
         self.config['gimbal_vert_center'] = 125
-        self.config['gimbal_vert_full_up'] = 255
+        self.config['gimbal_vert_full_up'] = 250
         self.config['gimbal_vert_step'] = 10
 
         # This folder gets purged of old images often, only the last image is safe

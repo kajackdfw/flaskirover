@@ -69,14 +69,14 @@ class Gimbal:
         if self.settings['gimbal_vert_position'] < self.settings['gimbal_vert_full_down']:
             self.settings['gimbal_vert_position'] = self.settings['gimbal_vert_full_down']
         wiringpi.pwmWrite(self.settings['gimbal_vert_servo_gpio'], self.settings['gimbal_vert_position'])
-        return False
+        return True
 
     def rotate_up(self, degrees):
         self.settings['gimbal_vert_position'] += self.settings['gimbal_vert_step'] * int(degrees)
         if self.settings['gimbal_vert_position'] > self.settings['gimbal_vert_full_up']:
             self.settings['gimbal_vert_position'] = self.settings['gimbal_vert_full_up']
         wiringpi.pwmWrite(self.settings['gimbal_vert_servo_gpio'], self.settings['gimbal_vert_position'])
-        return False
+        return True
 
     def rotate_left(self, degrees):
         self.settings['gimbal_horz_position'] += self.settings['gimbal_horz_step'] * int(degrees)
