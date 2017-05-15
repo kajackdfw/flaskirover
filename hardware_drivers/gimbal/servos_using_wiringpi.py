@@ -65,6 +65,7 @@ class Gimbal:
         return True
 
     def rotate_down(self, degrees):
+        print(" ! rotate_down called")
         self.settings['gimbal_vert_position'] -= self.settings['gimbal_vert_step'] * int(degrees)
         if self.settings['gimbal_vert_position'] < self.settings['gimbal_vert_full_down']:
             self.settings['gimbal_vert_position'] = self.settings['gimbal_vert_full_down']
@@ -72,6 +73,7 @@ class Gimbal:
         return True
 
     def rotate_up(self, degrees):
+        print(" ! rotate_up called")
         self.settings['gimbal_vert_position'] += self.settings['gimbal_vert_step'] * int(degrees)
         if self.settings['gimbal_vert_position'] > self.settings['gimbal_vert_full_up']:
             self.settings['gimbal_vert_position'] = self.settings['gimbal_vert_full_up']
