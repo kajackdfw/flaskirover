@@ -150,28 +150,34 @@ def set_white_balance(mode):
 @app.route('/ajax/motor/forward/crawl/<seconds>')
 def motor_crawl(seconds):
     motor.forward_crawl(seconds)
-    vision.take_fpv_image()
+    vision.take_first_fpv_image()
     return True
 
 
 @app.route('/ajax/motor/backward/crawl/<seconds>')
 def motor_crawl_back(seconds):
     motor.backward_crawl(seconds)
-    vision.take_fpv_image()
+    vision.take_first_fpv_image()
     return True
 
 
 @app.route('/ajax/motor/rotate/ccw/<second_hundredths>')
 def motor_rotate_ccw(second_hundredths):
     motor.rotate_ccw(second_hundredths)
-    vision.take_fpv_image()
+    vision.take_first_fpv_image()
     return True
 
 
 @app.route('/ajax/motor/rotate/cw/<second_hundredths>')
 def motor_rotate_cw(second_hundredths):
     motor.rotate_cw(second_hundredths)
-    vision.take_fpv_image()
+    vision.take_first_fpv_image()
+    return True
+
+
+@app.route('/ajax/motor/speed/<multiplier>')
+def motor_speed(multiplier):
+    motor.speed_adjust(multiplier)
     return True
 
 
@@ -179,6 +185,7 @@ def motor_rotate_cw(second_hundredths):
 def gimbal_rotate_up(degrees):
     gimbal.rotate_up(degrees)
     return True
+
 
 # 192.168.1.12 - - [14/May/2017 20:52:36] "GET /ajax/gimbal/rotate/up/10 HTTP/1.1" 500 -
 @app.route('/ajax/gimbal/rotate/down/<degrees>')

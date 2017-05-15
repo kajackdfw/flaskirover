@@ -1,12 +1,13 @@
 <script type="application/javascript">
 
-    var menu_mode = 'fpv';
+    var menu_mode = 'drive';
     var web_cam_timer = '';
 
     $( document ).ready(function() {
 
-        $('#drive_menu').hide();
+        $('#fpv_menu').hide();
         $('#color_menu').hide();
+        $('#speed_menu').hide();
 
         $("#sm_rover_forward").click(function () { rover_forward(2); });
         $("#sm_rover_backward").click(function () { rover_backward(2); });
@@ -22,6 +23,11 @@
         $("#color_fluorescent").click(function () { set_color_mode('fluorescent'); });
         $("#color_tungsten").click(function () { set_color_mode('tungsten'); });
         $("#color_auto").click(function () { set_color_mode('auto'); });
+
+        $("#sm_speed_max").click(function () { rover_speed(2.0); });
+        $("#sm_speed_fast").click(function () { rover_speed(1.5); });
+        $("#sm_speed_reset").click(function () { rover_speed(1.0); });
+        $("#sm_speed_creep").click(function () { rover_speed(0.75); });
 
         {% if uis['gimbal_vert'] == 'active' %}
             $("#sm_gimbal_up").click(function () { gimbal_up(10); });
@@ -43,18 +49,28 @@
             $('#fpv_menu').hide();
             $('#color_menu').hide();
             $('#drive_menu').show();
+            $('#speed_menu').hide();
         }
         else if( menu_mode == 'drive' ) {
+            menu_mode = 'speed';
+            $('#drive_menu').hide();
+            $('#color_menu').hide();
+            $('#fpv_menu').hide();
+            $('#speed_menu').show();
+        }
+        else if( menu_mode == 'speed' ) {
             menu_mode = 'color';
             $('#drive_menu').hide();
             $('#color_menu').show();
             $('#fpv_menu').hide();
+            $('#speed_menu').hide();
         }
         else if( menu_mode == 'color' ) {
             menu_mode = 'fpv';
             $('#color_menu').hide();
             $('#drive_menu').hide();
             $('#fpv_menu').show();
+            $('#speed_menu').hide();
         }
     }
 
@@ -84,7 +100,13 @@
         $.get("/ajax/motor/rotate/cw/" + seconds , function(data, status){ return false; });
         web_cam_timer = setInterval(function () { view_refresh(); }, 5000);
     }
+
+    function rover_speed( multiplier ) {
+        $.get("/ajax/motor/speed/" + multiplier , function(data, status){ return false; });
+    }
+
     {% endif %}
+
 
     {% if uis['gimbal_vert'] == 'active' %}
 
@@ -139,6 +161,27 @@
         <i class="fa fa-truck fa-3x"></i>
     </button>
 </div>
+
+
+<div id="speed_menu">
+    <button type="button" class="btn-menu menu-top" id="sm_speed_max" title="Max Speed">
+        <B>MAX</B>
+    </button>
+    <button type="button" class="btn-menu" id="sm_speed_fast" title="Speed 1.5x">
+        <B>FAST</B>
+    </button>
+    <button type="button" class="btn-menu" id="sm_speed_reset" title="Normal Speed">
+        <B>NORMAL</B>
+    </button>
+    <button type="button" class="btn-menu" id="sm_speed_creep" title="Creep">
+        <B>SLOW</B>
+    </button>
+
+    <button type="button" class="btn-menu-selected menu-bottom" id="toggle_menu_4" title="Adjust Rover Speed">
+        <i class="fa fa-tachometer fa-3x"></i>
+    </button>
+</div>
+
 
 <div id="fpv_menu">
 
