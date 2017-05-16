@@ -58,29 +58,28 @@ class Motor:
         return True
 
     def forward_crawl(self, seconds):
-        if self.settings['motor_speed'] == 1.0:
-            self.right_motor.run(self.settings['tank_right_forward'])
-            self.left_motor.run(self.settings['tank_left_forward'])
-        elif self.settings['motor_speed'] == 1.5:
-            self.right_motor.run(int(self.settings['tank_right_forward'] * 1.5))
-            self.left_motor.run(int(self.settings['tank_left_forward'] * 1.5))
-        elif self.settings['motor_speed'] == 0.75:
-            self.right_motor.run(int(self.settings['tank_right_forward'] * 0.75))
-            self.left_motor.run(int(self.settings['tank_left_forward'] * 0.75))
-        elif self.settings['motor_speed'] == 2.0:
-            self.right_motor.run(int(self.settings['tank_speed_right_max'] * 0.75))
-            self.left_motor.run(int(self.settings['tank_speed_left_max'] * 0.75))
+        if self.settings['motor_speed'] == 2.0:
+            self.right_motor.setSpeed(self.settings['tank_speed_right_max'])
+            self.left_motor.setSpeed(self.settings['tank_speed_left_max'])
+        else:
+            self.right_motor.setSpeed(int(self.settings['tank_speed_right'] * self.settings['motor_speed']))
+            self.left_motor.setSpeed(int(self.settings['tank_speed_left'] * self.settings['motor_speed']))
 
+        self.right_motor.run(self.settings['tank_right_forward'])
+        self.left_motor.run(self.settings['tank_left_forward'])
         sleep(int(seconds))
         self.left_motor.setSpeed(0)
         self.right_motor.setSpeed(0)
         return True
 
     def backward_crawl(self, seconds):
-        # right_motor = self.mh.getMotor(self.settings['tank_right_motor'])
-        # left_motor = self.mh.getMotor(self.settings['tank_left_motor'])
-        self.right_motor.setSpeed(self.settings['tank_speed_right'])
-        self.left_motor.setSpeed(self.settings['tank_speed_left'])
+        if self.settings['motor_speed'] == 2.0:
+            self.right_motor.setSpeed(self.settings['tank_speed_right_max'])
+            self.left_motor.setSpeed(self.settings['tank_speed_left_max'])
+        else:
+            self.right_motor.setSpeed(int(self.settings['tank_speed_right'] * self.settings['motor_speed']))
+            self.left_motor.setSpeed(int(self.settings['tank_speed_left'] * self.settings['motor_speed']))
+
         self.right_motor.run(self.settings['tank_right_reverse'])
         self.left_motor.run(self.settings['tank_left_reverse'])
         sleep(int(seconds))
@@ -89,10 +88,13 @@ class Motor:
         return True
 
     def rotate_ccw(self, second_hundredths):
-        # right_motor = self.mh.getMotor(self.settings['tank_right_motor'])
-        # left_motor = self.mh.getMotor(self.settings['tank_left_motor'])
-        self.right_motor.setSpeed(self.settings['tank_turn_speed'])
-        self.left_motor.setSpeed(self.settings['tank_turn_speed'])
+        if self.settings['motor_speed'] == 2.0:
+            self.right_motor.setSpeed(self.settings['tank_speed_right_max'])
+            self.left_motor.setSpeed(self.settings['tank_speed_left_max'])
+        else:
+            self.right_motor.setSpeed(int(self.settings['tank_speed_right'] * self.settings['motor_speed']))
+            self.left_motor.setSpeed(int(self.settings['tank_speed_left'] * self.settings['motor_speed']))
+
         self.right_motor.run(self.settings['tank_right_forward'])
         self.left_motor.run(self.settings['tank_left_reverse'])
         sleep(float(second_hundredths) / 100)
@@ -101,10 +103,13 @@ class Motor:
         return True
 
     def rotate_cw(self, second_hundredths):
-        # right_motor = self.mh.getMotor(self.settings['tank_right_motor'])
-        # left_motor = self.mh.getMotor(self.settings['tank_left_motor'])
-        self.right_motor.setSpeed(self.settings['tank_turn_speed'])
-        self.left_motor.setSpeed(self.settings['tank_turn_speed'])
+        if self.settings['motor_speed'] == 2.0:
+            self.right_motor.setSpeed(self.settings['tank_speed_right_max'])
+            self.left_motor.setSpeed(self.settings['tank_speed_left_max'])
+        else:
+            self.right_motor.setSpeed(int(self.settings['tank_speed_right'] * self.settings['motor_speed']))
+            self.left_motor.setSpeed(int(self.settings['tank_speed_left'] * self.settings['motor_speed']))
+
         self.right_motor.run(self.settings['tank_right_reverse'])
         self.left_motor.run(self.settings['tank_left_forward'])
         sleep(float(second_hundredths) / 100)
