@@ -55,6 +55,8 @@ class Configure:
         self.config['tank_speed_right'] = 155
         self.config['tank_speed_left'] = 145
         self.config['tank_turn_speed'] = 135
+        self.config['tank_speed_right_max'] = 255
+        self.config['tank_speed_left_max'] = 235
 
         # Camera Gimbal
         self.config['gimbal'] = "servos_using_wiringpi"
