@@ -21,12 +21,14 @@ class Motor:
         mh = Adafruit_MotorHAT(addr=0x60)
         settings['drive'] = 'active'
         uis['drive'] = 'active'
+        uis['motor_speed'] = 1.0
         right_motor = None
         left_motor = None
     except NameError:
         print(" - No Adafruit_MotorHAT library available.")
         settings['drive'] = 'disabled'
         uis['drive'] = 'disabled'
+        uis['motor_speed'] = 1.0
 
     def __init__(self, start_settings):
 
@@ -55,6 +57,7 @@ class Motor:
 
     def speed_adjust(self, multiplier):
         self.settings['motor_speed'] = float(multiplier)
+        self.uis['motor_speed'] = float(multiplier)
         return True
 
     def forward_crawl(self, seconds):

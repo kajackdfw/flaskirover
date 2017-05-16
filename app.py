@@ -50,6 +50,7 @@ uis['camera'] = vision.settings['camera']
 # MOTOR SYSTEM
 motor = Motor(rover.config)
 uis['drive'] = motor.uis['drive']
+uis['motor_speed'] = motor.uis['motor_speed']
 
 # PICTURE GALLERY
 picture = Picture(rover.config)
@@ -65,6 +66,7 @@ def page_index():
     vision.take_fpv_image()
     latest_image = vision.get_latest_web_cam_image()
     uis['current'] = 'index'
+    uis['motor_speed'] = motor.uis['motor_speed']
     return render_template('drive.html', page_title='Home', image=latest_image, uis=uis)
 
 

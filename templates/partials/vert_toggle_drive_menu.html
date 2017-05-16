@@ -2,6 +2,7 @@
 
     var menu_mode = 'drive';
     var web_cam_timer = '';
+    var motor_speed = {{ uis['motor_speed'] }}
 
     $( document ).ready(function() {
 
@@ -17,6 +18,7 @@
         $("#toggle_menu_1").click(function () { toggle_menu(); });
         $("#toggle_menu_2").click(function () { toggle_menu(); });
         $("#toggle_menu_3").click(function () { toggle_menu(); });
+        $("#toggle_menu_4").click(function () { toggle_menu(); });
 
         $("#color_sunlight").click(function () { set_color_mode('sunlight'); });
         $("#color_cloudy").click(function () { set_color_mode('cloudy'); });
@@ -24,10 +26,10 @@
         $("#color_tungsten").click(function () { set_color_mode('tungsten'); });
         $("#color_auto").click(function () { set_color_mode('auto'); });
 
-        $("#sm_speed_max").click(function () { rover_speed(2.0); });
-        $("#sm_speed_fast").click(function () { rover_speed(1.5); });
-        $("#sm_speed_reset").click(function () { rover_speed(1.0); });
-        $("#sm_speed_creep").click(function () { rover_speed(0.75); });
+        $("#sm_speed_max").click(function () { refresh_speed_options(2.0); });
+        $("#sm_speed_fast").click(function () { refresh_speed_options(1.5); });
+        $("#sm_speed_reset").click(function () { refresh_speed_options(1.0); });
+        $("#sm_speed_creep").click(function () { refresh_speed_options(0.75); });
 
         {% if uis['gimbal_vert'] == 'active' %}
             $("#sm_gimbal_up").click(function () { gimbal_up(10); });
@@ -57,6 +59,7 @@
             $('#color_menu').hide();
             $('#fpv_menu').hide();
             $('#speed_menu').show();
+            refresh_speed_options( motor_speed )
         }
         else if( menu_mode == 'speed' ) {
             menu_mode = 'color';
@@ -72,6 +75,39 @@
             $('#fpv_menu').show();
             $('#speed_menu').hide();
         }
+    }
+
+    function refresh_speed_options( new_speed ) {
+        motor_speed = new_speed;
+        if ( motor_speed == 0.75 ) {
+                $('#sm_speed_creep').addClass('btn-menu-selected');
+                $('#sm_speed_reset').removeClass('btn-menu-selected');
+                $('#sm_speed_fast').removeClass('btn-menu-selected');
+                $('#sm_speed_max').removeClass('btn-menu-selected');
+                {% if uis['drive'] == 'active' %} rover_speed(motor_speed); {% endif %}
+            }
+            else if( motor_speed == 1.5 ) {
+                $('#sm_speed_creep').removeClass('btn-menu-selected');
+                $('#sm_speed_reset').removeClass('btn-menu-selected');
+                $('#sm_speed_fast').addClass('btn-menu-selected');
+                $('#sm_speed_max').removeClass('btn-menu-selected')
+                {% if uis['drive'] == 'active' %} rover_speed(motor_speed); {% endif %}
+            }
+            else if( motor_speed == 2.0 ) {
+                $('#sm_speed_creep').removeClass('btn-menu-selected');
+                $('#sm_speed_reset').removeClass('btn-menu-selected');
+                $('#sm_speed_fast').removeClass('btn-menu-selected');
+                $('#sm_speed_max').addClass('btn-menu-selected');
+                {% if uis['drive'] == 'active' %} rover_speed(motor_speed); {% endif %}
+            }
+            else {
+                $('#sm_speed_creep').removeClass('btn-menu-selected');
+                $('#sm_speed_reset').addClass('btn-menu-selected');
+                $('#sm_speed_fast').removeClass('btn-menu-selected');
+                $('#sm_speed_max').removeClass('btn-menu-selected');
+                motor_speed = 1.0
+                {% if uis['drive'] == 'active' %} rover_speed(motor_speed); {% endif %}
+            }
     }
 
     function set_color_mode( mode ) { $.get("/ajax/camera/color_mode/" + mode , function(data, status){ return false; }); }
