@@ -13,7 +13,7 @@ rover = Configure()
 # FPV System
 sys.path.append('hardware_drivers/vision')
 if rover.config['fpv'] == 'raspberry_pi_8mp':
-    from raspberry_pi_8mp import Vision  # change raspberry_pi_8mp to match your hardware
+    from raspberry_pi_camera import Vision
 else:
     print('Error : Rover requires some kind of vision!')
     exit()
@@ -102,12 +102,12 @@ def page_picture(pic):
 def page_settings():
     uis['current'] = 'settings'
     # on Windows, refresh the CSS every time of UI development, but not for Rpi os
-    fields_fh = open("hardware_drivers/fields.json", "r")
-    fields = json.loads(str(fields_fh.read()))
-    fields_fh.close()
+    specs_fh = open("setting_specifications.json", "r")
+    specs = json.loads(str(specs_fh.read()))
+    specs_fh.close()
     if not os.name == 'posix':
         uis['time'] = '{:%Y%m%d%H%M}'.format(datetime.datetime.now())
-    return render_template('settings.html', page_title='Settings', uis=uis, settings=rover.config, fields=fields)
+    return render_template('settings.html', page_title='Settings', uis=uis, settings=rover.config, specs=specs)
 
 
 @app.route('/ajax/zoom/<image_file>/<zoom_factor>')

@@ -59,6 +59,16 @@
                 </div>
 
 
+                {% for driver in specs %}
+                    <div class="panel-settings">
+                        <div class="panel-settings-heading">
+                            <h3 class="panel-settings-title">{{ driver.device }}</h3>
+                        </div>
+                        <div class="panel-settings-body">
+                            {{ driver }}
+                        </div>
+                    </div>
+                {% endfor %}
 
             </td>
         </tr>
