@@ -102,12 +102,14 @@ def page_picture(pic):
 def page_settings():
     uis['current'] = 'settings'
     # on Windows, refresh the CSS every time of UI development, but not for Rpi os
-    specs_fh = open("setting_specifications.json", "r")
-    specs = json.loads(str(specs_fh.read()))
-    specs_fh.close()
+    # specs_fh = open("setting_specifications.json", "r")
+    # specs = json.loads(str(specs_fh.read()))
+    # specs_fh.close()
+    specs = rover.get_setting_specifications()
+    categories = rover.get_setting_categories()
     if not os.name == 'posix':
         uis['time'] = '{:%Y%m%d%H%M}'.format(datetime.datetime.now())
-    return render_template('settings.html', page_title='Settings', uis=uis, settings=rover.config, specs=specs)
+    return render_template('settings.html', page_title='Settings', uis=uis, settings=rover.config, specs=specs, cats=categories)
 
 
 @app.route('/ajax/zoom/<image_file>/<zoom_factor>')

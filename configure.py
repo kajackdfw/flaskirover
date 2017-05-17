@@ -114,3 +114,17 @@ class Configure:
         uis['charge'] = '2'
         uis['temperature'] = '2'
         return uis
+
+    def get_setting_specifications(self):
+        specs_fh = open("setting_specifications.json", "r")
+        specs = json.loads(str(specs_fh.read()))
+        specs_fh.close()
+        return specs
+
+    def get_setting_categories(self):
+        categories = {}
+        categories[0] = {"name": "Motor"}
+        categories[1] = {"name": "Vision"}
+        categories[2] = {"name": "Gimbal"}
+        categories[3] = {"name": "Sensors"}
+        return categories

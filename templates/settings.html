@@ -59,13 +59,13 @@
                 </div>
 
 
-                {% for driver in specs %}
+                {% for category in cats %}
                     <div class="panel-settings">
                         <div class="panel-settings-heading">
-                            <h3 class="panel-settings-title">{{ driver.device }}</h3>
+                            <h3 class="panel-settings-title">{{ cats[category].name }}</h3>
                         </div>
                         <div class="panel-settings-body">
-                            {{ driver }}
+                            {{ category }}
                         </div>
                     </div>
                 {% endfor %}
