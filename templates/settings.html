@@ -8,6 +8,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>
 
+    {% import 'partials/field_macros.html' as macs %}
+
     <script type="application/javascript">
 
         $( document ).ready(function()
@@ -59,15 +61,10 @@
                 </div>
 
 
-                {% for category in cats %}
-                    <div class="panel-settings">
-                        <div class="panel-settings-heading">
-                            <h3 class="panel-settings-title">{{ cats[category].name }}</h3>
-                        </div>
-                        <div class="panel-settings-body">
-                            {{ category }}
-                        </div>
-                    </div>
+                {% for key, category in cats.items() %}
+                    {{ macs.panel_setting(category.name) }}
+                            fields go in here {{ key }}
+                    {{ macs.panel_setting_end() }}
                 {% endfor %}
 
             </td>
