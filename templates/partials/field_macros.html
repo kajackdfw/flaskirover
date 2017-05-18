@@ -10,3 +10,19 @@
 {% macro panel_setting_end() -%}
     </div></div>
 {%- endmacro %}
+
+
+{% macro settings_for_category(category, settings, specs ) -%}
+    {% for setting_name, setting in settings.items() %}
+        {% if setting_name.startswith(category + '_') %}
+            <label class="btn setting-label"> {{ setting_name }} : </label>
+        {% endif %}
+    {% endfor %}
+{%- endmacro %}
+
+
+{% macro setting_input(category, set_dic) -%}
+    {% if category == set_dic.category and set_dic %}
+        <label class="btn setting-label"> {{ set_dic.name }} : </label>
+    {% endif %}
+{%- endmacro %}

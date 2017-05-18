@@ -1,5 +1,5 @@
 {
-  "0": {
+  "servos_using_wiringpi": {
     "device": "servos_using_wiringpi",
     "category": "gimbal",
     "gimbal_vert_servo_gpio": { "type": "int", "options": { "0": false, "1": 17, "2": 24 }},
@@ -15,12 +15,12 @@
     "gimbal_horz_full_right": { "type": "int"},
     "gimbal_horz_step": { "type": "int"}
   },
-  "1": {
+  "immobile_wildlife_cam": {
       "device": "immobile_wildlife_cam",
       "category": "motor",
       "disabled": true
   },
-  "2": {
+  "adafruit_dc_tank": {
     "device": "adafruit_dc_tank",
     "category": "motor",
     "driver": "adafruit_dc_and_stepper_motor_hat",
@@ -37,7 +37,7 @@
     "tank_speed_left": { "type": "int", "default": 127 },
     "tank_turn_speed": { "type": "int", "default": 110 }
   },
-  "3": {
+  "raspberry_pi_8mp": {
     "device": "raspberry_pi_8mp",
     "category": "vision",
     "driver": "raspberry_pi_camera",
@@ -46,7 +46,7 @@
     "camera_photo_res_x": { "type": "int", "default": "3280" },
     "camera_photo_res_y": { "type": "int", "default": "2464" }
   },
-  "4": {
+  "raspberry_pi_5mp": {
     "device": "raspberry_pi_5mp",
     "category": "vision",
     "driver": "raspberry_pi_camera",

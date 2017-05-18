@@ -63,7 +63,9 @@
 
                 {% for key, category in cats.items() %}
                     {{ macs.panel_setting( category.name|capitalize ) }}
-                         fields go in here {{ key }}
+
+                        {{ macs.settings_for_category(category.name, settings, specs ) }}
+
                     {{ macs.panel_setting_end() }}
                 {% endfor %}
 
