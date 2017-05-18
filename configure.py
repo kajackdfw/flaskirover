@@ -25,17 +25,17 @@ class Configure:
         self.config = {}
         self.config['config_name'] = 'default_afafruit_motor_hat_config'
         self.config['config_description'] = 'Default Afafruit Motor Hat Tank Config'
-        self.config['drive_hat'] = 'adafruit_dc_and_stepper_motor_hat'
+        self.config['motor'] = 'adafruit_dc_and_stepper_motor_hat'
         self.config['drive_mode'] = 'tank'
         self.config['camera_fpv_res_x'] = 1056
         self.config['camera_fpv_res_y'] = 594
+        self.config['camera_fpv'] = 'raspberry_pi_8mp'
         self.config['camera_photo_res_x'] = 3280  # for v2, or 2592 for v1
         self.config['camera_photo_res_y'] = 2464  # for v2, or 1944 for v1
         self.config['camera_vflip'] = False
         self.config['camera_hflip'] = False
         self.config['ui_color'] = 'green'
         self.config['ui_size'] = 'lg4'
-        self.config['fpv'] = 'raspberry_pi_8mp'
         self.config['camera'] = 'raspberry_pi_8mp'
         self.config['sensor_array'] = 'none'
         self.config['path_to_fpv'] = 'static/fpv'
@@ -123,8 +123,8 @@ class Configure:
 
     def get_setting_categories(self):
         categories = {}
-        categories[0] = {"name": "Motor"}
-        categories[1] = {"name": "Vision"}
-        categories[2] = {"name": "Gimbal"}
-        categories[3] = {"name": "Sensors"}
+        categories[0] = {"name": "motor"}
+        categories[1] = {"name": "vision"}
+        categories[2] = {"name": "gimbal"}
+        categories[3] = {"name": "sensors"}
         return categories
