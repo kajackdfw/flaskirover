@@ -20,7 +20,7 @@
       "category": "motor",
       "disabled": true
   },
-  "adafruit_dc_tank": {
+  "adafruit_dc_and_stepper_motor_hat": {
     "device": "adafruit_dc_tank",
     "category": "motor",
     "driver": "adafruit_dc_and_stepper_motor_hat",
@@ -32,28 +32,33 @@
     "tank_right_forward": { "type": "int", "options": { "1": 1, "2": 2 }, "default": 1 },
     "tank_left_reverse": { "type": "int", "options": { "1": 1, "2": 2 }, "default": 2 },
     "tank_right_reverse": { "type": "int", "options": { "1": 1, "2": 2 }, "default": 2 },
-
     "tank_speed_right": { "type": "int", "default": 127 },
     "tank_speed_left": { "type": "int", "default": 127 },
     "tank_turn_speed": { "type": "int", "default": 110 }
   },
   "raspberry_pi_8mp": {
     "device": "raspberry_pi_8mp",
-    "category": "vision",
+    "category": "camera",
     "driver": "raspberry_pi_camera",
     "camera_vflip": { "type": "boolean", "options":{ "0": false, "1": true }, "default": false },
     "camera_hflip": { "type": "boolean", "options":{ "0": false, "1": true }, "default": false },
     "camera_photo_res_x": { "type": "int", "default": "3280" },
-    "camera_photo_res_y": { "type": "int", "default": "2464" }
+    "camera_photo_res_y": { "type": "int", "default": "2464" },
+    "path_to_fpv": "static/fpv",
+    "path_to_pictures": "static/camera/photos",
+    "path_to_thumbnails": "static/camera/thumbnails"
   },
   "raspberry_pi_5mp": {
     "device": "raspberry_pi_5mp",
-    "category": "vision",
+    "category": "camera",
     "driver": "raspberry_pi_camera",
     "camera_vflip": { "type": "boolean", "options":{ "0": false, "1": true }, "default": false },
     "camera_hflip": { "type": "boolean", "options":{ "0": false, "1": true }, "default": false },
     "camera_photo_res_x": { "type": "int", "default": "2592" },
-    "camera_photo_res_y": { "type": "int", "default": "1944" }
+    "camera_photo_res_y": { "type": "int", "default": "1944" },
+    "path_to_fpv": "static/fpv",
+    "path_to_pictures": "static/camera/photos",
+    "path_to_thumbnails": "static/camera/thumbnails"
   }
 
 }

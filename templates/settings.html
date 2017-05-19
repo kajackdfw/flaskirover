@@ -62,9 +62,9 @@
 
 
                 {% for key, category in cats.items() %}
-                    {{ macs.panel_setting( category.name|capitalize ) }}
+                    {{ macs.panel_setting( category.title|capitalize ) }}
 
-                        {{ macs.settings_for_category(category.name, settings, specs ) }}
+                        {{ macs.settings_for_category(category.index, settings, specs ) }}
 
                     {{ macs.panel_setting_end() }}
                 {% endfor %}

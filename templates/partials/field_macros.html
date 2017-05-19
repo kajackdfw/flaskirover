@@ -14,9 +14,15 @@
 
 {% macro settings_for_category(category, settings, specs ) -%}
     {% for setting_name, setting in settings.items() %}
-        {% if setting_name.startswith(category + '_') %}
+
+        {% if setting_name in specs[settings[category]] %}
             <label class="btn setting-label"> {{ setting_name }} : </label>
         {% endif %}
+
+        {% if False and setting_name.startswith(category + '_') %}
+            <label class="btn setting-label"> {{ setting_name }} : </label>
+        {% endif %}
+
     {% endfor %}
 {%- endmacro %}
 
