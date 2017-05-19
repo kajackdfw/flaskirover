@@ -1,7 +1,7 @@
-{% macro panel_setting(name) -%}
+{% macro panel_setting(index) -%}
     <div class="panel-settings">
     <div class="panel-settings-heading">
-        <h3 class="panel-settings-title">{{ name }}</h3>
+        <h3 class="panel-settings-title">{{ index|capitalize }} Settings</h3>
     </div>
     <div class="panel-settings-body">
 {%- endmacro %}
@@ -17,10 +17,7 @@
 
         {% if setting_name in specs[settings[category]] %}
             <label class="btn setting-label"> {{ setting_name }} : </label>
-        {% endif %}
 
-        {% if False and setting_name.startswith(category + '_') %}
-            <label class="btn setting-label"> {{ setting_name }} : </label>
         {% endif %}
 
     {% endfor %}

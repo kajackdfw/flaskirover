@@ -1,6 +1,5 @@
 {
   "servos_using_wiringpi": {
-    "device": "servos_using_wiringpi",
     "category": "gimbal",
     "gimbal_vert_servo_gpio": { "type": "int", "options": { "0": false, "1": 17, "2": 24 }},
     "gimbal_vert_full_down": { "type": "int" },
@@ -16,12 +15,10 @@
     "gimbal_horz_step": { "type": "int"}
   },
   "immobile_wildlife_cam": {
-      "device": "immobile_wildlife_cam",
       "category": "motor",
       "disabled": true
   },
   "adafruit_dc_and_stepper_motor_hat": {
-    "device": "adafruit_dc_tank",
     "category": "motor",
     "driver": "adafruit_dc_and_stepper_motor_hat",
     "drive_mode": { "type": "string", "options": { "tank": "Tank", "2wd_car": "Car with 2wd", "4wd_car": "Car with 4wd", "boat": "boat", "boat2": "Boat with twin engine and no rudder"}  },
@@ -37,7 +34,6 @@
     "tank_turn_speed": { "type": "int", "default": 110 }
   },
   "raspberry_pi_8mp": {
-    "device": "raspberry_pi_8mp",
     "category": "camera",
     "driver": "raspberry_pi_camera",
     "camera_vflip": { "type": "boolean", "options":{ "0": false, "1": true }, "default": false },
@@ -49,7 +45,6 @@
     "path_to_thumbnails": "static/camera/thumbnails"
   },
   "raspberry_pi_5mp": {
-    "device": "raspberry_pi_5mp",
     "category": "camera",
     "driver": "raspberry_pi_camera",
     "camera_vflip": { "type": "boolean", "options":{ "0": false, "1": true }, "default": false },
@@ -59,6 +54,11 @@
     "path_to_fpv": "static/fpv",
     "path_to_pictures": "static/camera/photos",
     "path_to_thumbnails": "static/camera/thumbnails"
+  },
+  "sensors_none": {
+    "category": "sensors",
+    "sensors_note": "Raspberry Pi Only",
+    "disabled": "true"
   }
 
 }

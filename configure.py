@@ -39,7 +39,8 @@ class Configure:
         self.config['camera'] = 'raspberry_pi_8mp'
         self.config['sensor_array'] = 'none'
         self.config['path_to_fpv'] = 'static/fpv'
-        self.config['sensor_array'] = 'none'
+        self.config['sensors'] = 'sensors_none'
+        self.config['sensors_note'] = "Raspberry Pi Only"
 
         # Adafruit_MotorHAT:
         #   FORWARD = 1
