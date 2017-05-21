@@ -35,12 +35,12 @@ class Motor:
         if self.uis['drive'] == 'disabled':
             return None
 
-        if 'drive_mode' in start_settings:
-            self.settings['drive_mode'] = start_settings['drive_mode']
+        if 'motor_mode' in start_settings:
+            self.settings['motor_mode'] = start_settings['motor_mode']
         else:
-            self.settings['drive_mode'] = 'tank'
+            self.settings['motor_mode'] = 'tank'
 
-        if self.settings['drive_mode'] == 'tank':
+        if self.settings['motor_mode'] == 'tank':
             for setting, value in start_settings.items():
                 if setting[0:4] == 'tank':
                     self.settings[setting] = int(value)

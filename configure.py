@@ -26,7 +26,7 @@ class Configure:
         self.config['config_name'] = 'default_afafruit_motor_hat_config'
         self.config['config_description'] = 'Default Afafruit Motor Hat Tank Config'
         self.config['motor'] = 'adafruit_dc_and_stepper_motor_hat'
-        self.config['drive_mode'] = 'tank'
+        self.config['motor_mode'] = 'tank'
         self.config['camera_fpv_res_x'] = 1056
         self.config['camera_fpv_res_y'] = 594
         self.config['camera_fpv'] = 'raspberry_pi_8mp'

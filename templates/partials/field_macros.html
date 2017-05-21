@@ -15,8 +15,20 @@
 {% macro settings_for_category(category, settings, specs ) -%}
     {% for setting_name, setting in settings.items() %}
 
-        {% if setting_name in specs[settings[category]] %}
+        {% if setting_name in specs[settings[category]] and 'options' in specs[settings[category]][setting_name] %}
+
             <label class="btn setting-label"> {{ setting_name }} : </label>
+            <select name="{{ setting_name }}" id="{{ setting_name }}">
+                {% for option, svalue in specs[settings[category]][setting_name]['options'].items() %}
+                    <option value="{{ svalue }}" >{{ option }}</option>
+                {% endfor %}
+            </select><br>
+
+        {% elif setting_name in specs[settings[category]] %}
+
+            <label class="btn setting-label"> {{ setting_name }} : </label>
+            <input name="{{ setting_name }}" id="{{ setting_name }}" value="" />
+            </input><br>
 
         {% endif %}
 

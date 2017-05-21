@@ -15,7 +15,7 @@ class Motor:
         uis['drive'] = 'disabled'
 
     def __init__(self, start_settings):
-        self.settings['drive_mode'] = 'immobile'
+        self.settings['motor_mode'] = 'immobile'
         self.can_rotate_in_place = False
 
     def test(self):
