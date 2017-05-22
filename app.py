@@ -37,6 +37,7 @@ else:
 app = Flask(__name__, static_url_path='/static')
 server_os = os.name
 
+
 # User Interface Status
 uis = rover.get_uis_at_startup()
 uis['current'] = 'index'
@@ -198,6 +199,11 @@ def gimbal_rotate_down(degrees):
     return True
 
 
+@app.route('/ajax/setting/set/<category>/<setting_name>/<new_value>')
+def set_setting(category, setting_name, new_value):
+    return True
+
+
 @app.route('/ajax/gimbal/center')
 def gimbal_center():
     gimbal.center()
@@ -226,6 +232,18 @@ def run_cmd(cmd):
     p = Popen(cmd, shell=True, stdout=PIPE)
     print(p.communicate()[0])
     return True
+
+@app.template_filter('uc_words')
+def filter_uc_words(title):
+    if len(title) == 0:
+        return ' '
+    else:
+        title = title.replace('_', ' ')
+        words = title.split(' ')
+        new_string = ''
+        for word in words:
+            new_string += word.capitalize() + ' '
+        return new_string.strip()
 
 
 if __name__ == '__main__' and os.name == 'posix':

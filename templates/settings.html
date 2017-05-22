@@ -12,6 +12,11 @@
 
     <script type="application/javascript">
 
+        function set_setting( category, setting_name, new_value ) {
+            alert( category + setting_name + new_value );
+            $.get("/ajax/setting/set/" + category + "/" + setting_name + "/" + new_value , function(data, status){ return false; });
+        }
+
         $( document ).ready(function()
         {
             {% include 'partials/common_button_methods.js' %}

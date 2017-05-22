@@ -13,22 +13,26 @@
 
 
 {% macro settings_for_category(category, settings, specs ) -%}
-    {% for setting_name, setting in settings.items() %}
+    {% for setting_name, setting_value in settings.items() %}
 
         {% if setting_name in specs[settings[category]] and 'options' in specs[settings[category]][setting_name] %}
 
-            <label class="btn setting-label"> {{ setting_name }} : </label>
+            <label class="btn setting-label"> {{ setting_name|uc_words }} : </label>
             <select name="{{ setting_name }}" id="{{ setting_name }}">
-                {% for option, svalue in specs[settings[category]][setting_name]['options'].items() %}
-                    <option value="{{ svalue }}" >{{ option }}</option>
+                {% for option, option_value in specs[settings[category]][setting_name]['options'].items() %}
+                    <option value="{{ option_value }}" >{{ option }}</option>
                 {% endfor %}
             </select><br>
 
         {% elif setting_name in specs[settings[category]] %}
 
-            <label class="btn setting-label"> {{ setting_name }} : </label>
+            <label class="btn setting-label"> {{ setting_name|uc_words }} : </label>
             <input name="{{ setting_name }}" id="{{ setting_name }}" value="" />
-            </input><br>
+            <br>
+
+            <script type="application/javascript">
+                $("#{{ setting_name }}").blur(function () { set_setting( "{{ category }}", "{{ setting_name }}", $("#{{ setting_name }}").val() ); });
+            </script>
 
         {% endif %}
 
