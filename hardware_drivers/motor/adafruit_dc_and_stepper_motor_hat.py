@@ -129,3 +129,13 @@ class Motor:
 
     def get_uis(self):
         return self.uis
+
+    def set_setting(self, setting_name, new_value, category, specs):
+        print(str(specs))
+        if not setting_name in specs:
+            return 0
+        else:
+            old_value = self.settings[setting_name]
+            print('  ? Old value = ' + old_value)
+
+        return 0

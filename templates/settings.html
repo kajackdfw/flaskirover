@@ -14,7 +14,11 @@
 
         function set_setting( category, setting_name, new_value ) {
             alert( category + setting_name + new_value );
-            $.get("/ajax/setting/set/" + category + "/" + setting_name + "/" + new_value , function(data, status){ return false; });
+            $.get("/ajax/setting/set/" + category + "/" + setting_name + "/" + new_value , function(data, status){
+                var results = JSON.parse( data );
+                if ( results.reset == 'true' ) { location.reload(true); }
+                return false;
+            });
         }
 
         $( document ).ready(function()

@@ -122,6 +122,19 @@ class Configure:
         specs_fh.close()
         return specs
 
+    def get_setting_specifications_for_category(self, category):
+        specs_fh = open("setting_specifications.json", "r")
+        specs = json.loads(str(specs_fh.read()))
+        specs_fh.close()
+        cat_specs = {}
+        cat_spec_ctr = 0
+        for spec in specs.items():
+            if spec.category == category:
+                cat_specs[cat_spec_ctr] = spec
+            cat_spec_ctr += 1
+        return cat_specs
+
+
     def get_setting_categories(self):
         categories = {}
         categories[0] = {"index": "motor", "title": "Motor Settings"}
