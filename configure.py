@@ -129,7 +129,7 @@ class Configure:
         cat_specs = {}
         cat_spec_ctr = 0
         for spec in specs.items():
-            if spec.category == category:
+            if spec.category == category:  # FIXME
                 cat_specs[cat_spec_ctr] = spec
             cat_spec_ctr += 1
         return cat_specs

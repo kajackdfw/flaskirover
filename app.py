@@ -201,11 +201,13 @@ def gimbal_rotate_down(degrees):
 
 @app.route('/ajax/setting/set/<category>/<setting_name>/<new_value>')
 def set_setting(category, setting_name, new_value):
-    if category == 'motor':
-        specs = rover.get_setting_specifications_for_category(category)
+    if category == setting_name:
+        driver = new_value
+        specs = rover.get_setting_specifications(category, driver)
         reset_required = motor.set_setting(setting_name, new_value, category, specs)
         setting_updates = motor.get_settings()
         rover.update_settings(setting_updates, category)
+
     return True
 
 
