@@ -150,8 +150,14 @@ class Configure:
                 old_mode = self.settings[setting_name]
                 for old_mode_setting, old_mode_value in self.get_mode_settings(old_mode):
                     del self.settings[old_mode_setting]
-                # for new_mode_setting, new_mode_value in self.get_mode_settings(new_mode):
-                    # self.settings[old_mode_setting]
+                for new_mode_setting, new_mode_value in self.get_sub_settings_by_mode(self.settings[category], new_mode):
+                    self.settings[new_mode_setting] = new_mode_value
+                self.settings[category + "_mode"] = new_value
+            else:
+                self.settings[setting_name] = new_value
+        # write the new settings somewhere
+        self.save_settings()
+        return True
 
     def get_mode_settings(self, mode):
         mode_settings = {}
@@ -159,3 +165,26 @@ class Configure:
             if setting_name.find(mode + "_") == 0:
                 mode_settings[setting_name] = setting_value
         return mode_settings
+
+    def get_sub_settings_by_mode(self, mode, category_driver):
+        specs_fh = open("setting_specifications.json", "r")
+        specs = json.loads(str(specs_fh.read()))
+        specs_fh.close()
+        driver_specs = specs[category_driver]
+        sub_specs = {}
+        for spec_name, values in driver_specs.items():
+            if spec_name.find(mode + "_") == 0 and 'default' in values and values['type'] == 'int':
+                sub_specs[spec_name] = int(values['default'])
+            elif spec_name.find(mode + "_") == 0 and 'default' in values and values['type'] == 'float':
+                sub_specs[spec_name] = float(values['default'])
+            elif spec_name.find(mode + "_") == 0 and 'default' in values:
+                sub_specs[spec_name] = values['default']
+            elif spec_name.find(mode + "_") == 0:
+                sub_specs[spec_name] = 0
+        return sub_specs
+
+    def save_settings(self):
+        config_fh = open('new_configuration.json', "w")
+        config_fh.write(json.dumps(self.settings, sort_keys=True, indent=4, separators=(',', ': ')))
+        print('Config data saved in new_configuration.json \n')
+        config_fh.close()
