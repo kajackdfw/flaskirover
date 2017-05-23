@@ -134,7 +134,6 @@ class Configure:
             cat_spec_ctr += 1
         return cat_specs
 
-
     def get_setting_categories(self):
         categories = {}
         categories[0] = {"index": "motor", "title": "Motor Settings"}
@@ -142,3 +141,21 @@ class Configure:
         categories[2] = {"index": "gimbal", "title": "Gimbal Settings"}
         categories[3] = {"index": "sensors", "title": "Sensor Settings"}
         return categories
+
+    def update_settings(self, setting_updates, category):
+        for setting_name, new_value in setting_updates.items():
+            if setting_name == category + "_mode" and not new_value == self.settings[setting_name]:
+                # remove old mode specific settings like tank_* if not tank mode anymore
+                new_mode = setting_name
+                old_mode = self.settings[setting_name]
+                for old_mode_setting, old_mode_value in self.get_mode_settings(old_mode):
+                    del self.settings[old_mode_setting]
+                # for new_mode_setting, new_mode_value in self.get_mode_settings(new_mode):
+                    # self.settings[old_mode_setting]
+
+    def get_mode_settings(self, mode):
+        mode_settings = {}
+        for setting_name, setting_value in self.settings:
+            if setting_name.find(mode + "_") == 0:
+                mode_settings[setting_name] = setting_value
+        return mode_settings
