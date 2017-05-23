@@ -23,7 +23,7 @@
     "driver": "adafruit_dc_and_stepper_motor_hat",
     "motor_mode": {
       "type": "string",
-      "options": { "tank": "Tank", "2wd_car": "Car with 2wd", "4wd_car": "Car with 4wd", "boat": "boat", "boat2": "Boat with twin engine and no rudder"},
+      "options": { "tank": "Tank", "4x2": "Car with 2wd", "4x4": "Car with 4wd", "boat": "boat", "boat2": "Boat with twin engine and no rudder"},
       "refresh": true
     },
 
