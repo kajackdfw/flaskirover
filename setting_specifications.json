@@ -24,7 +24,7 @@
     "motor_mode": {
       "type": "string",
       "options": { "tank": "Tank", "2wd_car": "Car with 2wd", "4wd_car": "Car with 4wd", "boat": "boat", "boat2": "Boat with twin engine and no rudder"},
-      "reset_on_change": true
+      "refresh": true
     },
 
     "tank_left_motor": { "type": "int", "options": { "1": 1, "2": 2, "3": 3, "4": 4 }, "default": 1, "rule": "not_equal_to tank_right_motor" },

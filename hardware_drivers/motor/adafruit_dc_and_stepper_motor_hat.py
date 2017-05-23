@@ -137,5 +137,22 @@ class Motor:
         else:
             old_value = self.settings[setting_name]
             print('  ? Old value = ' + old_value)
+            if specs[setting_name]['type'] == 'int':
+                self.settings[setting_name] = int(new_value)
+            elif specs[setting_name]['type'] == 'float':
+                self.settings[setting_name] = float(new_value)
+            elif specs[setting_name]['type'] == 'bool' and new_value.uppercase() == 'TRUE':
+                self.settings[setting_name] = True
+            elif specs[setting_name]['type'] == 'bool' and new_value.uppercase() == 'FALSE':
+                self.settings[setting_name] = False
+            else:
+                self.settings[setting_name] = new_value
 
-        return 0
+            # Does this change need a page redraw
+            if 'refresh' in specs[setting_name]:
+                return 1
+            else:
+                return 0
+
+    def get_settings(self):
+        return self.settings

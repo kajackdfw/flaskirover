@@ -204,6 +204,8 @@ def set_setting(category, setting_name, new_value):
     if category == 'motor':
         specs = rover.get_setting_specifications_for_category(category)
         reset_required = motor.set_setting(setting_name, new_value, category, specs)
+        setting_updates = motor.get_settings()
+        rover.update_settings(setting_updates, category)
     return True
 
 
