@@ -14,7 +14,7 @@ import Adafruit_PCA9685
 #logging.basicConfig(level=logging.DEBUG)
 
 # Initialise the PCA9685 using the default address (0x40).
-pwm = Adafruit_PCA9685.PCA9685(address=0x40, busnum=1)
+pwm = Adafruit_PCA9685.PCA9685()
 
 # Alternatively specify a different address and/or bus:
 #pwm = Adafruit_PCA9685.PCA9685(address=0x41, busnum=2)
@@ -40,7 +40,7 @@ pwm.set_pwm_freq(60)
 print('Moving servo on channel 0, press Ctrl-C to quit...')
 while True:
     # Move servo on channel O between extremes.
-    pwm.set_pwm(0, 0, servo_min)
+    pwm.set_pwm(1, 0, servo_min)
     time.sleep(1)
-    pwm.set_pwm(0, 0, servo_max)
+    pwm.set_pwm(1, 0, servo_max)
     time.sleep(1)
