@@ -19,9 +19,9 @@ else:
     exit()
 
 # Gimbal for camera and fpv
-if rover.config['gimbal_vert_servo_gpio'] is not False or rover.config['gimbal_horz_servo_gpio'] is not False:
-    sys.path.append('hardware_drivers/gimbal')
-    from servos_using_wiringpi import Gimbal
+if rover.config['servo_servo_vert_number'] is not False or rover.config['servo_servo_horz_number'] is not False:
+    sys.path.append('hardware_drivers/servo')
+    from servos_using_wiringpi import Servo
 
 
 # MOTOR System
@@ -57,8 +57,8 @@ uis['motor_speed'] = motor.uis['motor_speed']
 picture = Picture(rover.config)
 
 # Camera Gimbal
-gimbal = Gimbal(rover.config)
-for setting, val in gimbal.uis.items():
+servo = Servo(rover.config)
+for setting, val in servo.uis.items():
     uis[setting] = val
 
 
@@ -188,14 +188,14 @@ def motor_speed(multiplier):
 
 @app.route('/ajax/gimbal/rotate/up/<degrees>')
 def gimbal_rotate_up(degrees):
-    gimbal.rotate_up(degrees)
+    servo.rotate_up(degrees)
     return True
 
 
 # 192.168.1.12 - - [14/May/2017 20:52:36] "GET /ajax/gimbal/rotate/up/10 HTTP/1.1" 500 -
 @app.route('/ajax/gimbal/rotate/down/<degrees>')
 def gimbal_rotate_down(degrees):
-    gimbal.rotate_down(degrees)
+    servo.rotate_down(degrees)
     return True
 
 
@@ -213,7 +213,8 @@ def set_setting(category, setting_name, new_value):
 
 @app.route('/ajax/gimbal/center')
 def gimbal_center():
-    gimbal.center()
+
+    servo.center()
     return True
 
 

@@ -31,14 +31,14 @@
         $("#sm_speed_reset").click(function () { refresh_speed_options(1.0); });
         $("#sm_speed_creep").click(function () { refresh_speed_options(0.75); });
 
-        {% if uis['gimbal_vert'] == 'active' %}
+        {% if uis['servo_vert'] == 'active' %}
             $("#sm_gimbal_up").click(function () { gimbal_up(10); });
             $("#sm_gimbal_down").click(function () { gimbal_down(10); });
         {% endif %}
 
         $("#sm_gimbal_center").click(function () { gimbal_center(); });
 
-        {% if uis['gimbal_horz'] == 'active' %}
+        {% if uis['servo_horz'] == 'active' %}
             $("#sm_gimbal_left").click(function () { gimbal_left(10); });
             $("#sm_gimbal_right").click(function () { gimbal_right(10); });
         {% endif %}
@@ -144,7 +144,7 @@
     {% endif %}
 
 
-    {% if uis['gimbal_vert'] == 'active' %}
+    {% if uis['servo_vert'] == 'active' %}
 
         function gimbal_up( degrees ) {
             $.get("/ajax/gimbal/rotate/up/" + degrees , function(data, status){ return false; });
@@ -157,7 +157,7 @@
         }
     {% endif %}
 
-    {% if uis['gimbal_horz'] == 'active' %}
+    {% if uis['servo_horz'] == 'active' %}
 
         function gimbal_left( degrees ) {
             $.get("/ajax/gimbal/rotate/left/" + degrees , function(data, status){ return false; });
@@ -225,7 +225,7 @@
         <i class="fa fa-binoculars fa-rotate-180 fa-3x"></i>
     </button>
 
-    {% if uis['gimbal_horz'] == 'active' %}
+    {% if uis['servo_horz'] == 'active' %}
     <button type="button" class="btn-menu" id="sm_gimbal_left" title="Look Left">
         <i class="fa fa-binoculars fa-rotate-90 fa-3x"></i>
     </button>
@@ -235,7 +235,7 @@
         <i class="fa fa-crosshairs fa-3x"></i>
     </button>
 
-    {% if uis['gimbal_horz'] == 'active' %}
+    {% if uis['servo_horz'] == 'active' %}
     <button type="button" class="btn-menu" id="sm_gimbal_right" title="Look Right">
         <i class="fa fa-binoculars fa-rotate-270 fa-3x"></i>
     </button>

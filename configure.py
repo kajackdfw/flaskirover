@@ -60,16 +60,16 @@ class Configure:
         self.config['tank_speed_left_max'] = 235
 
         # Camera Gimbal
-        self.config['gimbal'] = "servos_using_wiringpi"
-        self.config['gimbal_horz_servo_gpio'] = False
+        self.config['servo'] = "adafruit_servo_hat"
+        self.config['servo_servo_horz_number'] = False
 
         # Available GPIO 4(p7), 17(p11) 27(p13) with AdaFruit Motor Hat
-        self.config['gimbal_vert_servo_gpio'] = 17
-        self.config['gimbal_vert_full_down'] = 50
-        self.config['gimbal_vert_park'] = 125
-        self.config['gimbal_vert_center'] = 125
-        self.config['gimbal_vert_full_up'] = 250
-        self.config['gimbal_vert_step'] = 10
+        self.config['servo_servo_vert_number'] = 1
+        self.config['servo_vert_full_down'] = 150
+        self.config['servo_vert_park'] = 150
+        self.config['servo_vert_center'] = 300
+        self.config['servo_vert_full_up'] = 600
+        self.config['servo_vert_step'] = round((self.config['servo_vert_full_up'] / float(self.config['servo_vert_full_down'])) / 18.0, 0)
 
         # This folder gets purged of old images often, only the last image is safe
         self.config['path_to_fpv'] = 'static/fpv'
@@ -138,7 +138,7 @@ class Configure:
         categories = {}
         categories[0] = {"index": "motor", "title": "Motor Settings"}
         categories[1] = {"index": "camera", "title": "Camera Settings"}
-        categories[2] = {"index": "gimbal", "title": "Gimbal Settings"}
+        categories[2] = {"index": "servo", "title": "Servo Settings"}
         categories[3] = {"index": "sensors", "title": "Sensor Settings"}
         return categories
 
