@@ -22,12 +22,12 @@ class Servo:
         uis['servo_horz'] = 'disabled'
 
     def __init__(self, start_settings):
-        self.settings['servo_servo_horz_number'] = start_settings['servo_servo_horz_number']
-        self.settings['servo_servo_vert_number'] = start_settings['servo_servo_vert_number']
+        self.settings['servo_camera_horz_number'] = start_settings['servo_camera_horz_number']
+        self.settings['servo_camera_vert_number'] = start_settings['servo_camera_vert_number']
 
-        if (self.settings['servo_servo_horz_number']) is not False and self.uis['servo_horz'] is not 'disabled':
-            wiringpi.pinMode(self.settings['servo_servo_horz_number'], wiringpi.GPIO.PWM_OUTPUT)
-            self.settings['servo_servo_horz_number'] = int(self.settings['servo_servo_horz_number'])
+        if (self.settings['servo_camera_horz_number']) is not False and self.uis['servo_horz'] is not 'disabled':
+            wiringpi.pinMode(self.settings['servo_camera_horz_number'], wiringpi.GPIO.PWM_OUTPUT)
+            self.settings['servo_camera_horz_number'] = int(self.settings['servo_camera_horz_number'])
             self.settings['servo_horz_full_left'] = int(start_settings['servo_horz_full_left'])
             self.settings['servo_horz_center'] = int(start_settings['servo_horz_center'])
             self.settings['servo_horz_position'] = int(start_settings['servo_horz_center'])
@@ -36,10 +36,10 @@ class Servo:
         else:
             self.uis['servo_horz'] = 'disabled'
 
-        if (self.settings['servo_servo_vert_number']) is not False and self.uis['servo_vert'] is not 'disabled':
-            wiringpi.pinMode(self.settings['servo_servo_vert_number'], wiringpi.GPIO.PWM_OUTPUT)
+        if (self.settings['servo_camera_vert_number']) is not False and self.uis['servo_vert'] is not 'disabled':
+            wiringpi.pinMode(self.settings['servo_camera_vert_number'], wiringpi.GPIO.PWM_OUTPUT)
 
-            self.settings['servo_servo_vert_number'] = int(self.settings['servo_servo_vert_number'])
+            self.settings['servo_camera_vert_number'] = int(self.settings['servo_camera_vert_number'])
             self.settings['servo_vert_full_down'] = int(start_settings['servo_vert_full_down'])
             self.settings['servo_vert_center'] = int(start_settings['servo_vert_center'])
             self.settings['servo_vert_position'] = int(start_settings['servo_vert_center'])
@@ -56,11 +56,11 @@ class Servo:
             self.center()
 
     def center(self):
-        if self.settings['servo_servo_vert_number'] is not False:
-            wiringpi.pwmWrite(self.settings['servo_servo_vert_number'], self.settings['servo_vert_center'])
+        if self.settings['servo_camera_vert_number'] is not False:
+            wiringpi.pwmWrite(self.settings['servo_camera_vert_number'], self.settings['servo_vert_center'])
 
-        if self.settings['servo_servo_horz_number'] is not False:
-            wiringpi.pwmWrite(self.settings['servo_servo_horz_number'], self.settings['servo_horz_center'])
+        if self.settings['servo_camera_horz_number'] is not False:
+            wiringpi.pwmWrite(self.settings['servo_camera_horz_number'], self.settings['servo_horz_center'])
 
         return True
 
@@ -69,7 +69,7 @@ class Servo:
         self.settings['servo_vert_position'] -= self.settings['servo_vert_step'] * int(degrees)
         if self.settings['servo_vert_position'] < self.settings['servo_vert_full_down']:
             self.settings['servo_vert_position'] = self.settings['servo_vert_full_down']
-        wiringpi.pwmWrite(self.settings['servo_servo_vert_number'], self.settings['servo_vert_position'])
+        wiringpi.pwmWrite(self.settings['servo_camera_vert_number'], self.settings['servo_vert_position'])
         return True
 
     def rotate_up(self, degrees):
@@ -77,21 +77,21 @@ class Servo:
         self.settings['servo_vert_position'] += self.settings['servo_vert_step'] * int(degrees)
         if self.settings['servo_vert_position'] > self.settings['servo_vert_full_up']:
             self.settings['servo_vert_position'] = self.settings['servo_vert_full_up']
-        wiringpi.pwmWrite(self.settings['servo_servo_vert_number'], self.settings['servo_vert_position'])
+        wiringpi.pwmWrite(self.settings['servo_camera_vert_number'], self.settings['servo_vert_position'])
         return True
 
     def rotate_left(self, degrees):
         self.settings['servo_horz_position'] += self.settings['servo_horz_step'] * int(degrees)
         if self.settings['servo_horz_position'] > self.settings['servo_horz_full_left']:
             self.settings['servo_horz_position'] = self.settings['servo_horz_full_left']
-        wiringpi.pwmWrite(self.settings['servo_servo_horz_number'], self.settings['servo_horz_position'])
+        wiringpi.pwmWrite(self.settings['servo_camera_horz_number'], self.settings['servo_horz_position'])
         return False
 
     def rotate_right(self, degrees):
         self.settings['servo_horz_position'] -= self.settings['servo_horz_step'] * int(degrees)
         if self.settings['servo_horz_position'] > self.settings['servo_horz_full_right']:
             self.settings['servo_horz_position'] = self.settings['servo_horz_full_right']
-        wiringpi.pwmWrite(self.settings['servo_servo_horz_number'], self.settings['servo_horz_position'])
+        wiringpi.pwmWrite(self.settings['servo_camera_horz_number'], self.settings['servo_horz_position'])
         return False
 
     def get_uis(self):

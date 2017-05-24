@@ -12,17 +12,19 @@ rover = Configure()
 
 # FPV System
 sys.path.append('hardware_drivers/vision')
-if rover.config['camera_fpv'] == 'raspberry_pi_8mp':
+if rover.config['camera'] == 'raspberry_pi_8mp' or rover.config['camera'] == 'raspberry_pi_5mp':
     from raspberry_pi_camera import Vision
 else:
     print('Error : Rover requires some kind of vision!')
     exit()
 
 # Gimbal for camera and fpv
-if rover.config['servo_servo_vert_number'] is not False or rover.config['servo_servo_horz_number'] is not False:
+if rover.config['servo_camera_vert_number'] is not False or rover.config['servo_camera_horz_number'] is not False:
     sys.path.append('hardware_drivers/servo')
-    from servos_using_wiringpi import Servo
-
+    if rover.config['servo'] == "adafruit_servo_hat":
+        from adafruit_servo_hat import Servo
+    else:
+        from servos_using_wiringpi import Servo
 
 # MOTOR System
 sys.path.append('hardware_drivers/motor')
