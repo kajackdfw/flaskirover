@@ -62,14 +62,15 @@ class Configure:
         # Camera Gimbal
         self.config['servo'] = "adafruit_servo_hat"
         self.config['servo_camera_horz_number'] = False
+        self.config['servo_camera_roll_number'] = False
 
         # Available GPIO 4(p7), 17(p11) 27(p13) with AdaFruit Motor Hat
         self.config['servo_camera_vert_number'] = 1
-        self.config['servo_vert_full_down'] = 150
-        self.config['servo_vert_park'] = 150
-        self.config['servo_vert_center'] = 300
-        self.config['servo_vert_full_up'] = 600
-        self.config['servo_vert_step'] = round((self.config['servo_vert_full_up'] / float(self.config['servo_vert_full_down'])) / 18.0, 0)
+        self.config['servo_camera_vert_bottom'] = 150
+        self.config['servo_camera_vert_park'] = 150
+        self.config['servo_camera_vert_center'] = 300
+        self.config['servo_camera_vert_top'] = 600
+        self.config['servo_camera_vert_inc'] = round((self.config['servo_camera_vert_top'] / float(self.config['servo_camera_vert_bottom'])) / 90.0, 0)
 
         # This folder gets purged of old images often, only the last image is safe
         self.config['path_to_fpv'] = 'static/fpv'
