@@ -18,20 +18,20 @@ class Vision:
 
     def __init__(self, start_settings):
 
-        if 'path_to_fpv' in start_settings:
-            self.settings['path_to_fpv'] = start_settings['path_to_fpv']
+        if 'camera_fpv_path' in start_settings:
+            self.settings['camera_fpv_path'] = start_settings['camera_fpv_path']
         else:
-            self.settings['path_to_fpv'] = 'static/fpv'
+            self.settings['camera_fpv_path'] = 'static/fpv'
 
-        if 'path_to_pictures' in start_settings:
-            self.settings['path_to_pictures'] = start_settings['path_to_pictures']
+        if 'camera_pictures_path' in start_settings:
+            self.settings['camera_pictures_path'] = start_settings['camera_pictures_path']
         else:
-            self.settings['path_to_pictures'] = 'static/camera/pictures'
+            self.settings['camera_pictures_path'] = 'static/camera/pictures'
 
-        if 'path_to_thumbnails' in start_settings:
-            self.settings['path_to_thumbnails'] = start_settings['path_to_thumbnails']
+        if 'camera_thumbnail_path' in start_settings:
+            self.settings['camera_thumbnail_path'] = start_settings['camera_thumbnail_path']
         else:
-            self.settings['path_to_thumbnails'] = 'static/camera/thumbnails'
+            self.settings['camera_thumbnail_path'] = 'static/camera/thumbnails'
 
         if 'camera_fpv_res_x' in start_settings:
             self.settings['camera_fpv_res_x'] = int(start_settings['camera_fpv_res_x'])
@@ -76,7 +76,7 @@ class Vision:
     def take_fpv_image(self):
         if self.settings['camera'] == 'active':
             time_stamp = '{:%Y%m%d%H%M%S}'.format(datetime.datetime.now())
-            new_image_path_and_name = self.settings['path_to_fpv'] + "/" + time_stamp + ".jpg"
+            new_image_path_and_name = self.settings['camera_fpv_path'] + "/" + time_stamp + ".jpg"
             new_cam_image = open(new_image_path_and_name, 'wb')
             # camera.start_preview()
             try:
@@ -93,7 +93,7 @@ class Vision:
         if self.settings['camera'] == 'active':
             time_stamp = '{:%Y%m%d%H%M%S}'.format(datetime.datetime.now())
             self.camera.resolution = (self.settings['camera_fpv_res_x'] / 2, self.settings['camera_fpv_res_y'] / 2)
-            new_image_path_and_name = self.settings['path_to_fpv'] + "/" + time_stamp + ".jpg"
+            new_image_path_and_name = self.settings['camera_fpv_path'] + "/" + time_stamp + ".jpg"
             new_cam_image = open(new_image_path_and_name, 'wb')
             # camera.start_preview()
             try:
@@ -112,7 +112,7 @@ class Vision:
     def take_picture(self):
         if self.settings['camera'] == 'active':
             time_stamp = '{:%Y%m%d%H%M%S}'.format(datetime.datetime.now())
-            new_image_path_and_name = self.settings['path_to_pictures'] + "/" + time_stamp + ".jpg"
+            new_image_path_and_name = self.settings['camera_pictures_path'] + "/" + time_stamp + ".jpg"
             # 2592x1944
             self.camera.resolution = (self.settings['camera_fpv_res_x'], self.settings['camera_fpv_res_y'])
             new_cam_image = open(new_image_path_and_name, 'wb')
@@ -125,24 +125,24 @@ class Vision:
             return new_image_path_and_name
 
     def get_latest_web_cam_image(self):
-        image_list = [f for f in listdir(self.settings['path_to_fpv']) if isfile(join(self.settings['path_to_fpv'], f))]
+        image_list = [f for f in listdir(self.settings['camera_fpv_path']) if isfile(join(self.settings['camera_fpv_path'], f))]
         last_timestamp = 0
         for image in image_list:
             filename_pieces = image.split('.')
             if int(filename_pieces[0]) > last_timestamp:
                 last_timestamp = int(filename_pieces[0])
-        last_filename = self.settings['path_to_fpv'] + '/' + str(last_timestamp) + '.jpg'
+        last_filename = self.settings['camera_fpv_path'] + '/' + str(last_timestamp) + '.jpg'
         return last_filename
 
     def get_list_of_pictures(self):
-        thumb_nail_list = [f for f in listdir(self.settings['path_to_thumbnails']) if isfile(join(self.settings['path_to_thumbnails'], f))]
+        thumb_nail_list = [f for f in listdir(self.settings['camera_thumbnail_path']) if isfile(join(self.settings['camera_thumbnail_path'], f))]
         pictures = []
         picture_insert = 0
         for image in thumb_nail_list:
             filename_pieces = image.split('.')
             new_image = {
                 'view_url': 'view/' + str(filename_pieces[0] + '.' + filename_pieces[1]),
-                'thumbnail': self.settings['path_to_thumbnails'] + '/' + filename_pieces[0] + '.' + filename_pieces[1]}
+                'thumbnail': self.settings['camera_thumbnail_path'] + '/' + filename_pieces[0] + '.' + filename_pieces[1]}
             pictures.insert(picture_insert, new_image)
         return pictures
 

@@ -94,7 +94,7 @@ def page_picture(pic):
     picture.settings['zoom'] = 1.0
     picture.settings['pan_x'] = 0
     picture.settings['pan_y'] = 0
-    path = picture.settings['path_to_pictures']
+    path = picture.settings['camera_pictures_path']
     pic_info = picture.info(pic)
     uis['current'] = 'pictures'
     # print(str(pic_info))

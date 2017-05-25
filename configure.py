@@ -38,7 +38,7 @@ class Configure:
         self.config['ui_size'] = 'lg4'
         self.config['camera'] = 'raspberry_pi_8mp'
         self.config['sensor_array'] = 'none'
-        self.config['path_to_fpv'] = 'static/fpv'
+        self.config['camera_fpv_path'] = 'static/fpv'
         self.config['sensors'] = 'sensors_none'
         self.config['sensors_note'] = "Raspberry Pi Only"
 
@@ -73,11 +73,11 @@ class Configure:
         self.config['servo_camera_vert_inc'] = round((self.config['servo_camera_vert_top'] / float(self.config['servo_camera_vert_bottom'])) / 90.0, 0)
 
         # This folder gets purged of old images often, only the last image is safe
-        self.config['path_to_fpv'] = 'static/fpv'
+        self.config['camera_fpv_path'] = 'static/fpv'
 
         # This can be redirected to ? a dropbox folder maybe?
-        self.config['path_to_pictures'] = 'static/camera/photos'
-        self.config['path_to_thumbnails'] = 'static/camera/thumbnails'
+        self.config['camera_pictures_path'] = 'static/camera/photos'
+        self.config['camera_thumbnail_path'] = 'static/camera/thumbnails'
 
         config_fh = open('configuration.json', "w")
         config_fh.write(json.dumps(self.config, sort_keys=True, indent=4, separators=(',', ': ')))

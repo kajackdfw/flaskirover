@@ -12,20 +12,20 @@ class Picture:
 
     def __init__(self, start_settings):
 
-        if 'path_to_fpv' in start_settings:
-            self.settings['path_to_fpv'] = start_settings['path_to_fpv']
+        if 'camera_fpv_path' in start_settings:
+            self.settings['camera_fpv_path'] = start_settings['camera_fpv_path']
         else:
-            self.settings['path_to_fpv'] = 'static/fpv'
+            self.settings['camera_fpv_path'] = 'static/fpv'
 
-        if 'path_to_pictures' in start_settings:
-            self.settings['path_to_pictures'] = start_settings['path_to_pictures']
+        if 'camera_pictures_path' in start_settings:
+            self.settings['camera_pictures_path'] = start_settings['camera_pictures_path']
         else:
-            self.settings['path_to_pictures'] = 'static/camera/pictures'
+            self.settings['camera_pictures_path'] = 'static/camera/pictures'
 
-        if 'path_to_thumbnails' in start_settings:
-            self.settings['path_to_thumbnails'] = start_settings['path_to_thumbnails']
+        if 'camera_thumbnail_path' in start_settings:
+            self.settings['camera_thumbnail_path'] = start_settings['camera_thumbnail_path']
         else:
-            self.settings['path_to_thumbnails'] = 'static/camera/thumbnails'
+            self.settings['camera_thumbnail_path'] = 'static/camera/thumbnails'
 
         if 'camera_fpv_res_x' in start_settings:
             self.settings['camera_fpv_res_x'] = int(start_settings['camera_fpv_res_x'])
@@ -38,11 +38,11 @@ class Picture:
             self.settings['camera_fpv_res_x'] = 600
 
         self.settings['zoom'] = 1.0
-        self.settings['path_to_fpv'] = start_settings['path_to_fpv']
+        self.settings['camera_fpv_path'] = start_settings['camera_fpv_path']
         self.clean_pillow_temp()
 
     def get_list_of_pictures(self):
-        thumb_nail_list = [f for f in listdir(self.settings['path_to_thumbnails']) if isfile(join(self.settings['path_to_thumbnails'], f))]
+        thumb_nail_list = [f for f in listdir(self.settings['camera_thumbnail_path']) if isfile(join(self.settings['camera_thumbnail_path'], f))]
         pictures = []
         picture_insert = 0
         for image in thumb_nail_list:
@@ -50,7 +50,7 @@ class Picture:
             new_image = {
                 'timestamp': int(filename_pieces[0]),
                 'view_url': 'picture/' + str(filename_pieces[0] + '.' + filename_pieces[1]),
-                'thumbnail': self.settings['path_to_thumbnails'] + '/' + filename_pieces[0] + '.' + filename_pieces[1]}
+                'thumbnail': self.settings['camera_thumbnail_path'] + '/' + filename_pieces[0] + '.' + filename_pieces[1]}
             pictures.insert(picture_insert, new_image)
         pictures = sorted(pictures, key=self.by_timestamp)
         return pictures
@@ -69,7 +69,7 @@ class Picture:
             zoom_options['zoom'] = float(zoom_factor)
             self.settings['zoom'] = zoom_options['zoom']
 
-        path = self.settings['path_to_pictures']
+        path = self.settings['camera_pictures_path']
         source_image = Image.open(path + '/' + pic_selected)
         print('image size  : ' + str(source_image.size))
 
@@ -122,7 +122,7 @@ class Picture:
             self.settings['pan_y'] = 0
 
             pan_results['zoom'] = 1.0
-            pan_results['file'] = self.settings['path_to_pictures'] + current_image
+            pan_results['file'] = self.settings['camera_pictures_path'] + current_image
             pan_results['zoom_out'] = False
             pan_results['zoom_in'] = True
             return pan_results
@@ -130,7 +130,7 @@ class Picture:
             pan_results['zoom'] = self.settings['zoom']
 
         # ok to pan
-        path = self.settings['path_to_pictures']
+        path = self.settings['camera_pictures_path']
         source_image = Image.open(path + '/' + current_image)
         width, height = source_image.size  # Get dimensions
         pan_results['y_aspect'] = float(int(source_image.size[1]) / int(source_image.size[0]))
@@ -206,7 +206,7 @@ class Picture:
         return pan_results
 
     def info(self, pic_selected):
-        image_info = Image.open(self.settings['path_to_pictures'] + '/' + pic_selected)
+        image_info = Image.open(self.settings['camera_pictures_path'] + '/' + pic_selected)
         pic_info = {
             'zoom_center_x': round(float(image_info.size[0]) / 2.0, 0),
             'zoom_center_y': round(float(image_info.size[1]) / 2.0, 0)}
@@ -224,10 +224,10 @@ class Picture:
         return True
 
     def clean_fpv_cache(self, last_image):
-        delete_list = [f for f in listdir(self.settings['path_to_fpv']) if isfile(join(self.settings['path_to_fpv'], f))]
+        delete_list = [f for f in listdir(self.settings['camera_fpv_path']) if isfile(join(self.settings['camera_fpv_path'], f))]
         for image in delete_list:
             filename_pieces = image.split('.')
-            old_image = self.settings['path_to_fpv'] + '/' + filename_pieces[0] + '.' + filename_pieces[1]
+            old_image = self.settings['camera_fpv_path'] + '/' + filename_pieces[0] + '.' + filename_pieces[1]
             if not last_image == old_image:
                 print('  removing ' + old_image)
                 os.remove(old_image)
@@ -241,7 +241,7 @@ class Picture:
         new_width = int(round(int(200) * ratio, 0))
         thumbnail_size = (new_width, 200)
         thumbnail = source_image.resize(thumbnail_size)
-        new_file_name = self.settings['path_to_thumbnails'] + '/' + filename_pieces[3]
+        new_file_name = self.settings['camera_thumbnail_path'] + '/' + filename_pieces[3]
         thumbnail.save(new_file_name)
         return True
 
