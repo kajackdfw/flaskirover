@@ -1,7 +1,7 @@
 {% macro panel_setting(index) -%}
     <div class="panel-settings">
     <div class="panel-settings-heading">
-        <h3 class="panel-settings-title">{{ index|capitalize }} Settings</h3>
+        <h3 class="panel-settings-title">{{ index|uc_words }} </h3>
     </div>
     <div class="panel-settings-body">
 {%- endmacro %}

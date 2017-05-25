@@ -36,7 +36,7 @@
             <td valign="top" align="center" width="90%">
 
                 {% for key, category in cats.items() %}
-                    {{ macs.panel_setting( category.index ) }}
+                    {{ macs.panel_setting( category.index + " : " + settings[ category.index ]  ) }}
 
                         {{ macs.settings_for_category(category.index, settings, specs ) }}
 
