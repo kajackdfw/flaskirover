@@ -11,16 +11,17 @@
 
 **TESING OR IN DEVELOPMENT**
 
+1. Build a settings page
 1. Settings page for reversing or tweaking drive system 
-1. RaspiRover Board v3 support
 1. Loadable hardware configs
 
 **TODOS:**
 
-1. Compose About page
-1. Load A Config file for startup settings
+1. RaspiRover Board v3 support
+1. Load A User Created Config file for startup settings
 1. Prompt User for setup and write a default config file
-1. Build a settings page
+1. After a move into a wifi dead spot, reverse last move
+1. Test wifi strength with download or normal drive page refresh
 
 **FUTURE FEATURES:**
 1. Link to Arduino by USB
@@ -40,6 +41,7 @@
 1. Flask ( with pip3 )
 1. WiringPi ( with pip3 )
 
+
 **Windows**
 
 _The windows setup is for UI development or demo only, Camera and Motor control on Raspberry Pi only._
@@ -51,3 +53,10 @@ _The windows setup is for UI development or demo only, Camera and Motor control 
 
 1. AdaFruit Motor Hat ( https://learn.adafruit.com/adafruit-dc-and-stepper-motor-hat-for-raspberry-pi/installing-software )
 1. RaspiRobot v3 ( https://github.com/simonmonk/raspirobotboard3 )
+1. Adafruit Servo Hat ( https://github.com/adafruit/Adafruit_Python_PCA9685 )
+
+** Common I2C Addresses Used **
+
+1. Adafruit Motor Hat --> 60
+2. Adafruit Servo Hat --> 40
+3. RaspiRobot         --> none ( uses GPIO ) ?
