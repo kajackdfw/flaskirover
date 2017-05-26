@@ -65,9 +65,9 @@ class Configure:
         self.config['servo_camera_roll_number'] = False
 
         # Available GPIO 4(p7), 17(p11) 27(p13) with AdaFruit Motor Hat
-        self.config['servo_camera_vert_number'] = 1
+        self.config['servo_camera_vert_number'] = 0
         self.config['servo_camera_vert_bottom'] = 584
-        self.config['servo_camera_vert_park'] = 150
+        self.config['servo_camera_vert_park'] = 584
         self.config['servo_camera_vert_center'] = 300
         self.config['servo_camera_vert_top'] = 150
         self.config['servo_camera_vert_inc'] = round((self.config['servo_camera_vert_top'] / float(self.config['servo_camera_vert_bottom'])) / 90.0, 0)
