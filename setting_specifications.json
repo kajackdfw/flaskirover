@@ -45,9 +45,15 @@
     "servo_camera_roll_right": { "type": "int"},
     "servo_camera_roll_inc": { "type": "int"}
   },
+  "servos_none": {
+      "category": "servos",
+      "disabled": true,
+      "servos_note": "No servos available"
+  },
   "immobile_wildlife_cam": {
       "category": "motor",
-      "disabled": true
+      "disabled": true,
+      "motor_note": "No motors available"
   },
   "adafruit_dc_and_stepper_motor_hat": {
     "category": "motor",

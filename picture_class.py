@@ -229,7 +229,7 @@ class Picture:
             filename_pieces = image.split('.')
             old_image = self.settings['camera_fpv_path'] + '/' + filename_pieces[0] + '.' + filename_pieces[1]
             if not last_image == old_image:
-                print('  removing ' + old_image)
+                # print('  removing ' + old_image)
                 os.remove(old_image)
         return True
 

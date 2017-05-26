@@ -24,6 +24,8 @@ if rover.config['servo_camera_vert_number'] is not False or rover.config['servo_
     sys.path.append('hardware_drivers/servo')
     if rover.config['servo'] == "adafruit_servo_hat":
         from adafruit_servo_hat import Servo
+    elif rover.config['servo'] == "servos_using_wiringpi":
+        from servos_using_wiringpi import Servo
     else:
         from servos_using_wiringpi import Servo
 
@@ -216,7 +218,6 @@ def set_setting(category, setting_name, new_value):
 
 @app.route('/ajax/gimbal/center')
 def gimbal_center():
-
     servo.center()
     return True
 

@@ -31,12 +31,10 @@
         $("#sm_speed_reset").click(function () { refresh_speed_options(1.0); });
         $("#sm_speed_creep").click(function () { refresh_speed_options(0.75); });
 
-        {% if uis['servo_vert'] == 'active' %}
-            $("#sm_gimbal_up").click(function () { gimbal_up(10); });
-            $("#sm_gimbal_down").click(function () { gimbal_down(10); });
-        {% endif %}
-
+        $("#sm_gimbal_up").click(function () { gimbal_up(10); });
         $("#sm_gimbal_center").click(function () { gimbal_center(); });
+        $("#sm_gimbal_down").click(function () { gimbal_down(10); });
+
 
         {% if uis['servo_horz'] == 'active' %}
             $("#sm_gimbal_left").click(function () { gimbal_left(10); });
@@ -143,19 +141,16 @@
 
     {% endif %}
 
+    function gimbal_up( degrees ) {
+        $.get("/ajax/gimbal/rotate/up/" + degrees , function(data, status){ return false; });
+        view_refresh();
+    }
 
-    {% if uis['servo_vert'] == 'active' %}
+    function gimbal_down( degrees ) {
+        $.get("/ajax/gimbal/rotate/down/" + degrees , function(data, status){ return false; });
+        view_refresh();
+    }
 
-        function gimbal_up( degrees ) {
-            $.get("/ajax/gimbal/rotate/up/" + degrees , function(data, status){ return false; });
-            view_refresh();
-        }
-
-        function gimbal_down( degrees ) {
-            $.get("/ajax/gimbal/rotate/down/" + degrees , function(data, status){ return false; });
-            view_refresh();
-        }
-    {% endif %}
 
     {% if uis['servo_horz'] == 'active' %}
 
