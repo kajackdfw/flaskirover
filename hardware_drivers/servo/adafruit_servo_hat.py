@@ -75,31 +75,32 @@ class Servo:
 
     def center(self):
         if self.settings['servo_camera_vert_number'] is not False:
-            print(' servo vertical center')
             self.pwm.set_pwm(self.settings['servo_camera_vert_number'], 0, self.settings['servo_camera_vert_center'])
-            # wiringpi.pwmWrite(self.settings['servo_camera_vert_number'], self.settings['servo_camera_vert_center'])
-
         if self.settings['servo_camera_horz_number'] is not False:
-            print(' servo horizontal center')
-            self.pwm.set_pwm(0, 0, self.servo_min)
-            # wiringpi.pwmWrite(self.settings['servo_camera_horz_number'], self.settings['servo_camera_horz_center'])
+            self.pwm.set_pwm(self.settings['servo_camera_horz_number'], 0, self.servo_min)
+        return True
 
+    def park(self):
+        if self.settings['servo_camera_vert_number'] is not False:
+            self.pwm.set_pwm(self.settings['servo_camera_vert_number'], 0, self.settings['servo_camera_vert_park'])
+        if self.settings['servo_camera_horz_number'] is not False:
+            self.pwm.set_pwm(0, 0, self.servo_min)
         return True
 
     def rotate_down(self, degrees):
         print(" ! rotate_down called")
-        self.settings['servo_vert_position'] -= self.settings['servo_camera_vert_inc'] * int(degrees)
-        if self.settings['servo_vert_position'] < self.settings['servo_camera_vert_bottom']:
-            self.settings['servo_vert_position'] = self.settings['servo_camera_vert_bottom']
-        # wiringpi.pwmWrite(self.settings['servo_camera_vert_number'], self.settings['servo_vert_position'])
+        self.settings['servo_vert_position'] -= self.settings['servo_camera_vert_inc']
+        #if self.settings['servo_vert_position'] < self.settings['servo_camera_vert_bottom']:
+        #    self.settings['servo_vert_position'] = self.settings['servo_camera_vert_bottom']
+        self.pwm.set_pwm(self.settings['servo_camera_vert_number'], 0, self.settings['servo_vert_position'])
         return True
 
     def rotate_up(self, degrees):
         print(" ! rotate_up called")
-        self.settings['servo_vert_position'] += self.settings['servo_camera_vert_inc'] * int(degrees)
-        if self.settings['servo_vert_position'] > self.settings['servo_camera_vert_top']:
-            self.settings['servo_vert_position'] = self.settings['servo_camera_vert_top']
-        # wiringpi.pwmWrite(self.settings['servo_camera_vert_number'], self.settings['servo_vert_position'])
+        self.settings['servo_vert_position'] += self.settings['servo_camera_vert_inc']
+        #if self.settings['servo_vert_position'] > self.settings['servo_camera_vert_top']:
+        #    self.settings['servo_vert_position'] = self.settings['servo_camera_vert_top']
+        self.pwm.set_pwm(self.settings['servo_camera_vert_number'], 0, self.settings['servo_vert_position'])
         return True
 
     def rotate_left(self, degrees):

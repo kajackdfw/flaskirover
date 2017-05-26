@@ -62,7 +62,7 @@ picture = Picture(rover.config)
 servo = Servo(rover.config)
 for setting, val in servo.uis.items():
     uis[setting] = val
-
+    print(' + ' + setting + ' = ' + str(val))
 
 @app.route('/')
 def page_index():
@@ -231,9 +231,10 @@ def stop():
 
 @app.route('/quit')
 def quit():
+    servo.park()
     func = request.environ.get('werkzeug.server.shutdown')
     func()
-    run_cmd('git pull')
+    # run_cmd('git pull')
     return "Quitting..."
 
 
