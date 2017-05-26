@@ -80,7 +80,7 @@ class Servo:
         if self.settings['servo_camera_vert_number'] is not False:
             self.set_servo_pulse(self.settings['servo_camera_vert_number'], self.settings['servo_camera_vert_center'])
         if self.settings['servo_camera_horz_number'] is not False:
-            self.set_servo_pulse(self.settings['servo_camera_horz_number'], self.settings['servo_camera_horz_park'])
+            self.set_servo_pulse(self.settings['servo_camera_horz_number'], self.settings['servo_camera_horz_center'])
         return True
 
     def park(self):
@@ -91,19 +91,19 @@ class Servo:
         return True
 
     def rotate_down(self, degrees):
-        print(" ! rotate_down called")
         self.settings['servo_vert_position'] -= int(self.settings['servo_camera_vert_inc'] * degrees)
         #if self.settings['servo_vert_position'] < self.settings['servo_camera_vert_bottom']:
         #    self.settings['servo_vert_position'] = self.settings['servo_camera_vert_bottom']
         self.set_servo_pulse(self.settings['servo_camera_vert_number'], self.settings['servo_vert_position'])
+        print(" ! rotate_down called with " + self.settings['servo_vert_position'] )
         return True
 
     def rotate_up(self, degrees):
-        print(" ! rotate_up called")
         self.settings['servo_vert_position'] += int(self.settings['servo_camera_vert_inc'] * degrees)
         #if self.settings['servo_vert_position'] > self.settings['servo_camera_vert_top']:
         #    self.settings['servo_vert_position'] = self.settings['servo_camera_vert_top']
         self.set_servo_pulse(self.settings['servo_camera_vert_number'], self.settings['servo_vert_position'])
+        print(" ! rotate_up called with " + self.settings['servo_vert_position'])
         return True
 
     def rotate_left(self, degrees):
