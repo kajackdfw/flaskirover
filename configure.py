@@ -25,8 +25,7 @@ class Configure:
         self.config = {}
         self.config['config_name'] = 'default_afafruit_motor_hat_config'
         self.config['config_description'] = 'Default Afafruit Motor Hat Tank Config'
-        self.config['motor'] = 'adafruit_dc_and_stepper_motor_hat'
-        self.config['motor_mode'] = 'tank'
+
         self.config['camera_fpv_res_x'] = 1056
         self.config['camera_fpv_res_y'] = 594
         self.config['camera_fpv'] = 'raspberry_pi_8mp'
@@ -34,14 +33,16 @@ class Configure:
         self.config['camera_photo_res_y'] = 2464  # for v2, or 1944 for v1
         self.config['camera_vflip'] = False
         self.config['camera_hflip'] = False
-        self.config['ui_color'] = 'green'
-        self.config['ui_size'] = 'lg4'
         self.config['camera'] = 'raspberry_pi_8mp'
-        self.config['sensor_array'] = 'none'
         self.config['camera_fpv_path'] = 'static/fpv'
-        self.config['sensors'] = 'sensors_none'
-        self.config['sensors_note'] = "Raspberry Pi Only"
+        self.config['camera_fpv_path'] = 'static/fpv'  # This folder gets purged of old images often
+        self.config['camera_pictures_path'] = 'static/camera/photos'  # This can be redirected to ? a dropbox folder ?
+        self.config['camera_thumbnail_path'] = 'static/camera/thumbnails'
 
+        self.config['sensors'] = 'sensors_none'
+
+        self.config['motor'] = 'adafruit_dc_and_stepper_motor_hat'
+        self.config['motor_mode'] = 'tank'
         # Adafruit_MotorHAT:
         #   FORWARD = 1
         #   BACKWARD = 2
@@ -59,26 +60,22 @@ class Configure:
         self.config['tank_speed_right_max'] = 255
         self.config['tank_speed_left_max'] = 235
 
-        # Camera Gimbal
+        # Camera Gimbal or Robot Arm
         self.config['servo'] = "adafruit_servo_hat"
         self.config['servo_camera_horz_number'] = False
         self.config['servo_camera_roll_number'] = False
-
-        # Available GPIO 4(p7), 17(p11) 27(p13) with AdaFruit Motor Hat
-        self.config['servo_camera_vert_number'] = 0
+        self.config['servo_camera_vert_number'] = 0  # gpio number or servo number dependant on driver
         self.config['servo_camera_vert_bottom'] = 584
         self.config['servo_camera_vert_park'] = 584
         self.config['servo_camera_vert_center'] = 300
         self.config['servo_camera_vert_top'] = 150
-        self.config['servo_camera_vert_inc'] = round((self.config['servo_camera_vert_top'] / float(self.config['servo_camera_vert_bottom'])) / 90.0, 0)
+        self.config['servo_camera_vert_inc'] = -1
 
-        # This folder gets purged of old images often, only the last image is safe
-        self.config['camera_fpv_path'] = 'static/fpv'
+        # CSS styles
+        self.config['ui_color'] = 'green'
+        self.config['ui_size'] = 'lg4'
 
-        # This can be redirected to ? a dropbox folder maybe?
-        self.config['camera_pictures_path'] = 'static/camera/photos'
-        self.config['camera_thumbnail_path'] = 'static/camera/thumbnails'
-
+        # Write the new default config
         config_fh = open('configuration.json', "w")
         config_fh.write(json.dumps(self.config, sort_keys=True, indent=4, separators=(',', ': ')))
         print('Config data saved in configuration.json \n')

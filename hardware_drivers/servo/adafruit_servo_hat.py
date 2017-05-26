@@ -44,6 +44,7 @@ class Servo:
             self.position['horz'] = int(start_settings['servo_camera_horz_park'])
         else:
             self.uis['servo_horz'] = 'disabled'
+            self.position['horz'] = 151
 
         if (self.settings['servo_camera_vert_number']) is not False:
             self.settings['servo_camera_vert_number'] = int(self.settings['servo_camera_vert_number'])
@@ -58,6 +59,7 @@ class Servo:
                 self.settings['servo_camera_vert_inc'] = -1
         else:
             self.uis['servo_vert'] = 'disabled'
+            self.position['vert'] = 151
 
         # Initialize PWM and first servo positions
         if self.uis['servo_vert'] == 'active' or self.uis['servo_horz'] == 'active':
@@ -102,7 +104,7 @@ class Servo:
             self.position['vert'] = self.settings['servo_camera_vert_top']
         self.set_servo_pulse(self.settings['servo_camera_vert_number'], self.position['vert'])
         print(" ! rotate_down called with " + str(self.position['vert']) )
-        return True
+        return False
 
     def rotate_up(self, degrees):
         self.position['vert'] += int(self.settings['servo_camera_vert_inc']) * int(degrees)
@@ -112,7 +114,7 @@ class Servo:
             self.position['vert'] = self.settings['servo_camera_vert_bottom']
         self.set_servo_pulse(self.settings['servo_camera_vert_number'], self.position['vert'])
         print(" ! rotate_up called with " + str(self.position['vert']))
-        return True
+        return False
 
     def rotate_left(self, degrees):
         self.position['horz'] += self.settings['servo_camera_horz_inc'] * int(degrees)

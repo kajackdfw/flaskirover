@@ -194,14 +194,19 @@ def motor_speed(multiplier):
 @app.route('/ajax/gimbal/rotate/up/<degrees>')
 def gimbal_rotate_up(degrees):
     servo.rotate_up(degrees)
+    return False
+
+
+@app.route('/ajax/gimbal/center')
+def gimbal_center():
+    servo.center()
     return True
 
 
-# 192.168.1.12 - - [14/May/2017 20:52:36] "GET /ajax/gimbal/rotate/up/10 HTTP/1.1" 500 -
 @app.route('/ajax/gimbal/rotate/down/<degrees>')
 def gimbal_rotate_down(degrees):
     servo.rotate_down(degrees)
-    return True
+    return False
 
 
 @app.route('/ajax/setting/set/<category>/<setting_name>/<new_value>')
@@ -212,13 +217,6 @@ def set_setting(category, setting_name, new_value):
         reset_required = motor.set_setting(setting_name, new_value, category, specs)
         setting_updates = motor.get_settings()
         rover.update_settings(setting_updates, category)
-
-    return True
-
-
-@app.route('/ajax/gimbal/center')
-def gimbal_center():
-    servo.center()
     return True
 
 
@@ -241,13 +239,6 @@ def stop_server():
     return "Quitting..."
 
 
-# cmd = "ip addr show eth0 | grep inet | awk '{print $2}' | cut -d/ -f1"
-def run_cmd(cmd):
-    p = Popen(cmd, shell=True, stdout=PIPE)
-    print(p.communicate()[0])
-    return True
-
-
 @app.template_filter('uc_words')
 def filter_uc_words(title):
     if len(title) == 0:
@@ -259,6 +250,13 @@ def filter_uc_words(title):
         for word in words:
             new_string += word.capitalize() + ' '
         return new_string.strip()
+
+
+# cmd = "ip addr show eth0 | grep inet | awk '{print $2}' | cut -d/ -f1"
+def run_cmd(cmd):
+    p = Popen(cmd, shell=True, stdout=PIPE)
+    print(p.communicate()[0])
+    return True
 
 
 if __name__ == '__main__' and os.name == 'posix':

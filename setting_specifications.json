@@ -45,10 +45,10 @@
     "servo_camera_roll_right": { "type": "int"},
     "servo_camera_roll_inc": { "type": "int"}
   },
-  "servos_none": {
-      "category": "servos",
+  "servo_none": {
+      "category": "servo",
       "disabled": true,
-      "servos_note": "No servos available"
+      "servo_note": "No servos available"
   },
   "immobile_wildlife_cam": {
       "category": "motor",
