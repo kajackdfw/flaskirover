@@ -61,12 +61,10 @@ class Servo:
 
         # Initialize PWM and first servo positions
         if self.uis['servo_vert'] == 'active' or self.uis['servo_horz'] == 'active':
-            # wiringpi.pwmSetMode(wiringpi.GPIO.PWM_MODE_MS)
-            # wiringpi.pwmSetClock(192)
-            # wiringpi.pwmSetRange(2000)
             self.center()
 
     def set_servo_pulse(self, channel, pulse):
+        self.pwm.set_pwm_freq(60)
         pulse_length = 1000000  # 1,000,000 us per second
         pulse_length //= 60  # 60 Hz
         print('{0}us per period'.format(pulse_length))
@@ -92,16 +90,20 @@ class Servo:
 
     def rotate_down(self, degrees):
         self.settings['servo_vert_position'] -= int(self.settings['servo_camera_vert_inc'] * degrees)
-        #if self.settings['servo_vert_position'] < self.settings['servo_camera_vert_bottom']:
-        #    self.settings['servo_vert_position'] = self.settings['servo_camera_vert_bottom']
+        if self.settings['servo_camera_vert_inc'] == 1 and self.settings['servo_vert_position'] < self.settings['servo_camera_vert_bottom']:
+            self.settings['servo_vert_position'] = self.settings['servo_camera_vert_bottom']
+        elif self.settings['servo_camera_vert_inc'] == -1 and self.settings['servo_vert_position'] > self.settings['servo_camera_vert_top']:
+            self.settings['servo_vert_position'] = self.settings['servo_camera_vert_top']
         self.set_servo_pulse(self.settings['servo_camera_vert_number'], self.settings['servo_vert_position'])
         print(" ! rotate_down called with " + self.settings['servo_vert_position'] )
         return True
 
     def rotate_up(self, degrees):
         self.settings['servo_vert_position'] += int(self.settings['servo_camera_vert_inc'] * degrees)
-        #if self.settings['servo_vert_position'] > self.settings['servo_camera_vert_top']:
-        #    self.settings['servo_vert_position'] = self.settings['servo_camera_vert_top']
+        if self.settings['servo_camera_vert_inc'] == 1 and self.settings['servo_vert_position'] > self.settings['servo_camera_vert_top']:
+            self.settings['servo_vert_position'] = self.settings['servo_camera_vert_top']
+        elif self.settings['servo_camera_vert_inc'] == -1 and self.settings['servo_vert_position'] > self.settings['servo_camera_vert_bottom']:
+            self.settings['servo_vert_position'] = self.settings['servo_camera_vert_bottom']
         self.set_servo_pulse(self.settings['servo_camera_vert_number'], self.settings['servo_vert_position'])
         print(" ! rotate_up called with " + self.settings['servo_vert_position'])
         return True
@@ -110,14 +112,12 @@ class Servo:
         self.settings['servo_horz_position'] += self.settings['servo_camera_horz_inc'] * int(degrees)
         if self.settings['servo_horz_position'] > self.settings['servo_camera_horz_left']:
             self.settings['servo_horz_position'] = self.settings['servo_camera_horz_left']
-        # wiringpi.pwmWrite(self.settings['servo_camera_horz_number'], self.settings['servo_horz_position'])
         return False
 
     def rotate_right(self, degrees):
         self.settings['servo_horz_position'] -= self.settings['servo_camera_horz_inc'] * int(degrees)
         if self.settings['servo_horz_position'] > self.settings['servo_camera_horz_right']:
             self.settings['servo_horz_position'] = self.settings['servo_camera_horz_right']
-        # wiringpi.pwmWrite(self.settings['servo_camera_horz_number'], self.settings['servo_horz_position'])
         return False
 
     def get_uis(self):
