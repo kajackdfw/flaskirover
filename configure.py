@@ -69,7 +69,6 @@ class Configure:
         self.config['servo_camera_vert_park'] = 584
         self.config['servo_camera_vert_center'] = 300
         self.config['servo_camera_vert_top'] = 150
-        self.config['servo_camera_vert_inc'] = -1
 
         # CSS styles
         self.config['ui_color'] = 'green'
