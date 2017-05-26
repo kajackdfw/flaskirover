@@ -4,6 +4,7 @@ import sys
 from subprocess import *
 # from PIL import Image
 import datetime
+import time
 import json
 from picture_class import Picture
 from configure import Configure
@@ -230,10 +231,11 @@ def stop():
 
 
 @app.route('/quit')
-def quit():
+def stop_server():
     servo.park()
     func = request.environ.get('werkzeug.server.shutdown')
     func()
+    time.sleep(5)
     # run_cmd('git pull')
     return "Quitting..."
 
@@ -243,6 +245,7 @@ def run_cmd(cmd):
     p = Popen(cmd, shell=True, stdout=PIPE)
     print(p.communicate()[0])
     return True
+
 
 @app.template_filter('uc_words')
 def filter_uc_words(title):
