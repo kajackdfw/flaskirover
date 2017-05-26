@@ -78,16 +78,16 @@ class Servo:
 
     def center(self):
         if self.settings['servo_camera_vert_number'] is not False:
-            self.pwm.set_pwm(self.settings['servo_camera_vert_number'], 0, self.settings['servo_camera_vert_center'])
+            self.set_servo_pulse(self.settings['servo_camera_vert_number'], self.settings['servo_camera_vert_center'])
         if self.settings['servo_camera_horz_number'] is not False:
-            self.pwm.set_pwm(self.settings['servo_camera_horz_number'], 0, self.settings['servo_camera_horz_park'])
+            self.set_servo_pulse(self.settings['servo_camera_horz_number'], self.settings['servo_camera_horz_park'])
         return True
 
     def park(self):
         if self.settings['servo_camera_vert_number'] is not False:
-            self.pwm.set_pwm(self.settings['servo_camera_vert_number'], 0, self.settings['servo_camera_vert_park'])
+            self.set_servo_pulse(self.settings['servo_camera_vert_number'], self.settings['servo_camera_vert_park'])
         if self.settings['servo_camera_horz_number'] is not False:
-            self.pwm.set_pwm(self.settings['servo_camera_horz_number'], 0, self.settings['servo_camera_horz_park'])
+            self.set_servo_pulse(self.settings['servo_camera_horz_number'], self.settings['servo_camera_horz_park'])
         return True
 
     def rotate_down(self, degrees):
@@ -95,7 +95,7 @@ class Servo:
         self.settings['servo_vert_position'] -= int(self.settings['servo_camera_vert_inc'] * degrees)
         #if self.settings['servo_vert_position'] < self.settings['servo_camera_vert_bottom']:
         #    self.settings['servo_vert_position'] = self.settings['servo_camera_vert_bottom']
-        self.pwm.set_pwm(self.settings['servo_camera_vert_number'], 0, self.settings['servo_vert_position'])
+        self.set_servo_pulse(self.settings['servo_camera_vert_number'], self.settings['servo_vert_position'])
         return True
 
     def rotate_up(self, degrees):
@@ -103,7 +103,7 @@ class Servo:
         self.settings['servo_vert_position'] += int(self.settings['servo_camera_vert_inc'] * degrees)
         #if self.settings['servo_vert_position'] > self.settings['servo_camera_vert_top']:
         #    self.settings['servo_vert_position'] = self.settings['servo_camera_vert_top']
-        self.pwm.set_pwm(self.settings['servo_camera_vert_number'], 0, self.settings['servo_vert_position'])
+        self.set_servo_pulse(self.settings['servo_camera_vert_number'], self.settings['servo_vert_position'])
         return True
 
     def rotate_left(self, degrees):
