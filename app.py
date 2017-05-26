@@ -193,20 +193,20 @@ def motor_speed(multiplier):
 
 @app.route('/ajax/gimbal/rotate/up/<degrees>')
 def gimbal_rotate_up(degrees):
-    servo.rotate_up(degrees)
-    return False
+    uis['servo_camera_vert_pos'] = servo.rotate_up(degrees)
+    return str(uis['servo_camera_vert_pos'])
 
 
 @app.route('/ajax/gimbal/center')
 def gimbal_center():
-    servo.center()
-    return True
+    uis['servo_camera_vert_pos'] = servo.center()
+    return str(uis['servo_camera_vert_pos'])
 
 
 @app.route('/ajax/gimbal/rotate/down/<degrees>')
 def gimbal_rotate_down(degrees):
-    servo.rotate_down(degrees)
-    return False
+    uis['servo_camera_vert_pos'] = servo.rotate_down(degrees)
+    return str(uis['servo_camera_vert_pos'])
 
 
 @app.route('/ajax/setting/set/<category>/<setting_name>/<new_value>')
@@ -217,7 +217,7 @@ def set_setting(category, setting_name, new_value):
         reset_required = motor.set_setting(setting_name, new_value, category, specs)
         setting_updates = motor.get_settings()
         rover.update_settings(setting_updates, category)
-    return True
+    return str(1)
 
 
 @app.route('/stop')

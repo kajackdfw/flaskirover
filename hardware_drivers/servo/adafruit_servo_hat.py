@@ -11,6 +11,8 @@ class Servo:
     uis = {}
     pwm = False
     position = {}
+    position['horz'] = 113
+    position['vert'] = 113
 
     # Configure min and max servo pulse lengths
     servo_min = 150  # Min pulse length out of 4096
@@ -34,7 +36,7 @@ class Servo:
         self.settings['servo_camera_vert_number'] = start_settings['servo_camera_vert_number']
         self.settings['servo_camera_roll_number'] = start_settings['servo_camera_roll_number']
 
-        if (self.settings['servo_camera_horz_number']) is not False:
+        if self.settings['servo_camera_horz_number'] > -1:
             self.settings['servo_camera_horz_number'] = int(self.settings['servo_camera_horz_number'])
             self.settings['servo_camera_horz_left'] = int(start_settings['servo_camera_horz_left'])
             self.settings['servo_camera_horz_center'] = int(start_settings['servo_camera_horz_center'])
@@ -46,24 +48,21 @@ class Servo:
             self.uis['servo_horz'] = 'disabled'
             self.position['horz'] = 151
 
-        if (self.settings['servo_camera_vert_number']) is not False:
+        if self.settings['servo_camera_vert_number'] > -1:
             self.settings['servo_camera_vert_number'] = int(self.settings['servo_camera_vert_number'])
             self.settings['servo_camera_vert_bottom'] = int(start_settings['servo_camera_vert_bottom'])
             self.settings['servo_camera_vert_center'] = int(start_settings['servo_camera_vert_center'])
             self.settings['servo_camera_vert_top'] = int(start_settings['servo_camera_vert_top'])
             self.position['vert'] = int(start_settings['servo_camera_vert_park'])
+            self.calculate_calculated_vert_inc()
 
-            if self.settings['servo_camera_vert_top'] > self.settings['servo_camera_vert_bottom']:
-                self.settings['servo_camera_vert_inc'] = 1
-            else:
-                self.settings['servo_camera_vert_inc'] = -1
         else:
             self.uis['servo_vert'] = 'disabled'
             self.position['vert'] = 151
 
         # Initialize PWM and first servo positions
         if self.uis['servo_vert'] == 'active' or self.uis['servo_horz'] == 'active':
-            self.center()
+            self.park()
 
     def set_servo_pulse(self, channel, pulse):
         if self.uis['servo_vert'] == 'active':
@@ -78,43 +77,56 @@ class Servo:
             pulse //= pulse_length
             self.pwm.set_pwm(channel, 0, pulse)
         else:
-            return False
+            return True
 
     def center(self):
-        if self.settings['servo_camera_vert_number'] is not False:
+        print(' + Call pwm center')
+        if self.settings['servo_camera_vert_number'] > -1:
+            self.position['vert'] = self.settings['servo_camera_vert_center']
             self.set_servo_pulse(self.settings['servo_camera_vert_number'], self.position['vert'])
-        if self.settings['servo_camera_horz_number'] is not False:
+            print(" + gimbal vert center = " + str(self.position['vert']))
+        if self.settings['servo_camera_horz_number'] > -1:
+            self.position['horz'] = self.settings['servo_camera_horz_center']
             self.set_servo_pulse(self.settings['servo_camera_horz_number'], self.position['horz'])
-        return True
+        return int(self.position['horz'])
 
     def park(self):
-        if self.settings['servo_camera_vert_number'] is not False:
+        print(' + Call pwm park')
+        if self.settings['servo_camera_vert_number'] > -1:
             self.position['vert'] = self.settings['servo_camera_vert_park']
             self.set_servo_pulse(self.settings['servo_camera_vert_number'], self.position['vert'])
-        if self.settings['servo_camera_horz_number'] is not False:
+            print(" + gimbal vert park = " + str(self.position['vert']))
+        if self.settings['servo_camera_horz_number'] > -1:
             self.position['horz'] = self.settings['servo_camera_horz_park']
-            self.set_servo_pulse(self.settings['servo_camera_horz_number'], self.settings['servo_camera_horz_park'])
-        return True
+            self.set_servo_pulse(self.settings['servo_camera_horz_number'], self.position['horz'])
+        return int(self.position['horz'])
 
     def rotate_down(self, degrees):
-        self.position['vert'] -= int(self.settings['servo_camera_vert_inc']) * int(degrees)
-        if self.settings['servo_camera_vert_inc'] == 1 and self.position['vert'] < self.settings['servo_camera_vert_bottom']:
+        print(" ! rotate_down vert = " + str(self.position['vert']))
+        self.position['vert'] = self.position['vert'] - (int(self.settings['calculated_vert_inc']) * int(degrees))
+
+        if self.settings['calculated_vert_inc'] == 1 and self.position['vert'] < self.settings['servo_camera_vert_bottom']:
+            print(" ! vert limit a = " + str(self.position['vert']))
             self.position['vert'] = self.settings['servo_camera_vert_bottom']
-        elif self.settings['servo_camera_vert_inc'] == -1 and self.position['vert'] > self.settings['servo_camera_vert_top']:
-            self.position['vert'] = self.settings['servo_camera_vert_top']
+
+        elif self.settings['calculated_vert_inc'] == -1 and self.position['vert'] > self.settings['servo_camera_vert_bottom']:
+            print(" ! vert limit b = " + str(self.position['vert']))
+            self.position['vert'] = self.settings['servo_camera_vert_bottom']
+
         self.set_servo_pulse(self.settings['servo_camera_vert_number'], self.position['vert'])
-        print(" ! rotate_down called with " + str(self.position['vert']) )
-        return False
+        print(" ! rotate_down called with " + str(self.position['vert']) + ' and ' + str(degrees))
+        return int(self.position['vert'])
 
     def rotate_up(self, degrees):
-        self.position['vert'] += int(self.settings['servo_camera_vert_inc']) * int(degrees)
-        if self.settings['servo_camera_vert_inc'] == 1 and self.position['vert'] > self.settings['servo_camera_vert_top']:
+        self.position['vert'] += int(self.settings['calculated_vert_inc']) * int(degrees)
+
+        if self.settings['calculated_vert_inc'] == 1 and self.position['vert'] > self.settings['servo_camera_vert_top']:
             self.position['vert'] = self.settings['servo_camera_vert_top']
-        elif self.settings['servo_camera_vert_inc'] == -1 and self.position['vert'] > self.settings['servo_camera_vert_bottom']:
+        elif self.settings['calculated_vert_inc'] == -1 and self.position['vert'] > self.settings['servo_camera_vert_bottom']:
             self.position['vert'] = self.settings['servo_camera_vert_bottom']
         self.set_servo_pulse(self.settings['servo_camera_vert_number'], self.position['vert'])
         print(" ! rotate_up called with " + str(self.position['vert']))
-        return False
+        return int(self.position['vert'])
 
     def rotate_left(self, degrees):
         self.position['horz'] += self.settings['servo_camera_horz_inc'] * int(degrees)
@@ -149,6 +161,8 @@ class Servo:
             else:
                 self.settings[setting_name] = new_value
 
+            self.calculate_calculated_vert_inc()
+
             # Does this change need a page redraw
             if 'refresh' in specs[setting_name]:
                 return 1
@@ -158,3 +172,9 @@ class Servo:
     def get_settings(self):
         return self.settings
 
+    def calculate_calculated_vert_inc(self):
+        if self.settings['servo_camera_vert_top'] > self.settings['servo_camera_vert_bottom']:
+            self.settings['calculated_vert_inc'] = 1
+        else:
+            self.settings['calculated_vert_inc'] = -1
+        return self.settings['calculated_vert_inc']

@@ -38,7 +38,7 @@
     "servo_camera_horz_right": { "type": "int"},
     "servo_camera_horz_inc": { "type": "int"},
 
-    "servo_camera_roll_number": { "type": "int", "default": -1 },
+    "servo_camera_roll_number": { "type": "int", "default": 2 },
     "servo_camera_roll_left": { "type": "int" },
     "servo_camera_roll_park": { "type": "int" },
     "servo_camera_roll_center": { "type": "int" },

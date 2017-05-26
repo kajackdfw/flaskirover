@@ -138,11 +138,16 @@
     function rover_speed( multiplier ) {
         $.get("/ajax/motor/speed/" + multiplier , function(data, status){ return false; });
     }
-
     {% endif %}
+
 
     function gimbal_up( degrees ) {
         $.get("/ajax/gimbal/rotate/up/" + degrees , function(data, status){ return false; });
+        view_refresh();
+    }
+
+    function gimbal_center() {
+        $.get("/ajax/gimbal/center", function(data, status){ return false; });
         view_refresh();
     }
 
@@ -165,10 +170,7 @@
         }
     {% endif %}
 
-    function gimbal_center() {
-        $.get("/ajax/gimbal/center", function(data, status){ return false; });
-        view_refresh();
-    }
+
 
 </script>
 

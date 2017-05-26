@@ -62,8 +62,8 @@ class Configure:
 
         # Camera Gimbal or Robot Arm
         self.config['servo'] = "adafruit_servo_hat"
-        self.config['servo_camera_horz_number'] = False
-        self.config['servo_camera_roll_number'] = False
+        self.config['servo_camera_horz_number'] = -1
+        self.config['servo_camera_roll_number'] = -1
         self.config['servo_camera_vert_number'] = 0  # gpio number or servo number dependant on driver
         self.config['servo_camera_vert_bottom'] = 584
         self.config['servo_camera_vert_park'] = 584

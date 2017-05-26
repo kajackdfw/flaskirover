@@ -29,7 +29,7 @@
         {% elif setting_name in specs[settings[category]] %}
 
             <label class="btn setting-label"> {{ setting_name|uc_words }} : </label>
-            <input name="{{ setting_name }}" id="{{ setting_name }}" value="{{ setting_value }}" />
+            <input name="{{ setting_name }}" id="{{ setting_name }}" value="{{ setting_value }}" class="int" />
             <br>
 
             <script type="application/javascript">
