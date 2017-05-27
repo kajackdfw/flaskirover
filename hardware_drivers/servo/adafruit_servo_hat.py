@@ -56,10 +56,11 @@ class Servo:
             self.settings['servo_camera_vert_park'] = int(start_settings['servo_camera_vert_park'])
             self.position['vert'] = int(start_settings['servo_camera_vert_park'])
             self.calculate_calculated_vert_inc()
-
         else:
             self.uis['servo_vert'] = 'disabled'
             self.position['vert'] = 151
+
+        self.pwm.set_pwm_freq(60)
 
         # Initialize PWM and first servo positions
         if self.uis['servo_vert'] == 'active' or self.uis['servo_horz'] == 'active':
@@ -68,7 +69,7 @@ class Servo:
     def set_servo_pulse(self, channel, pulse):
         if self.uis['servo_vert'] == 'active':
             print(' + Call pwm')
-            self.pwm.set_pwm_freq(60)
+            # self.pwm.set_pwm_freq(60)
             pulse_length = 1000000  # 1,000,000 us per second
             pulse_length //= 60  # 60 Hz
             print('{0}us per period'.format(pulse_length))
