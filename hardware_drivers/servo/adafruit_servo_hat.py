@@ -53,6 +53,7 @@ class Servo:
             self.settings['servo_camera_vert_bottom'] = int(start_settings['servo_camera_vert_bottom'])
             self.settings['servo_camera_vert_center'] = int(start_settings['servo_camera_vert_center'])
             self.settings['servo_camera_vert_top'] = int(start_settings['servo_camera_vert_top'])
+            self.settings['servo_camera_vert_park'] = int(start_settings['servo_camera_vert_park'])
             self.position['vert'] = int(start_settings['servo_camera_vert_park'])
             self.calculate_calculated_vert_inc()
 
