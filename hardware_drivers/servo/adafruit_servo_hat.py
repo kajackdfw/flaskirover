@@ -68,13 +68,12 @@ class Servo:
 
     def set_servo_pulse(self, channel, pulse):
         if self.uis['servo_vert'] == 'active':
-            print(' + Call pwm')
-            # self.pwm.set_pwm_freq(60)
+            self.pwm.set_pwm_freq(60)
             pulse_length = 1000000  # 1,000,000 us per second
             pulse_length //= 60  # 60 Hz
-            print('{0}us per period'.format(pulse_length))
+            # print('{0}us per period'.format(pulse_length))
             pulse_length //= 4096  # 12 bits of resolution
-            print('{0}us per bit'.format(pulse_length))
+            # print('{0}us per bit'.format(pulse_length))
             pulse *= 1000
             pulse //= pulse_length
             self.pwm.set_pwm(channel, 0, pulse)
