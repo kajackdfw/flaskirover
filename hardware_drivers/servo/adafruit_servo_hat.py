@@ -19,7 +19,7 @@ class Servo:
     servo_max = 600  # Max pulse length out of 4096
 
     try:
-        pwm = Adafruit_PCA9685.PCA9685()
+        pwm = Adafruit_PCA9685.PCA9685(address=0x40, busnum=1)
         # Alternatively specify a different address and/or bus:
         # pwm = Adafruit_PCA9685.PCA9685(address=0x41, busnum=2)
 
@@ -55,7 +55,7 @@ class Servo:
             self.settings['servo_camera_vert_top'] = int(start_settings['servo_camera_vert_top'])
             self.settings['servo_camera_vert_park'] = int(start_settings['servo_camera_vert_park'])
             self.position['vert'] = int(start_settings['servo_camera_vert_park'])
-            self.calculate_calculated_vert_inc()
+            self.calculate_vertical_inc()
         else:
             self.uis['servo_vert'] = 'disabled'
             self.position['vert'] = 151
@@ -65,6 +65,7 @@ class Servo:
         # Initialize PWM and first servo positions
         if self.uis['servo_vert'] == 'active' or self.uis['servo_horz'] == 'active':
             self.park()
+            self.test()
 
     def set_servo_pulse(self, channel, pulse):
         if self.uis['servo_vert'] == 'active':
@@ -79,6 +80,14 @@ class Servo:
             self.pwm.set_pwm(channel, 0, pulse)
         else:
             return True
+
+    def test(self):
+        for num in range(self.settings['servo_camera_vert_bottom'], self.settings['servo_camera_vert_top']):
+            self.set_servo_pulse(self.settings['servo_camera_vert_number'], self.position['vert'])
+            time.sleep(1)
+        for num in range(self.settings['servo_camera_vert_top'], self.settings['servo_camera_vert_bottom']):
+            self.set_servo_pulse(self.settings['servo_camera_vert_number'], self.position['vert'])
+            time.sleep(1)
 
     def center(self):
         print(' + Call pwm center')
@@ -155,7 +164,7 @@ class Servo:
             else:
                 self.settings[setting_name] = new_value
 
-            self.calculate_calculated_vert_inc()
+            self.calculate_vertical_inc()
 
             # Does this change need a page redraw
             if 'refresh' in specs[setting_name]:
@@ -166,7 +175,7 @@ class Servo:
     def get_settings(self):
         return self.settings
 
-    def calculate_calculated_vert_inc(self):
+    def calculate_vertical_inc(self):
         if self.settings['servo_camera_vert_top'] > self.settings['servo_camera_vert_bottom']:
             self.settings['calculated_vert_inc'] = 1
         else:
