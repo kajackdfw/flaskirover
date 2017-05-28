@@ -63,9 +63,9 @@ class Servo:
         self.pwm.set_pwm_freq(60)
 
         # Initialize PWM and first servo positions
-        if self.uis['servo_vert'] == 'active' or self.uis['servo_horz'] == 'active':
-            self.park()
-            self.test()
+        # if self.uis['servo_vert'] == 'active' or self.uis['servo_horz'] == 'active':
+            # self.park()
+            # self.test()
 
     def set_servo_pulse(self, channel, pulse):
         if self.uis['servo_vert'] == 'active':
