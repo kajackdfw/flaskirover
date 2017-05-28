@@ -4,9 +4,14 @@ from os.path import isfile, join
 import os
 
 try:
-    from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor
+    from Adafruit_MotorHAT import Adafruit_MotorHAT
 except ImportError:
     print(' - Library Adafruit_MotorHAT not installed.')
+
+try:
+    from Adafruit_MotorHAT import Adafruit_DCMotor
+except ImportError:
+    print(' - Library Adafruit_DCMotor not installed.')
 
 import time
 import atexit

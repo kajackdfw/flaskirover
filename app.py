@@ -19,15 +19,6 @@ else:
     print('Error : Rover requires some kind of vision!')
     exit()
 
-# Gimbal for camera and fpv
-if rover.config['servo_camera_vert_number'] is not False or rover.config['servo_camera_horz_number'] is not False:
-    sys.path.append('hardware_drivers/servo')
-    if rover.config['servo'] == "adafruit_servo_hat":
-        from adafruit_servo_hat import Servo
-    elif rover.config['servo'] == "servos_using_wiringpi":
-        from servos_using_wiringpi import Servo
-    else:
-        from servos_using_wiringpi import Servo
 
 # MOTOR System
 sys.path.append('hardware_drivers/motor')
@@ -37,6 +28,17 @@ elif rover.config['motor'] == 'raspirobot_board_v3':
     from raspirobot_board_v3 import Motor
 else:
     from immobile_wildlife_cam import Motor
+
+
+# Gimbal for camera and fpv
+if not rover.config['servo_camera_vert_number'] == -1 or not rover.config['servo_camera_horz_number'] == -1:
+    sys.path.append('hardware_drivers/servo')
+    if rover.config['servo'] == "adafruit_servo_hat":
+        from adafruit_servo_hat import Servo
+    elif rover.config['servo'] == "servos_using_wiringpi":
+        from servos_using_wiringpi import Servo
+    else:
+        from servos_using_wiringpi import Servo
 
 
 app = Flask(__name__, static_url_path='/static')
