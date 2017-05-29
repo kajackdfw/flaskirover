@@ -69,7 +69,8 @@ class Servo:
 
     def set_servo_pulse(self, channel, pulse):
         if self.uis['servo_vert'] == 'active':
-            self.pwm.set_pwm_freq(60)
+            xpwm = Adafruit_PCA9685.PCA9685()  # address=0x40, busnum=1
+            xpwm.set_pwm_freq(60)
             pulse_length = 1000000  # 1,000,000 us per second
             pulse_length //= 60  # 60 Hz
             # print('{0}us per period'.format(pulse_length))
@@ -77,7 +78,7 @@ class Servo:
             # print('{0}us per bit'.format(pulse_length))
             pulse *= 1000
             pulse //= pulse_length
-            self.pwm.set_pwm(channel, 0, pulse)
+            xpwm.set_pwm(channel, 0, pulse)
         else:
             return True
 
