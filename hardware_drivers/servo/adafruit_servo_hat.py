@@ -9,7 +9,7 @@ class Servo:
 
     settings = {}
     uis = {}
-    pwm = False
+    # pwm = False
     position = {}
     position['horz'] = 113
     position['vert'] = 113
@@ -22,8 +22,7 @@ class Servo:
         pwm = Adafruit_PCA9685.PCA9685()  # address=0x40, busnum=1
         # Alternatively specify a different address and/or bus:
         # pwm = Adafruit_PCA9685.PCA9685(address=0x41, busnum=2)
-
-        pwm.set_pwm_freq(60)
+        # pwm.set_pwm_freq(60)
         uis['servo_horz'] = 'active'
         uis['servo_vert'] = 'active'
     except NameError:
@@ -60,7 +59,7 @@ class Servo:
             self.uis['servo_vert'] = 'disabled'
             self.position['vert'] = 151
 
-        self.pwm.set_pwm_freq(60)
+        # self.pwm.set_pwm_freq(60)
 
         # Initialize PWM and first servo positions
         # if self.uis['servo_vert'] == 'active' or self.uis['servo_horz'] == 'active':
