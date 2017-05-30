@@ -26,6 +26,18 @@
                 {% endfor %}
             </select><br>
 
+
+        {% elif setting_name in specs[settings[category]] and specs[settings[category]][setting_name]['type'] == "string" %}
+
+            <label class="btn setting-label"> {{ setting_name|uc_words }} : </label>
+            <input name="{{ setting_name }}" id="{{ setting_name }}" value="{{ setting_value }}" class="string" />
+            <br>
+
+            <script type="application/javascript">
+                $("#{{ setting_name }}").blur(function () { set_setting( "{{ category }}", "{{ setting_name }}", $("#{{ setting_name }}").val() ); });
+            </script>
+
+
         {% elif setting_name in specs[settings[category]] %}
 
             <label class="btn setting-label"> {{ setting_name|uc_words }} : </label>

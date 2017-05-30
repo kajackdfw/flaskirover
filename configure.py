@@ -133,8 +133,8 @@ class Configure:
 
     def get_setting_categories(self):
         categories = {}
-        categories[0] = {"index": "motor", "title": "Motor Settings"}
-        categories[1] = {"index": "camera", "title": "Camera Settings"}
+        categories[0] = {"index": "camera", "title": "Camera Settings"}
+        categories[1] = {"index": "motor", "title": "Motor Settings"}
         categories[2] = {"index": "servo", "title": "Servo Settings"}
         categories[3] = {"index": "sensors", "title": "Sensor Settings"}
         return categories
