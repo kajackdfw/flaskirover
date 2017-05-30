@@ -185,3 +185,23 @@ class Configure:
         config_fh.write(json.dumps(self.settings, sort_keys=True, indent=4, separators=(',', ': ')))
         print('Config data saved in new_configuration.json \n')
         config_fh.close()
+
+    def get_active_driver_settings(self):
+        drivers = self.get_drivers()
+        # loop through drivers in specs
+            # loop through settings in driver
+                # if setting in driver matches on in config, then add it to the list
+                    # next_setting = []
+                    # next_setting['name'] = setting_name
+                    # next_setting['value'] = setting
+                    # next_setting['sort'] = setting['sort']
+        # sort by sort field
+        return drivers
+
+    def get_drivers(self):
+        driver_names = {}
+        driver_names[0] = self.config['camera']
+        driver_names[1] = self.config['motor']
+        driver_names[2] = self.config['servo']
+        driver_names[3] = self.config['sensors']
+        return driver_names
