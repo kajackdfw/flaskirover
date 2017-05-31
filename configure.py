@@ -202,10 +202,14 @@ class Configure:
                     next_setting['value'] = setting_value
                     next_setting['sort'] = specs[driver_name][setting_name]['sort']
                     driver_settings.append(next_setting)
-
         # sort by sort field
-        print('driver_settings : ' + str(driver_settings))
-        return drivers
+        sorted_settings = sorted(driver_settings, key=self.by_sort_field)
+        config_fh = open('settings_page_order.json', "w")
+        config_fh.write(json.dumps(sorted_settings, sort_keys=True, indent=4, separators=(',', ': ')))
+        print('Settings data saved in settings_page_order.json \n')
+        config_fh.close()
+
+        return sorted_settings
 
     def get_drivers(self):
         driver_names = {}
@@ -214,3 +218,6 @@ class Configure:
         driver_names[2] = self.config['servo']
         driver_names[3] = self.config['sensors']
         return driver_names
+
+    def by_sort_field(self, one_item):
+        return int(one_item['sort'])

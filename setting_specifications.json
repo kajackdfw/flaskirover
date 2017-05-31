@@ -1,29 +1,29 @@
 {
   "adafruit_servo_hat": {
     "category": "servo",
-    "servo_camera_vert_number": { "type": "int", "default": 0, "sort": 0,
+    "servo_camera_vert_number": { "type": "int", "default": 0, "sort": 50,
       "options": { "-1": "None", "0": 0, "1": 1, "2": 2, "3": 3, "14": 14, "15": 15, "16": 16 }
     },
-    "servo_camera_vert_top": { "type": "int", "sort": 1 },
-    "servo_camera_vert_center": { "type": "int", "sort": 2 },
-    "servo_camera_vert_bottom": { "type": "int", "sort": 3 },
-    "servo_camera_vert_park": { "type": "int", "sort": 4 },
+    "servo_camera_vert_top": { "type": "int", "sort": 51 },
+    "servo_camera_vert_center": { "type": "int", "sort": 52 },
+    "servo_camera_vert_bottom": { "type": "int", "sort": 53 },
+    "servo_camera_vert_park": { "type": "int", "sort": 54 },
 
-    "servo_camera_horz_number": { "type": "int", "default": 1, "sort": 11,
+    "servo_camera_horz_number": { "type": "int", "default": 1, "sort": 60,
       "options": { "-1": "None", "0": 0, "1": 1, "2": 2, "3": 3, "14": 14, "15": 15, "16": 16 }
     },
-    "servo_camera_horz_left": { "type": "int", "sort": 12 },
-    "servo_camera_horz_center": { "type": "int", "sort": 13 },
-    "servo_camera_horz_right": { "type": "int", "sort": 14 },
-    "servo_camera_horz_park": { "type": "int", "sort": 15 },
+    "servo_camera_horz_left": { "type": "int", "sort": 61 },
+    "servo_camera_horz_center": { "type": "int", "sort": 62 },
+    "servo_camera_horz_right": { "type": "int", "sort": 63 },
+    "servo_camera_horz_park": { "type": "int", "sort": 64 },
 
-    "servo_camera_roll_number": { "type": "int", "default": 2, "sort": 22,
+    "servo_camera_roll_number": { "type": "int", "default": 2, "sort": 70,
       "options": { "-1": "None", "0": 0, "1": 1, "2": 2, "3": 3, "14": 14, "15": 15, "16": 16 }
     },
-    "servo_camera_roll_left": { "type": "int", "sort": 23 },
-    "servo_camera_roll_center": { "type": "int", "sort": 24 },
-    "servo_camera_roll_right": { "type": "int", "sort": 25 },
-    "servo_camera_roll_park": { "type": "int", "sort": 26 }
+    "servo_camera_roll_left": { "type": "int", "sort": 71 },
+    "servo_camera_roll_center": { "type": "int", "sort": 72 },
+    "servo_camera_roll_right": { "type": "int", "sort": 73 },
+    "servo_camera_roll_park": { "type": "int", "sort": 74 }
   },
   "servo_none": {
       "category": "servo",
@@ -39,23 +39,23 @@
     "category": "motor",
     "driver": "adafruit_dc_and_stepper_motor_hat",
     "motor_mode": {
-      "sort": 0,
+      "sort": 10,
       "type": "string",
       "options": { "tank": "Tank", "4x2": "Car with 2wd", "4x4": "Car with 4wd", "boat": "boat", "twin": "Boat with twin engine and no rudder"},
       "refresh": true
     },
 
-    "tank_left_motor": { "type": "int", "options": { "1": 1, "2": 2, "3": 3, "4": 4 }, "default": 1, "rule": "not_equal_to tank_right_motor", "sort": 1 },
-    "tank_left_forward": { "type": "int", "options": { "1": 1, "2": 2 }, "default": 1, "sort": 2 },
-    "tank_left_reverse": { "type": "int", "options": { "1": 1, "2": 2 }, "default": 2, "sort": 3 },
-    "tank_speed_left": { "type": "int", "default": 127, "sort": 4 },
+    "tank_left_motor": { "type": "int", "options": { "1": 1, "2": 2, "3": 3, "4": 4 }, "default": 1, "rule": "not_equal_to tank_right_motor", "sort": 11 },
+    "tank_left_forward": { "type": "int", "options": { "1": 1, "2": 2 }, "default": 1, "sort": 12 },
+    "tank_left_reverse": { "type": "int", "options": { "1": 1, "2": 2 }, "default": 2, "sort": 13 },
+    "tank_speed_left": { "type": "int", "default": 127, "sort": 14 },
 
-    "tank_right_motor": { "type": "int", "options": { "1": 1, "2": 2, "3": 3, "4": 4 }, "default": 2, "rule": "not_equal_to tank_left_motor", "sort": 11 },
-    "tank_right_forward": { "type": "int", "options": { "1": 1, "2": 2 }, "default": 1, "sort": 12 },
-    "tank_right_reverse": { "type": "int", "options": { "1": 1, "2": 2 }, "default": 2, "sort": 13 },
-    "tank_speed_right": { "type": "int", "default": 127, "sort": 14 },
+    "tank_right_motor": { "type": "int", "options": { "1": 1, "2": 2, "3": 3, "4": 4 }, "default": 2, "rule": "not_equal_to tank_left_motor", "sort": 21 },
+    "tank_right_forward": { "type": "int", "options": { "1": 1, "2": 2 }, "default": 1, "sort": 22 },
+    "tank_right_reverse": { "type": "int", "options": { "1": 1, "2": 2 }, "default": 2, "sort": 23 },
+    "tank_speed_right": { "type": "int", "default": 127, "sort": 24 },
 
-    "tank_turn_speed": { "type": "int", "default": 110, "sort": 15 }
+    "tank_turn_speed": { "type": "int", "default": 110, "sort": 29 }
   },
   "raspberry_pi_8mp": {
     "category": "camera",
