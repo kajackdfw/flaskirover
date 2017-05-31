@@ -201,6 +201,7 @@ class Configure:
                     next_setting['name'] = setting_name
                     next_setting['value'] = setting_value
                     next_setting['sort'] = specs[driver_name][setting_name]['sort']
+                    next_setting['category'] = driver
                     driver_settings.append(next_setting)
         # sort by sort field
         sorted_settings = sorted(driver_settings, key=self.by_sort_field)
@@ -213,10 +214,10 @@ class Configure:
 
     def get_drivers(self):
         driver_names = {}
-        driver_names[0] = self.config['camera']
-        driver_names[1] = self.config['motor']
-        driver_names[2] = self.config['servo']
-        driver_names[3] = self.config['sensors']
+        driver_names['camera'] = self.config['camera']
+        driver_names['motor'] = self.config['motor']
+        driver_names['servo'] = self.config['servo']
+        driver_names['sensors'] = self.config['sensors']
         return driver_names
 
     def by_sort_field(self, one_item):
