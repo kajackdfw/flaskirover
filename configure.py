@@ -187,15 +187,24 @@ class Configure:
         config_fh.close()
 
     def get_active_driver_settings(self):
+        driver_settings = []
+        setting_index = 0
         drivers = self.get_drivers()
+        specs = self.get_setting_specifications()
         # loop through drivers in specs
+        for driver, driver_name in drivers.items():
             # loop through settings in driver
-                # if setting in driver matches on in config, then add it to the list
-                    # next_setting = []
-                    # next_setting['name'] = setting_name
-                    # next_setting['value'] = setting
-                    # next_setting['sort'] = setting['sort']
+            for setting_name, setting_value in self.config.items():
+                # if setting in driver matches one in config, then add it to the list
+                if setting_name in specs[driver_name]:
+                    next_setting = {}
+                    next_setting['name'] = setting_name
+                    next_setting['value'] = setting_value
+                    next_setting['sort'] = specs[driver_name][setting_name]['sort']
+                    driver_settings.append(next_setting)
+
         # sort by sort field
+        print('driver_settings : ' + str(driver_settings))
         return drivers
 
     def get_drivers(self):

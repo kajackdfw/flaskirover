@@ -115,6 +115,7 @@ def page_settings():
     # specs_fh.close()
     specs = rover.get_setting_specifications()
     categories = rover.get_setting_categories()
+    rover.get_active_driver_settings()
     if not os.name == 'posix':
         uis['time'] = '{:%Y%m%d%H%M}'.format(datetime.datetime.now())
     return render_template('settings.html', page_title='Settings', uis=uis, settings=rover.config, specs=specs, cats=categories)
@@ -252,6 +253,14 @@ def filter_uc_words(title):
         for word in words:
             new_string += word.capitalize() + ' '
         return new_string.strip()
+
+
+@app.template_filter('boolean')
+def filter_boolean(some_value):
+    if some_value == 1 or some_value is True or some_value.upper() == 'TRUE' or some_value.upper() == 'YES':
+        return 'Yes'
+    else:
+        return 'No'
 
 
 # cmd = "ip addr show eth0 | grep inet | awk '{print $2}' | cut -d/ -f1"

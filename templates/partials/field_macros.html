@@ -15,7 +15,19 @@
 {% macro settings_for_category(category, settings, specs ) -%}
     {% for setting_name, setting_value in settings.items() %}
 
-        {% if setting_name in specs[settings[category]] and 'options' in specs[settings[category]][setting_name] %}
+        {% if setting_name in specs[settings[category]] and 'options' in specs[settings[category]][setting_name]
+           and specs[settings[category]][setting_name]['type'] == 'boolean'                                      %}
+
+            <label class="btn setting-label"> {{ setting_name|uc_words }} : </label>
+            <select name="{{ setting_name }}" id="{{ setting_name }}">
+                {% for option, option_value in specs[settings[category]][setting_name]['options'].items() %}
+                    <option
+                            value="{{ option_value }}" {% if option_value == setting_value %} selected {% endif %} >{{ option|boolean }}
+                    </option>
+                {% endfor %}
+            </select><br>
+
+        {% elif setting_name in specs[settings[category]] and 'options' in specs[settings[category]][setting_name] %}
 
             <label class="btn setting-label"> {{ setting_name|uc_words }} : </label>
             <select name="{{ setting_name }}" id="{{ setting_name }}">
