@@ -38,7 +38,7 @@ if not rover.config['servo_camera_vert_number'] == -1 or not rover.config['servo
     elif rover.config['servo'] == "servos_using_wiringpi":
         from servos_using_wiringpi import Servo
     else:
-        from servos_using_wiringpi import Servo
+        from no_servo import Servo
 
 
 app = Flask(__name__, static_url_path='/static')

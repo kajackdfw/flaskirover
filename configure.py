@@ -61,14 +61,16 @@ class Configure:
         self.config['tank_speed_left_max'] = 235
 
         # Camera Gimbal or Robot Arm
-        self.config['servo'] = "adafruit_servo_hat"
-        self.config['servo_camera_horz_number'] = -1
-        self.config['servo_camera_roll_number'] = -1
-        self.config['servo_camera_vert_number'] = 0  # gpio number or servo number dependant on driver
-        self.config['servo_camera_vert_bottom'] = 584
-        self.config['servo_camera_vert_park'] = 584
-        self.config['servo_camera_vert_center'] = 300
-        self.config['servo_camera_vert_top'] = 150
+        self.config['servo'] = "no_servo"
+
+        # self.config['servo'] = "adafruit_servo_hat"
+        # self.config['servo_camera_horz_number'] = -1
+        # self.config['servo_camera_roll_number'] = -1
+        # self.config['servo_camera_vert_number'] = 0  # gpio number or servo number dependant on driver
+        # self.config['servo_camera_vert_bottom'] = 584
+        # self.config['servo_camera_vert_park'] = 584
+        # self.config['servo_camera_vert_center'] = 300
+        # self.config['servo_camera_vert_top'] = 150
 
         # CSS styles
         self.config['ui_color'] = 'green'

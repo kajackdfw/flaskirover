@@ -1,0 +1,146 @@
+[
+    {
+        "category": "camera",
+        "name": "camera_photo_res_x",
+        "sort": 0,
+        "value": 3280
+    },
+    {
+        "category": "camera",
+        "name": "camera_photo_res_y",
+        "sort": 1,
+        "value": 2464
+    },
+    {
+        "category": "camera",
+        "name": "camera_fpv_path",
+        "sort": 2,
+        "value": "static/fpv"
+    },
+    {
+        "category": "camera",
+        "name": "camera_pictures_path",
+        "sort": 3,
+        "value": "static/camera/photos"
+    },
+    {
+        "category": "camera",
+        "name": "camera_thumbnail_path",
+        "sort": 4,
+        "value": "static/camera/thumbnails"
+    },
+    {
+        "category": "camera",
+        "name": "camera_vflip",
+        "sort": 5,
+        "value": false
+    },
+    {
+        "category": "camera",
+        "name": "camera_hflip",
+        "sort": 6,
+        "value": false
+    },
+    {
+        "category": "motor",
+        "name": "motor_mode",
+        "sort": 10,
+        "value": "tank"
+    },
+    {
+        "category": "motor",
+        "name": "tank_left_motor",
+        "sort": 11,
+        "value": 1
+    },
+    {
+        "category": "motor",
+        "name": "tank_left_forward",
+        "sort": 12,
+        "value": 1
+    },
+    {
+        "category": "motor",
+        "name": "tank_left_reverse",
+        "sort": 13,
+        "value": 2
+    },
+    {
+        "category": "motor",
+        "name": "tank_speed_left",
+        "sort": 14,
+        "value": 145
+    },
+    {
+        "category": "motor",
+        "name": "tank_right_motor",
+        "sort": 21,
+        "value": 2
+    },
+    {
+        "category": "motor",
+        "name": "tank_right_forward",
+        "sort": 22,
+        "value": 1
+    },
+    {
+        "category": "motor",
+        "name": "tank_right_reverse",
+        "sort": 23,
+        "value": 2
+    },
+    {
+        "category": "motor",
+        "name": "tank_speed_right",
+        "sort": 24,
+        "value": 155
+    },
+    {
+        "category": "motor",
+        "name": "tank_turn_speed",
+        "sort": 29,
+        "value": 135
+    },
+    {
+        "category": "servo",
+        "name": "servo_camera_vert_number",
+        "sort": 50,
+        "value": 0
+    },
+    {
+        "category": "servo",
+        "name": "servo_camera_vert_top",
+        "sort": 51,
+        "value": 150
+    },
+    {
+        "category": "servo",
+        "name": "servo_camera_vert_center",
+        "sort": 52,
+        "value": 300
+    },
+    {
+        "category": "servo",
+        "name": "servo_camera_vert_bottom",
+        "sort": 53,
+        "value": 584
+    },
+    {
+        "category": "servo",
+        "name": "servo_camera_vert_park",
+        "sort": 54,
+        "value": 584
+    },
+    {
+        "category": "servo",
+        "name": "servo_camera_horz_number",
+        "sort": 60,
+        "value": -1
+    },
+    {
+        "category": "servo",
+        "name": "servo_camera_roll_number",
+        "sort": 70,
+        "value": -1
+    }
+]
