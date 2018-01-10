@@ -14,8 +14,9 @@ class Servo:
     uis['servo_vert'] = 'disabled'
     uis['servo_horz'] = 'disabled'
 
-    # def __init__(self, start_settings):
-    #     return False
+    def __init__(self, start_settings):
+        self.settings['servo_camera_horz_number'] = -1
+        self.settings['servo_camera_vert_number'] = -1
 
     def get_uis(self):
         return self.uis
