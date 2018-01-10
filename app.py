@@ -40,6 +40,7 @@ if not rover.config['servo_camera_vert_number'] == -1 or not rover.config['servo
     else:
         from no_servo import Servo
 else:
+    sys.path.append('hardware_drivers/servo')
     from no_servo import Servo
 
 app = Flask(__name__, static_url_path='/static')
