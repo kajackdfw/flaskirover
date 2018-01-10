@@ -62,6 +62,8 @@ class Configure:
 
         # Camera Gimbal or Robot Arm
         self.config['servo'] = "no_servo"
+        self.config['servo_camera_horz_number'] = -1
+        self.config['servo_camera_vert_number'] = -1
 
         # self.config['servo'] = "adafruit_servo_hat"
         # self.config['servo_camera_horz_number'] = -1
