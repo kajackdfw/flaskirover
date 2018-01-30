@@ -71,6 +71,8 @@ for setting, val in servo.uis.items():
     uis[setting] = val
     print(' + ' + setting + ' = ' + str(val))
 
+# http://flask.pocoo.org/snippets/67/
+
 @app.route('/')
 def page_index():
     vision.take_fpv_image()
