@@ -278,7 +278,7 @@ def run_cmd(cmd):
 
 # use 8081 for server to avoid common Apache server at 8080 on dev env
 if __name__ == '__main__' and os.name == 'posix':
-    app.run(host='0.0.0.0', port=8081)
+    app.run(host='0.0.0.0', port=8080)
 elif __name__ == '__main__':
-    app.run(debug=True, host='localhost', port=8081)
+    app.run(debug=True, host='localhost', port=8082)
 
