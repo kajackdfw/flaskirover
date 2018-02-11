@@ -25,7 +25,7 @@
     "servo_camera_roll_right": { "type": "int", "sort": 73 },
     "servo_camera_roll_park": { "type": "int", "sort": 74 }
   },
-  "servo_none": {
+  "no_servo": {
       "category": "servo",
       "disabled": true,
       "servo_note": "No servos available"
